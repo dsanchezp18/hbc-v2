@@ -1,0 +1,126 @@
+\documentclass[12pt,a4]{article}
+
+% ---- Metadata ---- %
+
+\title{Honesty by Convenience: Corruption Tolerance in Ecuador}
+\author{Daniel Hernán Sánchez Pazmiño}
+\date{June 2022}
+
+% ---- Load Packages ---- %
+
+% Math
+
+\usepackage{savesym} % Need to "save" the command that is already defined \varTheta
+
+\usepackage{amsmath}
+  \savesymbol{varTheta} 
+
+% Fonts
+
+% To set the TNR font for both text and equations:
+
+\usepackage{mathspec}
+  \setallmainfonts(Digits,Greek,Latin){Times New Roman}
+\restoresymbol{MTP}{varTheta}
+
+% Formatting
+
+\usepackage{setspace}
+  \doublespacing
+
+\usepackage[margin = 1in]{geometry}
+
+% Citation & Bibliographies
+
+\usepackage[backend = biber, style = apa, citestyle = apa]{biblatex}
+  \addbibresource{refs.bib}
+  
+% Other packages
+
+\usepackage{csquotes} % For quotation marks
+\usepackage{epigraph} % For epigraph
+% \epigraphsize{\small}% Default
+\setlength\epigraphwidth{9cm}
+\setlength\epigraphrule{1pt}
+
+\usepackage{float} % For the H float option- only used in emergencies (lol)
+
+% ---- R Stuff to be used in the whole document ----
+
+% Here I will execute or source R code through chunks that I need to use throughout the whole document.
+
+% General settings
+
+<<setup, include = F>>=
+# Chunk options
+knitr::opts_chunk$set(echo = F, eval = T, include = F)
+system(paste("biber", sub("\\.Rnw$", "", current_input())))
+
+# Libraries
+library(tidyverse)
+library(survey)
+@
+
+% Load the data by sourcing the data manipulation script
+
+<<source-data, include = F, cache = T>>=
+read_chunk('scripts/data_manipulation.R')
+@
+
+% Now create the survey design objects
+
+<<survey-designs, include = F, cache = T>>=
+# Full 2004-2019 design
+
+lapop_des<-svydesign(ids = ~ upm, 
+                     strata = ~ estratopri, 
+                     weights = ~ weight1500, 
+                     nest = TRUE,
+                     na.action = 'na.exclude',
+                     data = df)
+
+# 2014-2016 Survey Design
+
+lapop_des46<-svydesign(ids = ~ upm, 
+                       strata = ~ estratopri, 
+                       weights = ~ weight1500, 
+                       nest = TRUE,
+                       na.action = 'na.exclude',
+                       data = df46)
+
+# 2016 free dataset
+
+lapop_des16<-svydesign(ids = ~ upm, 
+                       strata = ~ estratopri, 
+                       weights = ~ weight1500, 
+                       nest = TRUE,
+                       na.action = 'na.exclude',
+                       data = df_2016)
+
+# 2014 free dataset
+
+lapop_des14<-svydesign(ids = ~ upm, 
+                       strata = ~ estratopri, 
+                       weights = ~ weight1500, 
+                       nest = TRUE,
+                       na.action = 'na.exclude',
+                       data = df_2014)
+@
+
+\begin{document}
+\maketitle
+\clearpage
+
+% ---- Sections ---- %
+
+% Abstract Child Document
+
+<<abs_child, child = 'abstracts.Rnw'>>=
+@
+
+% Introduction Child Document
+
+<<intro_child, child = 'intro.Rnw'>>=
+@
+
+\end{document}
