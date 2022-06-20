@@ -11,7 +11,8 @@ set_parent('main.Rnw') # Set the parent document preamble
 
 \enquote{Even if you are from [my political party], I will fulfill my duties. If you steal, steal well!  Justify well! But do not let your affairs be seen, comrades\footnote{Translated from Cerda, 2021 in \cite[para. 2]{PlanV.2021}}}. Uttered publicly by Rosa Cerda, Ecuadorian congresswoman for the Napo province \parencite{Castro.2021}, these comments met widespread criticism around the country, although the remarks were initially met by cheers from an audience of the indigenous movements convention she was addressing. This happened soon after a heated presidential election where corruption was one of the most important debate topics. Both candidates denounced each other's alleged dishonest acts, and promised their voters to punish corrupt behavior and foster a clean government. However, Cerda's declarations did not transcend an eight day suspension \parencite{Ordonez.2021} and the whole event was soon almost completely forgotten by most citizens. 
 
-% Do the tabulations and calculations (survey-weighted) to be used in this document
+% Perform survey-weighted calculations to be used in this document and in other children of the main by sourcing the tabulations script. 
+
 <<tabulations-intro>>=
 # New corruption perceptions question tab.
 

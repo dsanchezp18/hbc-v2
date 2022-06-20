@@ -1,0 +1,13 @@
+% Methodology .Rnw File
+
+<<parent_tometh, include = F>>=
+set_parent('main.Rnw') # Set the parent document preamble
+@
+
+\section{Methodology}
+\label{sec:methodology} % Label the section to cross-reference later.
+
+\subsection{Data}
+
+To study corruption at the individual level the AmericasBarometer (AB) survey from the Latin American Public Opinion Project (LAPOP) is used. This survey was administered in Ecuador and several other Latin American countries in a face-to-face interview format from 2004 to 2019, at mostly two year intervals. It asks about several public opinion matters, including democracy, corruption, political processes, economic considerations, among others. Some of the data used in this paper comes from the copyrighted \textregistered AmericasBarometer survey, financed by Universidad San Francisco de Quito. Most of the data comes from the open-access AmericasBarometer databases available in the LAPOP \href{https://www.vanderbilt.edu/lapop/data-access.php}{website}. Table \ref{tab:descrip} presents descriptive statistics computed for all variables used in the study. 
+
