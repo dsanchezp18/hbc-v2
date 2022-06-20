@@ -35,6 +35,15 @@
 \usepackage[backend = biber, style = apa, citestyle = apa]{biblatex}
   \addbibresource{refs.bib}
   
+% For tables:
+
+\usepackage{siunitx} % For the modelsummary tables
+\usepackage{booktabs} % For the modelsummary tables
+  \newcolumntype{d}{S[input-symbols = ()]}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage[flushleft]{threeparttable}
+  
 % Other packages
 
 \usepackage{csquotes} % For quotation marks
@@ -67,50 +76,9 @@ library(tidyverse)
 library(survey)
 @
 
-% Load the data by sourcing the data manipulation script
-
+% Load the data by sourcing the data manipulation script. Note that survey design objects are indeed created in this script.
 <<source-data, include = F, cache = T>>=
-read_chunk('scripts/data_manipulation.R')
-@
-
-% Now create the survey design objects
-
-<<survey-designs, include = F, cache = T>>=
-# Full 2004-2019 design
-
-lapop_des<-svydesign(ids = ~ upm, 
-                     strata = ~ estratopri, 
-                     weights = ~ weight1500, 
-                     nest = TRUE,
-                     na.action = 'na.exclude',
-                     data = df)
-
-# 2014-2016 Survey Design
-
-lapop_des46<-svydesign(ids = ~ upm, 
-                       strata = ~ estratopri, 
-                       weights = ~ weight1500, 
-                       nest = TRUE,
-                       na.action = 'na.exclude',
-                       data = df46)
-
-# 2016 free dataset
-
-lapop_des16<-svydesign(ids = ~ upm, 
-                       strata = ~ estratopri, 
-                       weights = ~ weight1500, 
-                       nest = TRUE,
-                       na.action = 'na.exclude',
-                       data = df_2016)
-
-# 2014 free dataset
-
-lapop_des14<-svydesign(ids = ~ upm, 
-                       strata = ~ estratopri, 
-                       weights = ~ weight1500, 
-                       nest = TRUE,
-                       na.action = 'na.exclude',
-                       data = df_2014)
+source('scripts/data_manipulation.R')
 @
 
 \begin{document}
@@ -132,6 +100,11 @@ lapop_des14<-svydesign(ids = ~ upm,
 % Literature Review Child Document
 
 <<litrev_child, child = 'litrev.Rnw'>>=
+@
+
+% Methodology Child Document
+
+<<meth_child, child = 'meth.Rnw'>>=
 @
 
 \end{document}

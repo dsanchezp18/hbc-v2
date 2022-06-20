@@ -11,45 +11,12 @@ set_parent('main.Rnw') # Set the parent document preamble
 
 \enquote{Even if you are from [my political party], I will fulfill my duties. If you steal, steal well!  Justify well! But do not let your affairs be seen, comrades\footnote{Translated from Cerda, 2021 in \cite[para. 2]{PlanV.2021}}}. Uttered publicly by Rosa Cerda, Ecuadorian congresswoman for the Napo province \parencite{Castro.2021}, these comments met widespread criticism around the country, although the remarks were initially met by cheers from an audience of the indigenous movements convention she was addressing. This happened soon after a heated presidential election where corruption was one of the most important debate topics. Both candidates denounced each other's alleged dishonest acts, and promised their voters to punish corrupt behavior and foster a clean government. However, Cerda's declarations did not transcend an eight day suspension \parencite{Ordonez.2021} and the whole event was soon almost completely forgotten by most citizens. 
 
-% Perform survey-weighted calculations to be used in this document and in other children of the main by sourcing the tabulations script. 
-
-<<tabulations-intro>>=
-# New corruption perceptions question tab.
-
-corrpernew_time<-svyby(~ corrper_new, 
-                       ~ year, 
-                       design = lapop_des,
-                       svymean, 
-                       na.rm = T)
-
-# Corruption as the most important problem in the country
-
-corprob_time<-svyby(~ corprob, 
-                    ~ year, 
-                    design = lapop_des,
-                    svymean, 
-                    na.rm = T)
-
-# Corruption tolerance (%) time series
-
-ctol_time<-svyby(~ ctol, 
-                 ~ year, 
-                 design = lapop_des,
-                 svymean, 
-                 na.rm = T)
-
-# Job Approval percentage time series
-
-japrov_time<-svyby(~ pres_aprov_dic, 
-                   ~ year, 
-                   design = lapop_des,
-                   svymean, 
-                   na.rm = T)
-
-
-@
-
 This episode is only one of many corruption-related scandals that have happened in the last years in the country. It is almost as if these no longer outrage the average Ecuadorian: at most, they cause a sigh of disappointment or social media outrage which dwindles shortly after. A convicted former president as well as two vicepresidents impeached and removed on charges of corruption (\cite{Press.1222018}; \cite{Cabrera.2020}), along with other several major corruption scandals (\cite{BHCompliance.2021}; \cite{Espana.2020}) are some events which have contributed to Ecuador placing well above the corruption median in the world according to both Transparency International's and the World Bank's corruption indexes. 
+
+% Perform all survey-robust tabulations by sourcing the R Script
+<<source-tabs, cache = T>>=
+source('scripts/tabulations.R')
+@
 
 Close to \Sexpr{round(corrpernew_time[8,2]*100)+2}\% of voting-age Ecuadorians believe that at least half of politicians are corrupt and more than a quarter of them admit having been asked to pay or actually paid a bribe in 2019, according to the AmericasBarometer (AB) survey data. However, a mere \Sexpr{round(corprob_time[8,2]*100,2)}\% consider that corruption is the most serious problem faced by the country and in fact \Sexpr{round(ctol_time[8,2]*100,2)}\% of Ecuadorians believe that paying a bribe is justified, \enquote{given the way things are} \parencite[p. 96]{Moscoso.2018}. In fact, the data from the AB has shown that tolerance to corruption has risen \Sexpr{round((ctol_time[8,2]-ctol_time[6,2])*100, 2)} percentage points from 2014 to 2019. Furthermore, Figure \ref{fig:ctolmap} shows that Ecuador is also one of the countries with the highest corruption tolerance in the region.
 

@@ -6,8 +6,82 @@ set_parent('main.Rnw') # Set the parent document preamble
 
 \section{Methodology}
 \label{sec:methodology} % Label the section to cross-reference later.
-
 \subsection{Data}
+% Here I will create a descriptive table including averages (and proportions) by year.
+% This table is a bit difficult to construct because of its survey-weighted statistics and the rather complex structure, which is why I created it using Excel, exporting the results from calculations 
+\begin{table}[htbp!]
+\onehalfspacing
+\caption{Descriptive statistics for all variables used in the empirical models}
+\label{tab:descrip}
+\begin{tabular}{llcccc}
+\toprule
+\multicolumn{1}{c}{\multirow{2}{*}{Variable}} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}} Question code \end{tabular}} & \multicolumn{2}{c}{2014}  & \multicolumn{2}{c}{2016}  \\ 
+\cmidrule(l{3pt}r{3pt}){3-4} \cmidrule(l{3pt}r{3pt}){5-6}
+\multicolumn{1}{c}{}                          &                                                                                         & Estimate & Std. error & Estimate & Std. error \\ \midrule
+Corruption tolerance                          & EXC18                                                                                   & 13.59    & 1.39           & 27.18    & 1.21           \\
+Unemployment                                  & OCUP4A                                                                                  & 10.06    & 1.04           & 22.89    & 1.2            \\
+Confidence in the President                   & B21A                                                                                    & 69.01    & 1.77           & 49.64    & 1.49           \\
+Approval of the President                     & M1                                                                                      & 70.26    & 1.57           & 55.41    & 1.43           \\
+Economic situation (Worse)                            & IDIO2                                                                                   & 22.93    & 1.26           & 51.76    & 1.45           \\
+No political wing                             & L1                                                                                      & 21.49    & 2.11           & 8.67     & 0.74           \\
+Center                                        & L1                                                                                      & 42.58    & 1.92           & 45.7     & 1.49           \\
+Left                                          & L1                                                                                      & 22.23    & 1.25           & 22.46    & 1.24           \\
+Right                                         & L1                                                                                      & 13.7     & 1.16           & 23.17    & 1.15           \\
+Women                                         & Q1                                                                                      & 50.37    & 0.34           & 50.29    & 0.3            \\
+Age                                           & Q2                                                                                      & 39.41    & 0.17           & 38.64    & 0.22           \\
+Years of education                            & ED                                                                                      & 10.67    & 0.15           & 11.43    & 0.14           \\
+Urban                                         & UR                                                                                      & 65.21    & 4.11           & 66.41    & 4.07           \\
+External political efficacy                   & EFF1                                                                                    & 35.31    & 1.69           & 41.93    & 1.33           \\
+Internal political efficacy                   & EFF2                                                                                    & 38.55    & 1.58           & 41.49    & 1.34           \\
+Participated in a protest                     & PROT3                                                                                   & 6.82     & 0.89           & 4.67     & 0.55           \\
+Interest in politics & POL1 & 33.45 & 1.63 & 32.29 & 1.35 \\
+Perceives corruption                          & EXC7, EXC7NEW                                                                           & 70.29    & 1.74           & 83.49    & 0.97           \\
+Exposed to corruption                         & EXC 2,6,11,13,14,15,16                                                                  & 26.97    & 2.01           & 27.69    & 1.23           \\ 
+\bottomrule
+\end{tabular} \\
 
-To study corruption at the individual level the AmericasBarometer (AB) survey from the Latin American Public Opinion Project (LAPOP) is used. This survey was administered in Ecuador and several other Latin American countries in a face-to-face interview format from 2004 to 2019, at mostly two year intervals. It asks about several public opinion matters, including democracy, corruption, political processes, economic considerations, among others. Some of the data used in this paper comes from the copyrighted \textregistered AmericasBarometer survey, financed by Universidad San Francisco de Quito. Most of the data comes from the open-access AmericasBarometer databases available in the LAPOP \href{https://www.vanderbilt.edu/lapop/data-access.php}{website}. Table \ref{tab:descrip} presents descriptive statistics computed for all variables used in the study. 
+\doublespacing
+\textbf{Note:} Descriptive statistics table, where age, years of education and the external and internal political efficacies are arithmetic means. All other variables are percentages, calculated for 2014 and 2016 as seen in \hyperref[app:first]{Appendix A}. Standard errors adjusted for design effects. Question codes come from the AB survey questionnaires. Data from the open-access AB databases.
+\end{table}
+\clearpage
+
+To study corruption at the individual level the AmericasBarometer (AB) survey from the Latin American Public Opinion Project (LAPOP) is used. This survey was administered in Ecuador and several other Latin American countries in a face-to-face interview format from 2004 to 2019 at mostly two year intervals. It asks about several matters, including democracy, corruption, political processes, economic considerations, among others. Some of the data used in this paper comes from the copyrighted \textregistered AmericasBarometer survey, financed by Universidad San Francisco de Quito. Most of the data comes from the open-access AmericasBarometer databases available in the LAPOP \href{https://www.vanderbilt.edu/lapop/data-access.php}{website}. Table \ref{tab:descrip} presents descriptive statistics computed for all variables used in the study.
+
+The empirical models estimated in this study will use the survey data from the 2014 and 2016 rounds in Ecuador, with $n_{2014}=\Sexpr{nrow(df_2014)}$ and $n_{2016}= \Sexpr{nrow(df_2016)}$. The survey is based on a multi-stage national probability design, with a stratification by region (Costa, Sierra, Amazonía). Each of these major strata were substratified by size of municipality and urban/rural areas \parencite{LAPOP.2017}. The errors for each of these surveys, incorporating design effects, are $\pm 2.5\%$ and $\pm 1.9\%$, respectively (\cite{LAPOP.2014}; \cite{LAPOP.2017}). Both of the surveys are self-weighted, however, 95\% confidence intervals for the descriptive statistics which are adjusted for design-effects are presented when relevant. 
+
+\subsection{Empirical Models}
+
+The empirical analysis is concerned with the answers to the \emph{EXC18} question in the AB interviews: 
+\enquote{Do you think given the way things are, sometimes paying a bribe is justified?} \parencite[p.96]{Moscoso.2018}, asked originally in Spanish. The question has been asked in all survey rounds in Ecuador and is the last one after a set of questions regarding corruption exposure and perception. The corruption tolerance variable ($ctol$) takes the value of 1 when the respondent answers \enquote{Yes}, 0 when they answer \enquote{No} and for any other responses the observation is dropped from the models. All models have $ctol$ as their dependent variable. Responses to other questions of the AB in these periods are used as regressors, and their encodings are explained in detail in \href{app:first}{Appendix A}.
+
+In order to identify the changes in public behavior which led to the increase in corruption tolerance, observations from both surveys are pooled and the following general model is estimated: 
+\begin{equation}
+\label{eqn:genmod}
+P(ctol = 1 | \textbf{\textit{X}} \hspace{0.04cm}) = G (\textbf{\textit{X}} \theta ) = G \left[ \beta_0 + \delta_0 y_{16} + \textbf{\textit{R}}\beta + \delta_1 (y_{16} \cdot x^*) \right]
+\end{equation}
+where $\textbf{\textit{R}}$ is a vector of important explanatory variables for $ctol$ and $x^*$ is a key regressor whose change across time may have significantly influenced the rise of $ctol$ between 2014 and 2016. This key regressor is interacted with a year dummy $y_{16}$ which equals unity for 2016 observations. The complete regressors' vector $\textbf{\textit{X}}$ includes all variables in $\textbf{\textit{R}}$ and the interaction term. The vector $\theta$ includes the coefficients vector $\beta$ as well as the intercepts $\beta_0$ and $\delta_0$ and the $\delta_1$ coefficient. $G$ is the link function, which can be unity for a linear probability model, or be equal to the logit and probit functions.
+
+The partial effect of the key regressor $x^*$ on $P(ctol =1| \textbf{\textit{X}})$ will be:
+\begin{equation}
+\label{eqn:keype}
+\dfrac{\partial P(ctol = 1 | \textbf{\textit{X}} \hspace{0.04cm})}{\partial x^*} = \dfrac{\partial G}{\partial \theta} \cdot 
+\dfrac{\partial \theta}{\partial x^*} = G'(\theta) \cdot (\beta_{x^*}+ \delta_1 y_{16})
+\end{equation}
+Therefore, the coefficient of interest in this study is $\hat{\delta}_1$, which would measure the ceteris paribus effect of a change in the key regressor $x^*$ from 2014 to 2016 in the dependent variable $ctol$. If there has been a change in 2016 in the $x^*$ which influences corruption tolerance, $\hat{\delta_1}$ should be statistically significant. 
+
+A $\hat{\delta}_1$ coefficient which is not statistically different from zero would mean that individuals with and without this key characteristic are equally likely to justify corruption across time. Additionally, if $\hat{\beta}_{x^*}$ and $\hat{\delta}_1$ have different signs but similar magnitudes, the \enquote{net} effect might approach zero. 
+
+To better understand these potential cases, the following single cross-section models are also estimated:
+\begin{equation}
+\label{eqn:crosssecmodel}
+P(ctol = 1 | \textbf{\textit{R}}_y \hspace{0.04cm}) = G (\textbf{\textit{R}}_y \beta_y) = G[\beta_{y,0} + \beta_{y,x^{*}} + \beta_y \textbf{\textit{X}} ]
+\end{equation}
+for either $y=2014$ or $y = 2016$. The vector $\textbf{\textit{R}}_y$ incorporates important explanatory variables for period $y$, including the key variable $x^*$ for the period in question. The magnitudes of the $\hat{\beta}_{y, x^*}$ should be similar between the two periods when $\hat{\delta}_1$ is not statistically different from zero in the pooled cross-sections model of Equation \ref{eqn:genmod}. Also, $\hat{\beta}_{y,x^*}$ for 2016 should not be statistically different from zero if $\hat{\beta}_{y,x^*}$ cancel each other out in the pooled cross-sections model. 
+
+Average partial effects tables are shown for all models estimated in this paper. The \hyperref[sec:findings]{Results} section includes only the logit estimations of each empirical model. LPM and probit estimations of the models are included in the appendices, along with the average partial effects for the probit models.
+
+The individual level approach that all of these models use might be more empirically accurate than a cross-national approach which pools national averages across countries. As mentioned before, this approach is less likely to omit important variables \parencite{Bergh.2017}. Also, this approach might reflect general perceptions and incidence of corruption more accurately. This is because country-level indicators are based on opinions from experts whereas the AB proportions capture the opinion from all citizens \parencite{Morris.2008}. However, results found using this approach are likely less applicable to countries other than the one studied. Besides, since there is no tracking individuals across time using the AB survey panel-data methods cannot be implemented. 
+
+\subsection{Incorporating design effects}
+All models estimated use survey-weighting to adjust for the complex-survey design effects, as suggested by \textcite{Castorena.2021} for the use of AB survey data on research projects. In the Ecuadorian case, surveys from 2014 and 2016 are self-weighted, so the survey-weighting does not affect coefficient magnitudes or average partial effects. However, the design effects do change standard errors for all coefficients. Survey-weighted standard errors are presented in this paper for both model coefficients and average partial effects. 
 

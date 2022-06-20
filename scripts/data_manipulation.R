@@ -11,12 +11,12 @@
 
 # No working directory specification needed since an Rproject is being used
 # Note that, to avoid overwriting of the base joining, one must run the FULL script everytime.
-# In order to get the latest data, run both the join databases and the data manipulation scripts
 
 # Load libraries --------------------------------------------------------------------------------------------------------------
 
 library(haven) # For reading dta files
 library(tidyverse) # Ggplot and dplyr
+library(survey) # Survey stuff
 library(openxlsx) # Import and export XL files
 library(broom) # Tidy
 library(car) # for recode
@@ -548,21 +548,12 @@ df46<-subset(df, df$year == 2014 | df$year == 2016)
 # Now that I have my merged dataframe, I can perform data manipulation as needed in this script.
 
 # ================================================= GENERAL  =============================================================
+
 # Year -------------------------------------------------------------------------------------------------------------------
 
 # Make the year variable, created or remapped previously, a factor so it works in the LPMS
 
 df$year<- as.factor(df$year)
-
-# Create year dummies for the dataframe, consider 2004 as the base year in LPMs, to interact specific years with variables
-
-df$y06<-ifelse(df$year == 2006, 1, 0 )
-df$y08<-ifelse(df$year == 2008, 1, 0 )
-df$y10<-ifelse(df$year == 2010, 1, 0 )
-df$y12<-ifelse(df$year == 2012, 1, 0 )
-df$y14<-ifelse(df$year == 2014, 1, 0 )
-df$y16<-ifelse(df$year == 2016, 1, 0 )
-df$y19<-ifelse(df$year == 2019, 1, 0 )
 
 # ================================================= Basic Questions ================================================================
 
@@ -570,7 +561,11 @@ df$y19<-ifelse(df$year == 2019, 1, 0 )
 
 # Gender -----------------------------------------------------------------------------------------------------------------
 
-df$gndr<-ifelse(df$q1==1,'Man', 'Woman')
+df$gndr<-ifelse(df$q1==1,'Man', 'Woman') %>% as.factor()
+
+# I also create a logical so that I can use it for my descriptive table.
+
+df$gndr_log<-df$q1 == 2
 
 # Age --------------------------------------------------------------------------------------------------------------------
 
@@ -579,11 +574,16 @@ df<-rename(df, 'age'=q2)
 df$age<-as.integer(df$age) # Transform to a number
 
 # ================================================= Sociodemographic ==============================================================
+
 # Urban/Rural ------------------------------------------------------------------------------------------------------------
 
 # Relabel variable 
 
 df$ur<-ifelse(df$ur == 1, 'Urban', 'Rural')
+
+# Logical
+
+df$ur_log<-df$ur == 'Urban'
 
 # Age-Related Variables --------------------------------------------------------------------------------------------------
 
@@ -658,6 +658,10 @@ df$news_exp1<- factor(df$news_exp1,
 # Make a dummy that equals 1 if the economical situation of the person answering is WORSE than the one a year ago
 
 df$econ_sit<-ifelse(df$idio2==3,'Worse','Same or Better') %>% as.factor()
+
+# Logical
+
+df$econ_sit_log<- df$idio2 == 3
 
 # q10e, income question --------------------------------------------------------------------------------------------------
 
@@ -861,7 +865,12 @@ df$pint_dic<-ifelse(df$pol_int == 'A lot' | df$pol_int == 'Some', 1, 0)
 # Participation in protests ---------------------------------------------------------------------------------------------
 
 # Relabel the variable
+
 df$prot3<- ifelse(df$prot3 == 1, 'Yes','No') %>% as.factor()
+
+# Logical
+
+df$prot_log<-df$prot3 == 'YeS'
 
 # Confidence in President ------------------------------------------------------------------------------------------------
 
@@ -924,5 +933,45 @@ save(df, file = 'data/rdata/LAPOP 2004-2019 Manipulated Dataframe.Rdata')
 
 rm(list = setdiff(ls(), 
                   c('df', 'df_2014', 'df_2016', 'df46')))
+
+# Survey design objects --------------------------------------------------------------------------------------------------
+
+# Full 2004-2019 design
+
+lapop_des<-svydesign(ids = ~ upm, 
+                     strata = ~ estratopri, 
+                     weights = ~ weight1500, 
+                     nest = TRUE,
+                     na.action = 'na.exclude',
+                     data = df)
+
+# 2014-2016 Survey Design
+
+lapop_des46<-svydesign(ids = ~ upm, 
+                       strata = ~ estratopri, 
+                       weights = ~ weight1500, 
+                       nest = TRUE,
+                       na.action = 'na.exclude',
+                       data = df46)
+
+# 2016 free dataset
+
+lapop_des16<-svydesign(ids = ~ upm, 
+                       strata = ~ estratopri, 
+                       weights = ~ weight1500, 
+                       nest = TRUE,
+                       na.action = 'na.exclude',
+                       data = df_2016)
+
+# 2014 free dataset
+
+lapop_des14<-svydesign(ids = ~ upm, 
+                       strata = ~ estratopri, 
+                       weights = ~ weight1500, 
+                       nest = TRUE,
+                       na.action = 'na.exclude',
+                       data = df_2014)
+
+
 
 
