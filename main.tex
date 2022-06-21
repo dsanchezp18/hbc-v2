@@ -274,6 +274,11 @@ Finally, regarding Ecuadorians' corruption tolerance behaviors, \textcite{Moscos
 \section{Methodology}
 \label{sec:methodology} % Label the section to cross-reference later.
 \subsection{Data}
+
+To study corruption at the individual level, the AmericasBarometer (AB) survey from the Latin American Public Opinion Project (LAPOP) is used. This survey was administered in Ecuador in a face-to-face interview format from 2004 to 2019 at mostly two year intervals. It asks about several matters, including democracy, corruption, political processes, economic considerations, among others. Some of the data used in this paper comes from the copyrighted \textregistered AmericasBarometer survey, financed by Universidad San Francisco de Quito. Most of the data comes from the open-access AmericasBarometer databases available in the LAPOP \href{https://www.vanderbilt.edu/lapop/data-access.php}{website}. Table \ref{tab:descrip} presents descriptive statistics computed for all variables used in the study.
+
+The empirical models estimated in this study will use the survey data from the 2014 and 2016 rounds in Ecuador, with $n_{2014}=1489$ and $n_{2016}= 1545$. The survey is based on a multi-stage national probability design, with a stratification by region (Costa, Sierra, Amazonía). Each of these major strata were substratified by size of municipality and urban/rural areas \parencite{LAPOP.2017}. The errors for each of these surveys, incorporating design effects, are $\pm 2.5\%$ and $\pm 1.9\%$, respectively (\cite{LAPOP.2014}; \cite{LAPOP.2017}). Both of the surveys are self-weighted, however, 95\% confidence intervals for the descriptive statistics which are adjusted for design-effects are presented when relevant. 
+
 % Here I will create a descriptive table including averages (and proportions) by year.
 % This table is a bit difficult to construct because of its survey-weighted statistics and the rather complex structure, which is why I created it using Excel, exporting the results from calculations 
 \begin{table}[htbp!]
@@ -310,11 +315,6 @@ Exposed to corruption                         & EXC 2,6,11,13,14,15,16          
 \doublespacing
 \textbf{Note:} Descriptive statistics table, where age, years of education and the external and internal political efficacies are arithmetic means. All other variables are percentages, calculated for 2014 and 2016 as seen in \hyperref[app:first]{Appendix A}. Standard errors adjusted for design effects. Question codes come from the AB survey questionnaires. Data from the open-access AB databases.
 \end{table}
-\clearpage
-
-To study corruption at the individual level the AmericasBarometer (AB) survey from the Latin American Public Opinion Project (LAPOP) is used. This survey was administered in Ecuador and several other Latin American countries in a face-to-face interview format from 2004 to 2019 at mostly two year intervals. It asks about several matters, including democracy, corruption, political processes, economic considerations, among others. Some of the data used in this paper comes from the copyrighted \textregistered AmericasBarometer survey, financed by Universidad San Francisco de Quito. Most of the data comes from the open-access AmericasBarometer databases available in the LAPOP \href{https://www.vanderbilt.edu/lapop/data-access.php}{website}. Table \ref{tab:descrip} presents descriptive statistics computed for all variables used in the study.
-
-The empirical models estimated in this study will use the survey data from the 2014 and 2016 rounds in Ecuador, with $n_{2014}=1489$ and $n_{2016}= 1545$. The survey is based on a multi-stage national probability design, with a stratification by region (Costa, Sierra, Amazonía). Each of these major strata were substratified by size of municipality and urban/rural areas \parencite{LAPOP.2017}. The errors for each of these surveys, incorporating design effects, are $\pm 2.5\%$ and $\pm 1.9\%$, respectively (\cite{LAPOP.2014}; \cite{LAPOP.2017}). Both of the surveys are self-weighted, however, 95\% confidence intervals for the descriptive statistics which are adjusted for design-effects are presented when relevant. 
 
 \subsection{Empirical Models}
 
@@ -350,7 +350,7 @@ Average partial effects tables are shown for all models estimated in this paper.
 The individual level approach that all of these models use might be more empirically accurate than a cross-national approach which pools national averages across countries. As mentioned before, this approach is less likely to omit important variables \parencite{Bergh.2017}. Also, this approach might reflect general perceptions and incidence of corruption more accurately. This is because country-level indicators are based on opinions from experts whereas the AB proportions capture the opinion from all citizens \parencite{Morris.2008}. However, results found using this approach are likely less applicable to countries other than the one studied. Besides, since there is no tracking individuals across time using the AB survey panel-data methods cannot be implemented. 
 
 \subsection{Incorporating design effects}
-All models estimated use survey-weighting to adjust for the complex-survey design effects, as suggested by \textcite{Castorena.2021} for the use of AB survey data on research projects. In the Ecuadorian case, surveys from 2014 and 2016 are self-weighted, so the survey-weighting does not affect coefficient magnitudes or average partial effects. However, the design effects do change standard errors for all coefficients. Survey-weighted standard errors are presented in this paper for both model coefficients and average partial effects. 
+All models use survey-weighting to adjust for the complex sample design effects, as suggested by \textcite{Castorena.2021} for the use of AB survey data on research projects. In the Ecuadorian case, surveys from 2014 and 2016 are self-weighted, so the survey-weighting does not affect coefficient magnitudes or average partial effects. However, the design effects do change standard errors for all coefficients. Survey-weighted standard errors are presented in this paper for both model coefficients and average partial effects. 
 
 
 \end{document}
