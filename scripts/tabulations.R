@@ -50,6 +50,24 @@ ctol_time<-svyby(~ ctol,
                  svymean, 
                  na.rm = T)
 
+# Economic indicators ----------------------------------------------------------------------------------------------------
+
+# Economic situation
+
+ecsit_time<-svyby(~ econ_sit, 
+                  ~ year, 
+                  design = lapop_des, 
+                  svymean, 
+                  na.rm = T)
+
+# Unemployment rate (full)
+
+unem_time<-svyby(~ unem2_4a,
+                 ~ year, 
+                 design = lapop_des, 
+                 svymean, 
+                 na.rm = T)
+
 # Political opinion variables --------------------------------------------------------------------------------------------
 
 # Job Approval Rating

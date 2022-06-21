@@ -1,0 +1,217 @@
+% Results .Rnw File
+<<parent_tofind, include = F>>=
+set_parent('main.Rnw') # Set the parent document preamble
+@
+
+\section{Results}
+\label{sec:findings}
+
+As pointed out previously, The corruption tolerance increase happened at the same time as other key events. A recession hit Ecuador due to a commodity price collapse, an earthquake and other circumstances. Figure \ref{fig:ecua_ec} displays economic conditions, both observed and perceived, of the country from 2014 to 2019. 
+
+\textcite{Orozco.2015} holds that, although the commodity price collapse in 2008 was greater, there was little reduction in economic activity as the country had greater possibilities of international financing and savings left over from past oil funds which were used to keep government expenditure high. In 2016, as savings eroded and government debt had grown bigger, the economy did stagnate significantly for the first time in the Correa administration. Combined with the lack of competitiveness in exports due to US dollar appreciations and the poor management of public finances \parencite{Hurtado.2018}, the country fell into a deep economic recession. While the official GDP figures may show only a small reduction in GDP growth, \textcite{Hurtado.2018} holds that these figures are overestimated.
+
+% Here I create my graph, but I need to load some libraries first and create the data needed for my graphs.
+
+<<load-libraries-data-results>>=
+
+# Source the tabulations script where I use all required tabulations.
+
+source('scripts/tabulations.R')
+
+
+# Load my libraries
+
+library(Quandl) # To extract financial data from several sources
+library(WDI) # World Bank database
+library(patchwork) # Combine plots into one sole output
+library(ggpubr) # Arrange plots (another way)
+library(DataCombine) # Calculate a PCT change
+
+# Create my data for the graphs
+
+# Load the WTI oil barrel price data from FRED using the Quandl library
+# 
+# oil_price <- Quandl("FRED/DCOILWTICO",
+#                      type = "raw",
+#                      collapse = "monthly",
+#                      start_date = "2004-1-1",
+#                      end_date = "2019-12-31")
+
+# Save it, I do this because the code won't run because I'll need a FRED API after a while. I comment out this code so no errors pop out in somebody else's attempt to run the code.
+
+# save(oil_price, file = 'data/oil.Rdata')
+
+# Load the data (if you didn't run that code by yourself)
+
+load('data/oil.Rdata')
+
+# Order by time
+
+oil_price<-
+  oil_price %>% 
+    arrange(desc(Date))
+
+# Calculate a percent change
+
+oil_price<-
+  oil_price %>% 
+    change('Value',
+            NewVar = 'pct_change',
+            slideBy = -1,
+            type = 'percent')
+
+# GDP growth rate through the WDI package to extract data from the World Bank database. 
+
+gdp_wdi<-WDI(country = 'EC',
+             indicator = 'NY.GDP.MKTP.KD.ZG')
+
+unem_wdi<-WDI(country = 'EC',
+              indicator = 'SL.UEM.TOTL.ZS')
+
+# Wrangle the GDP
+
+gdp_wdi<-
+  gdp_wdi %>% 
+  select(NY.GDP.MKTP.KD.ZG, year) %>% 
+  rename('growth' = NY.GDP.MKTP.KD.ZG) %>%
+  relocate(year, .before = growth) %>% 
+  filter(year >= 2004, year <= 2019)
+
+# Wrangle the unemployment
+
+unem_wdi<-
+  unem_wdi %>% 
+  select(SL.UEM.TOTL.ZS, year) %>% 
+  rename('growth' = SL.UEM.TOTL.ZS) %>% 
+  relocate(year, .before = growth) %>% 
+  filter(year >= 2004, year <= 2019)
+
+# Join the two series for ggplot graphing
+
+# Add the legend for the gdp_wdi
+
+gdp_wdi$legend<-'Real GDP Growth Rate'
+unem_wdi$legend<-'Unemployment (ILO estimate)'
+
+# Then merge
+
+econ_graph_df<-bind_rows(gdp_wdi, 
+                         unem_wdi)
+
+# Now, wrangle the economic indicators for the LAPOP survey 
+
+# Crate a new data frame to later append to the econ_g
+
+econ_lapop<-
+  ecsit_time %>%
+  rename('perc' = econ_sitWorse,
+         'se' = se.econ_sitWorse) %>% 
+  select(year, perc, se) %>% 
+  mutate(perc = perc * 100 %>% as.numeric(),
+         legend = 'Worse Economic Situation')
+
+# Now wrangle the unemployment rate (both types, open and closed) from the LAPOP survey
+
+unem_lapop<-
+  unem_time %>% 
+  rename('perc' = unem2_4a) %>% 
+  select(year, perc, se) %>% 
+  mutate(perc = perc * 100 %>% as.numeric(),
+         legend = 'Unemployed')
+
+# Now join both bases as well as the unemployment
+
+econ_lapop<-
+  bind_rows(econ_lapop,
+            unem_lapop) %>% 
+  filter(perc > 0) # Eliminate the rows where I have an indicator not asked in that year.
+
+rownames(econ_lapop)<-c() # Delete the row names, as they are redundant with the year.
+
+@
+% Now I do the graph:
+\begin{figure}[htbp]
+\begin{center}
+\fbox{
+\begin{minipage}{\textwidth}
+\caption{Ecuadorian economic conditions 2004-2019}
+\label{fig:ecua_ec}
+<<econ_graph, fig.align='center', include = T, echo = F, fig.width = 10, fig.height= 10>>=
+econ_graph<-ggplot(econ_graph_df,
+                   aes(x = year, y = growth, color = legend, group = legend))+
+                   geom_line(size = 0.8)+
+                   geom_hline(yintercept = 0, linetype = 'longdash')+
+                   scale_colour_brewer(palette = 'Set2')+
+                   geom_point(size = 2.15)+
+                   scale_x_continuous(breaks = c(2004,2006,2008,2010,2012,2014,2016,2018))+
+                   theme_bw()+
+                   theme(panel.grid.major = element_blank(),
+                         panel.grid.minor = element_blank(),
+                         text = element_text(size = 12, family = 'serif'),
+                         legend.position = c(0.8,0.9),
+                         legend.background = element_blank())+
+                   labs(x = '',
+                        y = 'Percentage points (%)',
+                        color = '',
+                        title = 'World Bank macroeconomic indicators')
+
+oil_graph<-ggplot(oil_price,
+                   aes(x = Date, y = Value))+
+                   scale_x_date(date_labels = '%Y', date_breaks = '1 year',
+                                limit = c(as.Date('2004-01-01'), as.Date('2019-12-31')))+
+                   geom_line(size = 0.8, color = 'orange')+
+                   geom_point(size = 1)+
+                   scale_y_continuous(breaks = c(seq(from = 30, to = 150, by = 20)))+
+                   theme_bw()+
+                   theme(panel.grid.major = element_blank(),
+                         panel.grid.minor = element_blank(),
+                         text = element_text(size = 12, family = 'serif'),
+                         legend.position = c(0.13,0.20),
+                         legend.background = element_blank())+
+                    labs(x = '',
+                        y = 'USD per WTI barrel',
+                        title = 'Monthly WTI oil prices')
+
+ecsit_graph<-ggplot(econ_lapop,
+                    aes(x = year, 
+                        y = perc, 
+                        color = legend, 
+                        group = legend))+
+             geom_line(aes(x = year,
+                           y= perc),
+                       size = 0.8)+
+             geom_line(aes(x = year, 
+                           y = perc - 1.96*100*se),
+                           size = 0.7,
+                           color = 'grey50', 
+                           linetype = 'dotted')+
+             geom_line(aes(x = year, 
+                           y = perc + 1.96*100*se),
+                           size = 0.7,
+                           color = 'grey50', 
+                           linetype = 'dotted')+
+             scale_colour_brewer(palette = 'Set1')+
+             geom_point(size = 2.15)+
+             theme_bw()+
+             theme(panel.grid.major = element_blank(),
+                   panel.grid.minor = element_blank(),
+                   text = element_text(size = 12, family = 'serif'),
+                   legend.position = c(0.14,0.2),
+                   legend.background = element_blank())+
+             labs(x = '',
+                  y = 'Percent of voting-age Ecuadorians',
+                  color = '',
+                  title = 'Unemployment and economic situation in the AB survey')
+
+econ_graph + oil_graph + ecsit_graph +
+  plot_layout(nrow = 3,
+              heights = c(4,4,4))
+
+@
+\textbf{Note:} Time series line graphs showing key economic indicators for the country between 2004 and 2019. Real GDP growth and unemployment rates extracted from the World Bank's World Development Indicators. WTI oil barrel prices extracted from FRED. The rest are estimates computed with the open-access AB databases, which include 95\% confidence intervals adjusted for design effects. See \hyperref[app:first]{Appendix A} for details on calculations. Figure prepared by the author. 
+\end{minipage}}
+\end{center}
+\end{figure}
+
+Figure \ref{fig:ecua_pol} shows several indicators of public opinion in the country. The AB data shows that indeed the President reached an all-time high popularity in 2014 and then a severe drop in 2016. This is seen through the percent of people who approve the President's job performance and the percent who report confidence in him. Another notable change in the political landscape of this period is the way that voting-age population identified politically. There was a notable increase of the people who identified as the \enquote{right} of the political wings, while those who identified with the \enquote{left} did not see significant changes.
+
