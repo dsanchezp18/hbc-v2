@@ -65,7 +65,7 @@ ctol_time_graph<-ggplot(ctol_time,
                        panel.grid.minor = element_blank(),
                        axis.text.y = element_blank(),
                        axis.ticks = element_blank(),
-                       text = element_text(size = 12))+
+                       text = element_text(size = 12, family = 'serif'))+
                 labs(x = '',
                      y = '')
 ctol_time_graph
