@@ -243,10 +243,15 @@ japrov_df_g<-
          se = se.pres_aprov_dicYes) %>% 
   mutate(legend = 'Percent of voting-age citizens who approve the President\'s job performance')
 
-# 
+# Same for leftists and rightists
 
-# Now unite all of these.
+leftists_df_g<-
+  leftist_time %>%
+  
+  
 
+
+# Now unite all of these in the same dataframe to plot it. 
 
 @
 

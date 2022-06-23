@@ -829,6 +829,12 @@ df$pol_group<-ifelse(is.na(df$polscore), 'None',
                      ifelse(df$polscore < 4, 'Left', 
                             ifelse(df$polscore < 8, 'Center', 'Right')))
 
+# Right and Left according to this grouping, dichotomized 
+
+df$leftist<-ifelse(df$pol_group == 'Left', 1, 0)
+
+df$rightist<-ifelse(df$pol_group == 'Right', 1, 0)
+
 # Add a politicized dummy (if he answered or not the polscore question)
 
 df$plscr_na<-ifelse(is.na(df$polscore), 1, 0)

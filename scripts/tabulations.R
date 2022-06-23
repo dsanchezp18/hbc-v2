@@ -102,4 +102,21 @@ intpol_year<-svyby(~ pol_int,
                    svymean, 
                    na.rm = T)
 
+# Leftists
+
+leftist_time <-svyby(~ leftist, 
+                    ~ year, 
+                    design = lapop_des,
+                    svymean, 
+                    na.rm = T)
+
+# Rightists
+
+rightist_time<-svyby(~ rightist, 
+                     ~ year, 
+                     design = lapop_des,
+                     svymean, 
+                     na.rm = T)
+
+
 
