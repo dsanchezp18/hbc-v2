@@ -12,7 +12,7 @@ As pointed out previously, The corruption tolerance increase happened at the sam
 
 % Here I create my graph, but I need to load some libraries first and create the data needed for my graphs.
 
-<<load-libraries-data-results>>=
+<<load-libraries-data-results, cache = T>>=
 
 # Source the tabulations script where I use all required tabulations.
 
@@ -73,7 +73,7 @@ unem_wdi<-WDI(country = 'EC',
 gdp_wdi<-
   gdp_wdi %>% 
   select(NY.GDP.MKTP.KD.ZG, year) %>% 
-  rename('growth' = NY.GDP.MKTP.KD.ZG) %>%
+  rename(growth = NY.GDP.MKTP.KD.ZG) %>%
   relocate(year, .before = growth) %>% 
   filter(year >= 2004, year <= 2019)
 
@@ -82,7 +82,7 @@ gdp_wdi<-
 unem_wdi<-
   unem_wdi %>% 
   select(SL.UEM.TOTL.ZS, year) %>% 
-  rename('growth' = SL.UEM.TOTL.ZS) %>% 
+  rename(growth = SL.UEM.TOTL.ZS) %>% 
   relocate(year, .before = growth) %>% 
   filter(year >= 2004, year <= 2019)
 
@@ -136,7 +136,7 @@ rownames(econ_lapop)<-c() # Delete the row names, as they are redundant with the
 \begin{minipage}{\textwidth}
 \caption{Ecuadorian economic conditions 2004-2019}
 \label{fig:ecua_ec}
-<<econ_graph, fig.align='center', include = T, echo = F, fig.width = 10, fig.height= 10>>=
+<<econ_graph, fig.align='center', include = T, echo = F, fig.width = 10, fig.height= 10, cache = T>>=
 econ_graph<-ggplot(econ_graph_df,
                    aes(x = year, y = growth, color = legend, group = legend))+
                    geom_line(size = 0.8)+
@@ -214,4 +214,40 @@ econ_graph + oil_graph + ecsit_graph +
 \end{figure}
 
 Figure \ref{fig:ecua_pol} shows several indicators of public opinion in the country. The AB data shows that indeed the President reached an all-time high popularity in 2014 and then a severe drop in 2016. This is seen through the percent of people who approve the President's job performance and the percent who report confidence in him. Another notable change in the political landscape of this period is the way that voting-age population identified politically. There was a notable increase of the people who identified as the \enquote{right} of the political wings, while those who identified with the \enquote{left} did not see significant changes.
+
+% Create the data to be used for the political opinion variables:
+
+<<political-graph-data, cache = T>>=
+
+# Wrangle the time series of confidence in the president
+
+political_graph_df<-
+  pconf_time %>%
+  select(year, 
+         pres_conf_dicYes, 
+         se.pres_conf_dicYes) %>% 
+  rename(perc = pres_conf_dicYes, 
+         se = se.pres_conf_dicYes) %>% 
+  mutate(legend = 'Percent of voting-age citizens who confide in the President') %>% 
+  filter(year != 2004, 
+         year != 2006)
+
+# The same but for the job approval rating variable
+
+japrov_df_g<-
+  japrov_time %>%
+  select(year, 
+         pres_aprov_dicYes, 
+         se.pres_aprov_dicYes) %>% 
+  rename(perc = pres_aprov_dicYes,
+         se = se.pres_aprov_dicYes) %>% 
+  mutate(legend = 'Percent of voting-age citizens who approve the President\'s job performance')
+
+# 
+
+# Now unite all of these.
+
+
+@
+
 

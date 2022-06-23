@@ -551,7 +551,7 @@ df46<-subset(df, df$year == 2014 | df$year == 2016)
 
 # Year -------------------------------------------------------------------------------------------------------------------
 
-# Make the year variable, created or remapped previously, a factor so it works in the LPMS
+# Make the year variable, created or remapped previously, a factor so it works in models
 
 df$year<- as.factor(df$year)
 

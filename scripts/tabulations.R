@@ -68,6 +68,14 @@ unem_time<-svyby(~ unem2_4a,
                  svymean, 
                  na.rm = T)
 
+# Unemployment (complete)
+
+unem_t<-svyby(~ unem2_4a, 
+              ~ year, 
+              design = lapop_des,
+              svymean, 
+              na.rm = T)
+
 # Political opinion variables --------------------------------------------------------------------------------------------
 
 # Job Approval Rating
@@ -94,11 +102,4 @@ intpol_year<-svyby(~ pol_int,
                    svymean, 
                    na.rm = T)
 
-# Unemployment (complete)
-
-unem_t<-svyby(~ unem2_4a, 
-              ~ year, 
-              design = lapop_des,
-              svymean, 
-              na.rm = T)
 
