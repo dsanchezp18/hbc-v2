@@ -1,23 +1,123 @@
-% Results .Rnw File
+% Results I .Rnw File
 <<parent_tofind, include = F>>=
 set_parent('main.Rnw') # Set the parent document preamble
 @
 
 \section{Results}
 \label{sec:findings}
+\subsection{Potential drivers of the increase in corruption tolerance}
+As pointed out previously, The corruption tolerance increase happened at the same time as other key events. First, AB indicators denote a political crisis, as support for President Rafael Correa's regime took a sharp hit. Second, a recession hit Ecuador due to a commodity price collapse, an earthquake and other circumstances. Figure \ref{fig:ecua_ec} and displays economic conditions, both observed and perceived, of the country from 2014 to 2019. Figure \ref{fig:ecua_pol} shows several indicators of public opinion in the country. 
 
-As pointed out previously, The corruption tolerance increase happened at the same time as other key events. A recession hit Ecuador due to a commodity price collapse, an earthquake and other circumstances. Figure \ref{fig:ecua_ec} displays economic conditions, both observed and perceived, of the country from 2014 to 2019. 
+% Create the data to be used for the political opinion variables:
+<<political-graph-data, cache = T>>=
 
-\textcite{Orozco.2015} holds that, although the commodity price collapse in 2008 was greater, there was little reduction in economic activity as the country had greater possibilities of international financing and savings left over from past oil funds which were used to keep government expenditure high. In 2016, as savings eroded and government debt had grown bigger, the economy did stagnate significantly for the first time in the Correa administration. Combined with the lack of competitiveness in exports due to US dollar appreciations and the poor management of public finances \parencite{Hurtado.2018}, the country fell into a deep economic recession. While the official GDP figures may show only a small reduction in GDP growth, \textcite{Hurtado.2018} holds that these figures are overestimated.
+# Wrangle the time series of confidence in the president
+
+political_graph_df<-
+  pconf_time %>%
+  select(year, 
+         pres_conf_dicYes, 
+         se.pres_conf_dicYes) %>% 
+  rename(perc = pres_conf_dicYes, 
+         se = se.pres_conf_dicYes) %>% 
+  mutate(legend = '% who confide in the President') %>% 
+  filter(year != 2004, 
+         year != 2006)
+
+# The same but for the job approval rating variable
+
+japrov_df_g<-
+  japrov_time %>%
+  select(year, 
+         pres_aprov_dicYes, 
+         se.pres_aprov_dicYes) %>% 
+  rename(perc = pres_aprov_dicYes,
+         se = se.pres_aprov_dicYes) %>% 
+  mutate(legend = '% who approve the President\'s job performance')
+
+# Same for leftists and rightists
+
+leftists_df_g<-
+  leftist_time %>%
+  rename(perc = leftist) %>%
+  mutate(legend = '% who identiy with the political left')
+    
+
+rightists_df_g<-
+  rightist_time %>% 
+  rename(perc = rightist) %>% 
+  mutate(legend = '% who identiy with the political right')
+
+# Now unite all of these in the same dataframe to plot it. 
+
+political_graph_df<-
+  bind_rows(political_graph_df,
+            japrov_df_g,
+            leftists_df_g,
+            rightists_df_g)
+
+rownames(political_graph_df)<-NULL
+@
+% Now do the graph
+\begin{figure}[htbp]
+\centering
+\fbox{
+\begin{minipage}{\textwidth}
+\caption{Ecuadorian public opinion indicators, 2004-2019}
+\label{fig:ecua_pol}
+<<political_graph, fig.align='center', include = T, echo = F, fig.width = 10, fig.alt= 20 >>=
+pol_graph<-ggplot(political_graph_df,
+                  aes(x = year, y = perc, color = legend, group = legend))+
+                  geom_line(size = 0.8)+
+                  scale_color_manual(values = c('#FF4500', '#800080', '#800000', '#6495ED'))+
+                  geom_point(size = 2.15)+
+                  geom_line(aes(x = year, 
+                                y = perc - 1.96*se),
+                            size = 0.7,
+                            color = 'grey50', 
+                            linetype = 'dotted')+
+                  geom_line(aes(x = year, 
+                                y = perc + 1.96*se),
+                            size = 0.7,
+                            color = 'grey50', 
+                            linetype = 'dotted')+
+                  annotate('rect', xmin = 2.5, xmax = 7.5, ymin = 0, ymax = 0.75,
+                           alpha = 0.1, fill = 'green')+
+                  annotate('label', x = 5, y = 0.4, label = 'Correa Tenure', family = 'serif')+
+                  annotate('rect', xmin = 0.5, xmax = 2.5, ymin = 0, ymax = 0.75,
+                           alpha = 0.1, fill = 'red')+
+                  annotate('label', x = 1.5, y = 0.5, label = 'Gutiérrez-Palacio Tenure', family = 'serif')+
+                  annotate('rect', xmin = 7.5, xmax = 9, ymin = 0, ymax = 0.75,
+                           alpha = 0.1, fill = 'blue')+
+                  annotate('label', x = 8.3, y = 0.5, label = 'Moreno Tenure', family = 'serif')+
+                  scale_y_continuous(breaks = c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+                                     labels = c(10, 20, 30, 40, 50, 60, 70, 80, 90))+
+                  labs(x = '',
+                       y = 'Percent (%) of Ecuadorian voting-age population',
+                       color = '')+
+                  theme_bw()+
+                  theme(panel.grid.major = element_blank(),
+                        panel.grid.minor = element_blank(),
+                        text = element_text(size = 12, family = 'serif'),
+                        axis.ticks.y = element_blank(), 
+                        legend.position = c(0.22,0.88),
+                        legend.background = element_blank())
+pol_graph
+@
+\textbf{Note:} The graph shows time series for political public opinion questions asked in the AB. Percentages are estimated as explained in \hyperref[app:first]{Appendix A} and error bars show 95\% confidence intervals considering design effects. Figure prepared by the author. \end{minipage}
+}
+\end{figure}
+
+The AB data shows that indeed the President reached an all-time high popularity in 2014 and then a severe drop in 2016. This is seen through the percent of people who approve the President's job performance and the percent who report confidence in him. Another notable change in the political landscape of this period is the way that voting-age population identified politically. There was a strong increase of the people who identified as the \enquote{right} of the political wings, while those who identified with the \enquote{left} did not see significant changes.
+
+Regarding the economic recession, \textcite{Orozco.2015} holds that although the commodity price collapse in 2008 was greater, there was little reduction in economic activity as the country had greater possibilities of international financing and savings left over from past oil funds which were used to keep government expenditure high. In 2016, as savings eroded and government debt had grown bigger, the economy did stagnate significantly for the first time in the Correa administration. Combined with the lack of competitiveness in exports due to US dollar appreciations and the poor management of public finances \parencite{Hurtado.2018}, the country fell into a deep economic recession. While the official GDP figures may show only a small reduction in GDP growth, \textcite{Hurtado.2018} holds that these figures are overestimated.
 
 % Here I create my graph, but I need to load some libraries first and create the data needed for my graphs.
-
 <<load-libraries-data-results, cache = T>>=
 
 # Source the tabulations script where I use all required tabulations.
 
 source('scripts/tabulations.R')
-
 
 # Load my libraries
 
@@ -214,45 +314,4 @@ econ_graph + oil_graph + ecsit_graph +
 \end{figure}
 
 Figure \ref{fig:ecua_pol} shows several indicators of public opinion in the country. The AB data shows that indeed the President reached an all-time high popularity in 2014 and then a severe drop in 2016. This is seen through the percent of people who approve the President's job performance and the percent who report confidence in him. Another notable change in the political landscape of this period is the way that voting-age population identified politically. There was a notable increase of the people who identified as the \enquote{right} of the political wings, while those who identified with the \enquote{left} did not see significant changes.
-
-% Create the data to be used for the political opinion variables:
-
-<<political-graph-data, cache = T>>=
-
-# Wrangle the time series of confidence in the president
-
-political_graph_df<-
-  pconf_time %>%
-  select(year, 
-         pres_conf_dicYes, 
-         se.pres_conf_dicYes) %>% 
-  rename(perc = pres_conf_dicYes, 
-         se = se.pres_conf_dicYes) %>% 
-  mutate(legend = 'Percent of voting-age citizens who confide in the President') %>% 
-  filter(year != 2004, 
-         year != 2006)
-
-# The same but for the job approval rating variable
-
-japrov_df_g<-
-  japrov_time %>%
-  select(year, 
-         pres_aprov_dicYes, 
-         se.pres_aprov_dicYes) %>% 
-  rename(perc = pres_aprov_dicYes,
-         se = se.pres_aprov_dicYes) %>% 
-  mutate(legend = 'Percent of voting-age citizens who approve the President\'s job performance')
-
-# Same for leftists and rightists
-
-leftists_df_g<-
-  leftist_time %>%
-  
-  
-
-
-# Now unite all of these in the same dataframe to plot it. 
-
-@
-
 

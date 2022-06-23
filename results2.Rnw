@@ -1,0 +1,8 @@
+% Results II .Rnw File
+<<parent_tofind, include = F>>=
+set_parent('main.Rnw') # Set the parent document preamble
+@
+\subsection{Baseline regressions}
+\label{subsec:fin2}
+
+Based on the previous subsection's findings, some potential key determinants for corruption tolerance are considered. Two economic variables at the individual level significantly changed during this period: the percent of people who report a worse economic situation as well as the indicator of unemployment. These follow macroeconomic indicators for the Ecuadorian economy too, as can be seen in Figure \ref{fig:ecua_ec}. Variables which proxy attitudes in the political landscape also have significantly changed: the percentage of people who confide in the President, the percentage who approve the President's job and also the percentage of people who identify with the political right wing.

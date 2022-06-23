@@ -107,4 +107,10 @@ source('scripts/data_manipulation.R')
 <<meth_child, child = 'meth.Rnw'>>=
 @
 
+% Results 1 Child Document
+
+<<res1_child, child = 'results1.Rnw'>>=
+@
+
+
 \end{document}
