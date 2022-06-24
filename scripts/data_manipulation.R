@@ -1,5 +1,3 @@
-## ---- chunk-data-manipulation
-
 # ==================================== LAPOP ECUADOR DATA MANIPULATION ========================================================
 
 # Daniel Sánchez

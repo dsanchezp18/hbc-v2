@@ -1,5 +1,3 @@
-## ---- chunk-tabulations
-
 # ==================================== LAPOP ECUADOR TABULATIONS  ========================================================
 
 # Daniel Sánchez
@@ -18,11 +16,7 @@ library(tidyverse) # Ggplot and dplyr
 library(openxlsx) # Import and export XL files
 library(survey) # For survey robust calculations. 
 
-# Load the data ----------------------------------------------------------------------------------------------------------
-
-source('scripts/data_manipulation.R')
-
-# ================================================= Survey-weighted tabulations ================================================
+# ================================================= Cross-year tabulations ================================================
 
 # Corruption variables ---------------------------------------------------------------------------------------------------
 
@@ -118,5 +112,18 @@ rightist_time<-svyby(~ rightist,
                      svymean, 
                      na.rm = T)
 
+# ================================================= Cross-variable tabulations ================================================
+
+# I cross-tabulate based on groups in this section.
+
+# Corruption tolerance ---------------------------------------------------------------------------------------------------
+
+# By unemployment status in 2014
+
+ctol_byunem14<-svyby(~ ctol, 
+                     ~ unem2_4a, 
+                     design = lapop_des14,
+                     svymean, 
+                     na.rm = T)
 
 

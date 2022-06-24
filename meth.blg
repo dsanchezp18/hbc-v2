@@ -1,0 +1,15 @@
+[0] Config.pm:307> INFO - This is Biber 2.17
+[0] Config.pm:310> INFO - Logfile is 'meth.blg'
+[135] biber-MSWIN32:340> INFO - === 
+[200] Biber.pm:418> INFO - Reading 'meth.bcf'
+[361] Biber.pm:972> INFO - Found 6 citekeys in bib section 0
+[378] Biber.pm:4383> INFO - Processing section 0
+[391] Biber.pm:4574> INFO - Looking for bibtex file 'refs.bib' for section 0
+[479] bibtex.pm:1713> INFO - LaTeX decoding ...
+[580] bibtex.pm:1518> INFO - Found BibTeX data source 'refs.bib'
+[654] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[654] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[654] Biber.pm:4203> INFO - Sorting list 'apa/global//global/global' of type 'entry' with template 'apa' and locale 'en-US'
+[655] Biber.pm:4209> INFO - No sort tailoring available for locale 'en-US'
+[664] bbl.pm:654> INFO - Writing 'meth.bbl' with encoding 'UTF-8'
+[669] bbl.pm:757> INFO - Output to meth.bbl

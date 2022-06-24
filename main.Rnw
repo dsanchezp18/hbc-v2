@@ -30,6 +30,8 @@
 
 \usepackage[margin = 1in]{geometry}
 
+\usepackage{lscape}
+
 % Citation & Bibliographies
 
 \usepackage[backend = biber, style = apa, citestyle = apa]{biblatex}
@@ -37,9 +39,11 @@
   
 % For tables:
 
-\usepackage{siunitx} % For the modelsummary tables
-\usepackage{booktabs} % For the modelsummary tables
+ % For the modelsummary tables:
+\usepackage{siunitx}
+\usepackage{booktabs} 
   \newcolumntype{d}{S[input-symbols = ()]}
+
 \usepackage{caption}
 \usepackage{multirow}
 \usepackage[flushleft]{threeparttable}
@@ -68,12 +72,18 @@
 
 <<setup, include = F>>=
 # Chunk options
-knitr::opts_chunk$set(echo = F, eval = T, include = F)
+knitr::opts_chunk$set(echo = F,
+                      eval = T, 
+                      include = F,
+                      warning = F, 
+                      message = F)
+
 system(paste("biber", sub("\\.Rnw$", "", current_input())))
 
 # Libraries
 library(tidyverse)
 library(survey)
+library(modelsummary)
 @
 
 % Load the data by sourcing the data manipulation script. Note that survey design objects are indeed created in this script.
@@ -112,5 +122,9 @@ source('scripts/data_manipulation.R')
 <<res1_child, child = 'results1.Rnw'>>=
 @
 
+% Results 2 Child Document
+
+<<res2_child, child = 'results2.Rnw'>>=
+@
 
 \end{document}

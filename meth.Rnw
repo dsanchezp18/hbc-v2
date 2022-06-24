@@ -1,5 +1,4 @@
 % Methodology .Rnw File
-
 <<parent_tometh, include = F>>=
 set_parent('main.Rnw') # Set the parent document preamble
 @
