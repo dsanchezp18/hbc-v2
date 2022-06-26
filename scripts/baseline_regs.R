@@ -13,6 +13,8 @@
 
 library(tidyverse) # Ggplot and dplyr
 library(survey) # Survey stuff
+library(margins) # Average Partial Effects
+library(marginaleffects) # APEs
 
 # ================================================= Baseline Regressions =====================================================
 
@@ -101,5 +103,4 @@ lpm_aprov<-svyglm(ctol ~ year*pres_aprov,
 
 lpm_polscore<-svyglm(ctol ~ year*polscore,
                      design = lapop_des46)
-
 

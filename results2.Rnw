@@ -79,13 +79,277 @@ Model 1 suggests that a person who reports having a worse economic situation doe
 
 Models 3 and 4 display the same relationship: people who either trust or approve of the President in a higher degree also tolerate corruption less. A more zealous supporter of the regime will believe that bribes are not justified given the actual situation, however, this appears to change in 2016. The interaction term for both variables are significant and positive: in 2016 regime supporters started to justify corruption in a higher degree relative to 2014 levels. This could explain the jump in corruption tolerance since support for the President eroded in 2016, which meant that the number of non-supporters was higher; these respondents justified corruption more than supporters. Also, the supporters that remained started to justify bribes to a higher degree for this year. In Model 3, the significance of the year dummy is lost, while in Model 4 its sign is reversed.
 
-The political identification of respondents is taken into account in Model 5. The coefficients show that a person who identifies closer to the political right does not justify corruption differently relative to people identifying closer to the political left. However, the interaction term shows that people answering higher values of this variable justified corruption more in 2016. Once again, the significance of the year dummy is lost when considering this variable. With a higher number of respondents identifying with the political right wing, who appear to justify corruption more, it would be understood how overall corruption tolerance increased. This estimate, however, is less statistically significant than the other three interaction terms in the other models. All of these results hold with the logit and linear probability models, which can be seen in Appendix \label{app:second}.
+The political identification of respondents is taken into account in Model 5. The coefficients show that a person who identifies closer to the political right does not justify corruption differently relative to people identifying closer to the political left. However, the interaction term shows that people answering higher values of this variable justified corruption more in 2016. Once again, the significance of the year dummy is lost when considering this variable. With a higher number of respondents identifying with the political right wing, who appear to justify corruption more, it would be understood how overall corruption tolerance increased. This estimate, however, is less statistically significant than the other three interaction terms in the other models. All of these results hold with the logit and linear probability models, which can be seen in Appendix \label{app:second}. Table \ref{tab:apebase} presents average partial effects for the model estimatations in Table \ref{tab:simplemodel}. 
+
+% Do the APE table (pending)
 
 % I need to draw the graph which shows the visual differences between groups and their corruption tolerance
+
 % I draw my data by sourcing the tabulations script.
-<<source-data-tabs, cache = T>>=
+
+<<source-data-tabs, cache = F>>=
 source('scripts/tabulations.R')
 @
+
+% Now I do the data wrangling needed for this
+
+<<ctol-wrangling-difgraph, cache = T>>=
+# Corruption tolerance by employment status wrangling
+
+unem_14_ctol<-
+  ctol_byunem14 %>%
+  mutate(unem2_4a = dplyr::recode(unem2_4a, '1' = 'Unemployed', '0' = 'Not Unemployed'),
+         legend = unem2_4a,
+         year = 2014,
+         facet = 'unem')
+
+unem_16_ctol<-
+  ctol_byunem16 %>%
+  mutate(unem2_4a = dplyr::recode(unem2_4a, '1' = 'Unemployed', '0' = 'Not Unemployed'),
+         legend = unem2_4a,
+         year = 2016,
+         facet = 'unem')
+
+# Create the dataframe
+
+ctol_unem<-
+  bind_rows(unem_14_ctol,
+            unem_16_ctol) %>% 
+  select(ctol,
+         se,
+         legend,
+         year)
+
+# Clear row names
+
+rownames(ctol_unem) <- NULL
+
+# Corruption tolerance by pconf wrangling
+
+pconf_14_ctol<-
+  ctol_bypconf14 %>%
+  mutate(pres_conf_dic = dplyr::recode(pres_conf_dic, 'No' = 'Does not trust', 'Yes' = 'Trusts'),
+         legend = pres_conf_dic,
+         year = 2014,
+         facet = 'pconf')
+
+pconf_16_ctol<-
+  ctol_bypconf16 %>%
+  mutate(pres_conf_dic = dplyr::recode(pres_conf_dic, 'No' = 'Does not trust', 'Yes' = 'Trusts'),
+         legend = pres_conf_dic,
+         year = 2016,
+         facet = 'pconf')
+
+# Create the dataframe
+
+ctol_pconf<-
+  bind_rows(pconf_14_ctol,
+            pconf_16_ctol) %>% 
+  select(ctol,
+         se,
+         legend,
+         year)  
+
+# Clear row names
+
+rownames(ctol_pconf) <- NULL
+
+# Corruption tolerance by job aproval rating wrangling
+
+aprov_14_ctol<-
+  ctol_byaprov14 %>% 
+  mutate(pres_aprov_dic = dplyr::recode(pres_aprov_dic, 'No' = 'Does not approve', 'Yes' = 'Approves'),
+         legend = pres_aprov_dic,
+         year = 2014,
+         facet = 'japrov')  
+
+aprov_16_ctol<-
+  ctol_byaprov16 %>% 
+  mutate(pres_aprov_dic = dplyr::recode(pres_aprov_dic, 'No' = 'Does not approve', 'Yes' = 'Approves'),
+         legend = pres_aprov_dic,
+         year = 2016,
+         facet = 'japrov')
+
+# Create the dataframe
+
+ctol_aprov<-
+  bind_rows(aprov_14_ctol,
+            aprov_16_ctol) %>% 
+  select(ctol,
+         se,
+         legend,
+         year)
+
+# Clear row names
+
+rownames(ctol_aprov) <- NULL
+
+# Corruption tolerance by political groups rating wrangling
+
+plgroup_14_ctol<-
+  ctol_bypls14 %>% 
+  mutate(legend = pol_group,
+         year = 2014,
+         facet = 'polgroup')
+
+plgroup_16_ctol<-
+  ctol_bypls16 %>% 
+  mutate(legend = pol_group,
+         year = 2016,
+         facet = 'polgroup')
+
+# Create the dataframe
+
+ctol_pls<-
+  bind_rows(plgroup_14_ctol,
+            plgroup_16_ctol) %>% 
+  select(ctol,
+         se,
+         legend,
+         year)
+
+# Clear row names
+
+rownames(ctol_pls) <- NULL
+
+@
+
+% Now do the graph
+\begin{figure}[htbp]
+\caption{Graphical representations of corruption tolerance across key explanatory variables}
+\label{fig:difgraph}
+\fbox{
+\begin{minipage}{\textwidth}
+<<difgraph, cache = T, include = T, fig.align='center', fig.width= 10, fig.height= 10>>=
+# First graph: Unemployment
+
+ctol_unem_g<-ggplot(ctol_unem,
+                    aes(x = year, y = ctol, fill = legend))+
+             geom_col(position = 'dodge',
+                      color = 'black')+
+             scale_fill_manual(values = c('chartreuse3', 'forestgreen'))+
+             geom_errorbar(aes(ymin = ctol - 1.96*se,
+                               ymax = ctol + 1.96*se),
+                               width = 0.5,
+                               position = position_dodge(1.8))+
+             geom_text(aes(label= round(ctol, 4)*100),
+                       size = 3.5,
+                       vjust = 11,
+                       position = position_dodge(1.8))+
+             scale_x_continuous(breaks = c(2014, 2016))+
+             theme_bw()+
+             theme(panel.grid.major = element_blank(),
+                   panel.grid.minor = element_blank(),
+                   axis.text.y = element_blank(),
+                   axis.ticks = element_blank(),
+                   legend.position = c(0.15,0.95),
+                   plot.title = element_text(size = 12, family = 'serif'),
+                   legend.background = element_blank())+
+             labs(x = '',
+                  y = '',
+                  fill = '',
+                  title = '(a) Corruption tolerance by unemployment status')
+
+# Second graph: political groups
+
+ctol_pls_g<-ggplot(ctol_pls,
+                   aes(x = year, y = ctol, fill = legend))+
+            geom_col(position = 'dodge',
+                     color = 'black')+
+            scale_fill_manual(values = c('green', 'chartreuse3', '#40916c', 'forestgreen'))+
+            geom_errorbar(aes(ymin = ctol - 1.96*se,
+                              ymax = ctol + 1.96*se),
+                              width = 0.5,
+                              position = position_dodge(1.8))+
+            geom_text(aes(label= round(ctol, 4)*100),
+                      size = 3.5,
+                      vjust = 9.5,
+                      position = position_dodge(1.8))+
+            scale_x_continuous(breaks = c(2014, 2016))+
+            theme_bw()+
+            theme(panel.grid.major = element_blank(),
+                  panel.grid.minor = element_blank(),
+                  axis.text.y = element_blank(),
+                  axis.ticks = element_blank(),
+                  legend.position = c(0.1 ,0.9),
+                  plot.title = element_text(size = 12, family = 'serif'),
+                  legend.background = element_blank())+
+            labs(x = '',
+                 y = '',
+                fill = '',
+                title = '(b) Corruption tolerance by political identification groups')
+
+# Third graph: Confidence in the president
+
+ctol_pconf_g<-ggplot(ctol_pconf,
+                    aes(x = year, y = ctol, fill = legend))+
+             geom_col(position = 'dodge',
+                      color = 'black')+
+             scale_fill_manual(values = c('chartreuse3', 'forestgreen'))+
+             geom_errorbar(aes(ymin = ctol - 1.96*se,
+                               ymax = ctol + 1.96*se),
+                               width = 0.5,
+                               position = position_dodge(1.8))+
+             geom_text(aes(label= round(ctol, 4)*100),
+                       size = 3.5,
+                       vjust = 9,
+                       position = position_dodge(1.8))+
+             scale_x_continuous(breaks = c(2014, 2016))+
+             theme_bw()+
+             theme(panel.grid.major = element_blank(),
+                   panel.grid.minor = element_blank(),
+                   axis.text.y = element_blank(),
+                   axis.ticks = element_blank(),
+                   legend.position = c(0.15 ,0.95),
+                   plot.title = element_text(size = 12, family = 'serif'),
+                   legend.background = element_blank())+
+             labs(x = '',
+                  y = '',
+                  fill = '',
+                  title = '(c) Corruption tolerance by confidence on the President')
+
+# Fourth graph: job approval ratings:
+
+ctol_aprov_g<-ggplot(ctol_aprov,
+                    aes(x = year, y = ctol, fill = legend))+
+             geom_col(position = 'dodge',
+                      color = 'black')+
+             scale_fill_manual(values = c('chartreuse3', 'forestgreen'))+
+             geom_errorbar(aes(ymin = ctol - 1.96*se,
+                               ymax = ctol + 1.96*se),
+                               width = 0.5,
+                               position = position_dodge(1.8))+
+             geom_text(aes(label= round(ctol, 4)*100),
+                       size = 3.5,
+                       vjust = 8,
+                       position = position_dodge(1.8))+
+             scale_x_continuous(breaks = c(2014, 2016))+
+             theme_bw()+
+             theme(panel.grid.major = element_blank(),
+                   panel.grid.minor = element_blank(),
+                   axis.text.y = element_blank(),
+                   axis.ticks = element_blank(),
+                   legend.position = c(0.15,0.95),
+                   plot.title = element_text(size = 12, family = 'serif'),
+                   legend.background = element_blank())+
+             labs(x = '',
+                  y = '',
+                  fill = '',
+                  title = '(d) Corruption tolerance by approval rating')
+
+# Now draw the actual graph
+ctol_unem_g + ctol_pconf_g + ctol_aprov_g + ctol_pls_g + 
+  plot_layout(ncol = 2, 
+              nrow = 2, 
+              heights = c(5,5,5,5),
+              widths = c(5,5,5,5))
+
+@
+\textbf{Note:} Figures show the percent of respondents that justify corruption across the groups used as explanatory models in Table \ref{tab:simplemodel}. Data from the open-access databases of the AB. Error bars represent the 95\% confidence intervals considering design effects. Figure prepared by the author. 
+\end{minipage}
+}
+\end{figure}
+
 
 The findings of these models can be further explained by Figure \ref{fig:difgraph}. According to panel (a), in 2014, only 12.03\% of people who were not unemployed justified corruption, while in 2016 this figure increased to 27.03\%, very close to the percentage of unemployed people who justified it in 2016. The difference between time periods of these percentages is not statistically significant, which means that in 2016 the effect of unemployment in corruption tolerance approached zero. Thus, Figure \ref{fig:difgraph} along with Model 2 of Table \ref{tab:simplemodel} show that it was not the unemployed who started to justify corruption less, it was that the people who were not unemployed started to justify it more. Panels (b) and (c) of Figure \ref{fig:difgraph} show that the percentage of people who either confided in or approved the President and justified corruption increased significantly  between 2014 and 2016. This means that the negative effect of supporting the executive in 2016 was smaller than in 2014, as confirmed by the interaction term in Models 3 and 4 of Table \ref{tab:simplemodel}. In panel (d) of Figure \ref{fig:difgraph}, where four different political groups are considered: the left, right, center and those who did not answer the question. All four groups saw increases in the percent of group members who justify corruption. All increases in corruption tolerance are significant, except for those who identify with the left wing. This is consistent with the coefficient sign seen in Model 5 for the political score variable. 
 

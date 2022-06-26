@@ -126,4 +126,61 @@ ctol_byunem14<-svyby(~ ctol,
                      svymean, 
                      na.rm = T)
 
+# By unemployment status in 2016
+
+ctol_byunem16<-svyby(~ ctol, 
+                     ~ unem2_4a, 
+                     design = lapop_des16,
+                     svymean, 
+                     na.rm = T)
+
+# By confidence in the president in 2014
+
+ctol_bypconf14<-svyby(~ ctol, 
+                      ~ pres_conf_dic, 
+                      design = lapop_des14,
+                      svymean, 
+                      na.rm = T)
+
+# By confidence in the president in 2016
+
+ctol_bypconf16<-svyby(~ ctol, 
+                      ~ pres_conf_dic, 
+                      design = lapop_des16,
+                      svymean, 
+                      na.rm = T)
+
+# By job approval rating in 2014
+
+ctol_byaprov14<-svyby(~ ctol, 
+                      ~ pres_aprov_dic, 
+                      design = lapop_des14,
+                      svymean, 
+                      na.rm = T)
+
+# By job approval rating in 2016
+
+ctol_byaprov16<-svyby(~ ctol, 
+                      ~ pres_aprov_dic, 
+                      design = lapop_des16,
+                      svymean, 
+                      na.rm = T)
+
+# By political groups 2014
+
+ctol_bypls14<-svyby(~ ctol, 
+                    ~ pol_group, 
+                    design = lapop_des14,
+                    svymean, 
+                    na.rm = T)
+
+# By political groups 2016
+
+ctol_bypls16<-svyby(~ ctol, 
+                    ~ pol_group, 
+                    design = lapop_des16,
+                    svymean, 
+                    na.rm = T)
+
+
 
