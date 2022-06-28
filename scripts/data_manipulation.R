@@ -850,7 +850,14 @@ df$pol_symp<-ifelse(df$pol_symp == 1, 'Yes', 'No')
 # For year 2019, rename the vb11neg variable and apply labels, what party is DISLIKED
 
 df<-rename(df, 'pol_dis'=vb11neg)
+
 df$pol_dis<-as.factor(df$pol_dis)
+
+# Political Efficiency ---------------------------------------------------------------------------------------------------
+
+# Make a dichotomized version of the internal political efficiency variable
+
+df$knowspol<-ifelse(df$eff2> 4, 1, 0)
 
 # Interest in Politics -----------------------------------------------------------------------------------------------------
 

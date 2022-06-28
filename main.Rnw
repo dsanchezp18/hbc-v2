@@ -128,4 +128,9 @@ source('scripts/data_manipulation.R')
 <<res2_child, child = 'results2.Rnw'>>=
 @
 
+% Results 3 Child Document
+
+<<res3_child, child = 'results3.Rnw'>>=
+@
+
 \end{document}

@@ -6,7 +6,7 @@ set_parent('main.Rnw') # Set the parent document preamble
 \label{app:second}
 \begin{table}[h]
 % I estimate my table of probit and lpm coefficients.
-<<table-probit-lpm, cache = T, include = T>>=
+<<table-probit-lpm, cache = T, include = T, results = 'asis', warning = F, message = F>>=
 # Source the models
 
 source('scripts/baseline_regs.R')
@@ -14,10 +14,10 @@ source('scripts/baseline_regs.R')
 # List of all models
 
 prob_baseline_regs<-list(prob_ecsit, 
-                          prob_unem, 
-                          prob_pconf, 
-                          prob_aprov, 
-                          prob_polscore)
+                         prob_unem, 
+                         prob_pconf, 
+                         prob_aprov, 
+                         prob_polscore)
 
 # Get the gof mappings
 
@@ -25,7 +25,6 @@ base_models_stats<-
   list(list("raw" = "nobs", "clean" = "$N$", "fmt" = 0),
        list("raw" = "aic", "clean" = "AIC", "fmt" = 2),
        list("raw" = "bic", "clean" = "BIC", "fmt" = 2))
-
 
 # Do the table
 

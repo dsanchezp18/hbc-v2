@@ -16,6 +16,10 @@ library(tidyverse) # Ggplot and dplyr
 library(openxlsx) # Import and export XL files
 library(survey) # For survey robust calculations. 
 
+# Load the data ----------------------------------------------------------------------------------------------------------
+
+source('scripts/data_manipulation.R')
+
 # ================================================= Cross-year tabulations ================================================
 
 # Corruption variables ---------------------------------------------------------------------------------------------------
@@ -88,13 +92,21 @@ pconf_time<-svyby(~ pres_conf_dic,
                   svymean, 
                   na.rm = T)
 
-# Interest in politics. 
+# Interest in politics 
 
 intpol_year<-svyby(~ pol_int, 
                    ~ year, 
                    design = lapop_des,
                    svymean, 
                    na.rm = T)
+
+# Interest in politics (dichotomized)
+
+intpol_dic_time<-svyby(~ pint_dic,
+                       ~ year,
+                       design = lapop_des,
+                       svymean,
+                       na.rm = T)
 
 # Leftists
 
@@ -111,6 +123,14 @@ rightist_time<-svyby(~ rightist,
                      design = lapop_des,
                      svymean, 
                      na.rm = T)
+
+# Internal political efficiency
+
+eff2_time<-svyby(~ knowspol, 
+                 ~ year, 
+                 design = lapop_des,
+                 svymean, 
+                 na.rm = T)
 
 # ================================================= Cross-variable tabulations ================================================
 
@@ -181,6 +201,4 @@ ctol_bypls16<-svyby(~ ctol,
                     design = lapop_des16,
                     svymean, 
                     na.rm = T)
-
-
 

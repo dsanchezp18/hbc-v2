@@ -1,0 +1,154 @@
+% Results III .Rnw File
+<<parent_tores3, include = F>>=
+set_parent('main.Rnw') # Set the parent document preamble
+@
+
+\subsection{Ceteris paribus effects of unemployment, presidential approval and political identification on corruption tolerance}
+
+Now the general model as described by Equation \ref{eqn:genmod} is estimated, where \textbf{R} is a vector of explanatory variables that the study of the literature on corruption tolerance and normalization suggests. The statistically significant relationships with interaction terms which were determined previously are kept as the key explanatory variables $x^*$, with the exception of the confidence in the president variable, as the presidential approval variable captures the same effects. Thus, three models are estimated, whose coefficients are shown in Table \ref{tab:complexmod}.
+
+% Estimate the modified models, by sourcing that .R file
+
+<<modified-regs, cache = T>>=
+source('scripts/modified_regs.R')
+@
+
+% Now create the table
+\begin{table}[htbp]
+\begin{center}
+\caption{Logit coefficients for modified models}
+\label{tab:complexmodc}
+<<modified-regs-coefs, include = T, warning = F, message = F, results = 'asis', cache = T>>=
+# List all models in a table
+
+modified_models<- list(log_unem_m,
+                       log_aprov_m,
+                       log_pols_m)
+
+# Coefficient names
+
+coefficient_names_m<-c('(Intercept)' = 'Constant',
+                       'year2016' = '2016 Dummy',
+                       'gndrWoman' = 'Woman',
+                       'age' = 'Age',
+                       'ed' = 'Years of education',
+                       'urUrban' = 'Lives in urban setting',
+                       'eff1' = 'External political efficacy',
+                       'eff2' = 'Internal political efficacy',
+                       'prot3Yes' = 'Participation in a protest',
+                       'pint_dic' = 'Interest in politics', 
+                       'corrper' = 'Perceptions of corruption',
+                       'corr_exp' = 'Exposure to corruption',
+                       'unem2_4a' = 'Unemployment',
+                       'pres_aprov' = 'Approval of Pres. Performance',
+                       'polscore' = 'Political Wing',
+                       'year2016:unem2_4a' = 'Unemployment Interaction',
+                       'year2016:pres_aprov' = 'Pres. Approval Interaction',
+                       'year2016:polscore' = 'Pol. Wing Interaction')
+
+# Create the mapping of the goodness of fit coefficients.
+
+mod_models_stats<-
+  list(list("raw" = "nobs", "clean" = "$N$", "fmt" = 0),
+       list("raw" = "aic", "clean" = "AIC", "fmt" = 2),
+       list("raw" = "bic", "clean" = "BIC", "fmt" = 2))
+
+# Make the table
+
+modelsummary(modified_models,
+             stars = c('*'= 0.1, '**' = 0.05, '***'= 0.01),
+             gof_map = mod_models_stats,
+             output = 'latex_tabular',
+             coef_map = coefficient_names_m)
+@
+\end{center}
+\textbf{Note:} Logit coefficients of the modified models as described by Equation \ref{eqn:genmod}. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
+% APE table (pending)
+
+These models include multiple control variables suggested by \textcite{Moscoso.2020} and \textcite{Lupu.2017}. Of these, only age is significant and has a negative effect on corruption tolerance, which is a consistent finding across these two studies as well as that by \textcite{Montalvo.2019}. A person older by one year is 4 percentage points less likely to justify corruption, as seen in Table \ref{tab:apescomp}. It is possible that a generational explanation can be used for this, where it is older generations that reject corruption more. However, it is also possible that as people age they feel closer to the political and social systems inside a country, which leads them to reject dishonest acts more than their younger counterparts. Using the theory by \textcite{Ashforth.2003}, it might be that younger people rationalize corrupt acts more since they feel more unattached to \enquote{adult} culture, which leads them to a denial of responsibility explanation. 
+
+This is supported by the fact that several social and economic problems seem to hit young people more (\cite{Vasconez.2016}, \cite{Crespo.2019}, \cite{Cetrangolo.2020}) and that they feel lethargic and distanced with the country's politics and with political wings \parencite{Lucero.2020}. If young people are more likely to be economically disadvantaged, it is also likely that \textit{petty} corrupt practices as bribes, connection-based hiring and others have become institutionalized and socialized in the young Ecuadorian society as the economic payoff of engaging in these attitudes is more attractive. The incentives to be honest decrease as the monetary benefit of engaging in corrupt behavior is higher for disadvantaged people as young citizens that are relatively more disadvantaged. 
+
+Political efficacy indicators are also included in the regressions. The external political efficacy question, which asks if the respondents believe that politicians serve the interests of the people, has no statistical significance on corruption tolerance. Internal political efficacy asks about how well the respondent understands politics and this control is significant at the 95\% confidence level. The sign on the coefficient shows that a person who understands more about the country's politics is more likely to justify corruption: a person answering an additional point of the internal political efficacy is about 1.5 percentage points more likely to justify corruption.
+
+While \textcite{Moscoso.2020} find that none of the political efficacy variables are significant for corruption tolerance in 2019, they do find that interest in politics is significant and has a positive effect. That finding is reversed here: interest in politics is significant yet portrays a negative relationship between the two: more interest in the country's politics is actually negatively related with corruption tolerance. A person who reports being interested in politics is about 3.5 percentage points less likely to justify corruption. 
+
+<<pol-int-data>>=
+# First, source the tabulations script
+source('scripts/tabulations.R')
+@
+% Wrangle the political interest and internal political efficiency data for the graph.
+
+<<pol-int-wrangling>>=
+# Now wrangle the data to produce the database.
+
+# Internal political efficiency
+
+pol_int_graph_df<-
+  eff2_time %>% 
+    mutate(perc = knowspol,
+           legend = 'Internal political efficiency',
+           perc = 100 * knowspol,
+           se = 100 * se) %>%
+    filter(perc > 0)
+
+# Interest in politics
+
+pol_int_graph_df<-
+  pol_int_graph_df %>% 
+  bind_rows(
+    intpol_dic_time %>% 
+      rename(perc = pint_dic) %>% 
+      mutate(legend = 'Interested in politics',
+             perc = perc * 100,
+             se = se *100) %>%
+      filter(perc > 0)
+  )
+
+rownames(pol_int_graph_df)<-NULL
+
+@
+
+% Now do the graph
+\begin{figure}[htbp]
+\fbox{
+\begin{minipage}{\textwidth}
+\caption{Political interest and internal efficiency in Ecuador}
+\label{fig:intpol}
+<<pol-int-graph, cache = T, include = T, fig.width= 10, fig.align = 'center'>>=
+pol_int_graph<-
+  ggplot(pol_int_graph_df, aes (x = year , y = perc, color = legend, group = legend))+
+    geom_line(size = 0.8)+
+    geom_line(aes(x = year, 
+                  y = perc - 1.96*se),
+                  size = 0.7,
+                  color = 'grey50', 
+                  linetype = 'dotted')+
+    geom_line(aes(x = year, 
+                  y = perc + 1.96*se),
+                  size = 0.7,
+                  color = 'grey50', 
+                  linetype = 'dotted')+
+    scale_colour_brewer(palette = 'Set1')+
+    geom_point(size = 2.15)+
+    theme_bw()+
+    theme(panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          text = element_text(size = 12, family = 'serif'),
+          legend.position = c(0.13,0.95),
+          legend.background = element_blank())+
+    labs(x = '',
+         y = 'Percent of voting-age Ecuadorians',
+         color = '')
+
+pol_int_graph
+@
+\textbf{Note:} A time series of the internal political efficacy variable and the interest in politics variable. The internal political efficiency variable is dichotomized using the standard AB methodology as explained in \hyperref[app:first]{Appendix A}. Dotted lines represent the 95\% confidence intervals considering design effects. Data from the open-access AB databases. Figure prepared by the author.
+\end{minipage}
+}
+\end{figure}
+
+Figure \ref{fig:intpol} shows the percent who are interested in politics and also the percent who understand the country's politics. The gap between these two variables has increased from 2014 from 2016, and have a total historic correlation of \Sexpr{round(cor(df$pint_dic, df$knowspol, use = 'complete.obs'),2)}. While they may appear to ask similar things, the two questions may imply different attitudes to politics: the political efficacy question simply asks if citizens are aware of politics and the second one asks if they're interested to enter the political scenario. It might be possible that, when separating these two questions, attitudes of apathy or pragmatism to the political society (understanding politics) are separated from an \enquote{idealist} attitude towards it of those who would like to enter politics.
