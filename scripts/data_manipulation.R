@@ -553,6 +553,10 @@ df46<-subset(df, df$year == 2014 | df$year == 2016)
 
 df$year<- as.factor(df$year)
 
+# Create year dummies ----------------------------------------------------------------------------------------------------
+
+df$y16<-ifelse(df$year == '2014',1,0)
+
 # ================================================= Basic Questions ================================================================
 
 # Rename and remap some basic questions for analysis

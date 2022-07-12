@@ -30,14 +30,6 @@ source('scripts/baseline_regs.R')
 \caption{Logit coefficients for baseline models}
 \label{tab:simplemodel}
 <<baseline-regs-coefficient-table, cache = T, include = T, results = 'asis'>>=
-# Put all of the models in a list
-
-simple_models_log<-list(log_ecsit, 
-                        log_unem, 
-                        log_pconf, 
-                        log_aprov, 
-                        log_polscore)
-
 # Deploy coefficient names
 
 coefficient_names<-c('(Intercept)' = 'Constant', 
@@ -62,7 +54,7 @@ base_models_stats<-
 
 # Do the table
 
-modelsummary(simple_models_log,
+modelsummary(base_models_log,
              stars = c('*'= 0.1, '**' = 0.05, '***'= 0.01),
              output = 'latex_tabular',
              gof_map = base_models_stats,

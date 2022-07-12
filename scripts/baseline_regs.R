@@ -13,7 +13,6 @@
 
 library(tidyverse) # Ggplot and dplyr
 library(survey) # Survey stuff
-library(margins) # Average Partial Effects
 library(marginaleffects) # APEs
 
 # ================================================= Baseline Regressions =====================================================
@@ -50,11 +49,20 @@ log_polscore<-svyglm(ctol ~ year*polscore,
                      design = lapop_des46,
                      family = quasibinomial(link = 'logit'))
 
+# Create the list of models:
+
+base_models_log<-
+  list(log_ecsit, 
+       log_unem, 
+       log_pconf, 
+       log_aprov, 
+       log_polscore)
+
 # Probit models ----------------------------------------------------------------------------------------------------------
 
 prob_ecsit<-svyglm(ctol ~ year*econ_sit,
-                  design = lapop_des46,
-                  family = quasibinomial(link = 'probit'))
+                   design = lapop_des46,
+                   family = quasibinomial(link = 'probit'))
 
 # Unemployment
 
@@ -80,6 +88,15 @@ prob_polscore<-svyglm(ctol ~ year*polscore,
                      design = lapop_des46,
                      family = quasibinomial(link = 'probit'))
 
+# Create the list of models
+
+base_models_prob<-
+  list(prob_ecsit,
+       prob_unem,
+       prob_pconf,
+       prob_aprov,
+       prob_polscore)
+
 # Linear Probability Models ----------------------------------------------------------------------------------------------
 
 lpm_ecsit<-svyglm(ctol ~ year*econ_sit,
@@ -103,4 +120,13 @@ lpm_aprov<-svyglm(ctol ~ year*pres_aprov,
 
 lpm_polscore<-svyglm(ctol ~ year*polscore,
                      design = lapop_des46)
+
+# Create the list of models
+
+base_models_lpm<-
+  list(lpm_ecsit,
+       lpm_unem,
+       lpm_pconf,
+       lpm_aprov,
+       lpm_polscore)
 

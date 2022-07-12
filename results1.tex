@@ -86,6 +86,8 @@
 
 \usepackage[margin = 1in]{geometry}
 
+\usepackage{lscape}
+
 % Citation & Bibliographies
 
 \usepackage[backend = biber, style = apa, citestyle = apa]{biblatex}
@@ -93,9 +95,11 @@
   
 % For tables:
 
-\usepackage{siunitx} % For the modelsummary tables
-\usepackage{booktabs} % For the modelsummary tables
+ % For the modelsummary tables:
+\usepackage{siunitx}
+\usepackage{booktabs} 
   \newcolumntype{d}{S[input-symbols = ()]}
+
 \usepackage{caption}
 \usepackage{multirow}
 \usepackage[flushleft]{threeparttable}
@@ -162,7 +166,7 @@ As pointed out previously, The corruption tolerance increase happened at the sam
 
 The AB data shows that indeed the President reached an all-time high popularity in 2014 and then a severe drop in 2016. This is seen through the percent of people who approve the President's job performance and the percent who report confidence in him. Another notable change in the political landscape of this period is the way that voting-age population identified politically. There was a strong increase of the people who identified as the \enquote{right} of the political wings, while those who identified with the \enquote{left} did not see significant changes.
 
-Regarding the economic recession, \textcite{Orozco.2015} holds that although the commodity price collapse in 2008 was greater, there was little reduction in economic activity as the country had greater possibilities of international financing and savings left over from past oil funds which were used to keep government expenditure high. In 2016, as savings eroded and government debt had grown bigger, the economy did stagnate significantly for the first time in the Correa administration. Combined with the lack of competitiveness in exports due to US dollar appreciations and the poor management of public finances \parencite{Hurtado.2018}, the country fell into a deep economic recession. While the official GDP figures may show only a small reduction in GDP growth, \textcite{Hurtado.2018} holds that these figures are overestimated.
+Regarding the economic recession, \textcite{Orozco.2015} holds that although the commodity price collapse in 2008 was greater, there was little reduction in economic activity as the country had greater possibilities of international financing and savings left over from past oil funds, which were used to keep government expenditure high. In 2016, as savings eroded and government debt had grown bigger, the economy stagnated significantly for the first time in the Correa administration. Combined with the lack of competitiveness in exports due to US dollar appreciations and the poor public finance administration \parencite{Hurtado.2018}, the country fell into a deep economic recession. While the official GDP figures may show only a small reduction in GDP growth, \textcite{Hurtado.2018} holds that these figures are overestimated.
 
 % Here I create my graph, but I need to load some libraries first and create the data needed for my graphs.
 
@@ -188,5 +192,7 @@ Regarding the economic recession, \textcite{Orozco.2015} holds that although the
 \end{figure}
 
 Figure \ref{fig:ecua_pol} shows several indicators of public opinion in the country. The AB data shows that indeed the President reached an all-time high popularity in 2014 and then a severe drop in 2016. This is seen through the percent of people who approve the President's job performance and the percent who report confidence in him. Another notable change in the political landscape of this period is the way that voting-age population identified politically. There was a notable increase of the people who identified as the \enquote{right} of the political wings, while those who identified with the \enquote{left} did not see significant changes.
+
+
 
 \end{document}
