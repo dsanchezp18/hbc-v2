@@ -21,7 +21,7 @@ where $x^*$ is the key regressor, which can either be:
   \item A discrete variable with numbers from 1-10 where 1 is the extreme left and 10 is the extreme right (Model 5)
 \end{itemize}
 % Now I'm going to run the first models, and I'll do so by sourcing a script.
-<<source-baseline-regs, cache = T>>=
+<<source-baseline-regs>>=
 source('scripts/baseline_regs.R')
 @
 
@@ -29,7 +29,7 @@ source('scripts/baseline_regs.R')
 \begin{table}[htbp]
 \caption{Logit coefficients for baseline models}
 \label{tab:simplemodel}
-<<baseline-regs-coefficient-table, cache = T, include = T, results = 'asis'>>=
+<<baseline-regs-coefficient-table, include = T, results = 'asis'>>=
 # Deploy coefficient names
 
 coefficient_names<-c('(Intercept)' = 'Constant', 
@@ -75,7 +75,7 @@ The political identification of respondents is taken into account in Model 5. Th
 
 All of these results hold with the logit and linear probability models, which can be seen in Appendix \label{app:second}. Table \ref{tab:apebase} presents average partial effects for the model estimations in Table \ref{tab:simplemodel}. Table \ref{tab:apesimp} presents average partial effects for the five models of Table \ref{tab:simplemodel}. These figures show that an unemployed person is 5.9\% more likely to justify corruption. Additionally, a respondent who answered one number higher for an increased degree of confidence in the President was 2.4\% less likely to justify corruption. Finally, a person who rated the President's job performance one unit higher was 4.4\% less likely to justify corruption. All other partial effects are not significant. Similar magnitudes are obtained for the probit model average partial effects, as seen in Table \ref{tab:probitsimpape}. 
 
-% Do the APE table (pending)
+% Do the APE table
 
 % I need to draw the graph which shows the visual differences between groups and their corruption tolerance
 
@@ -207,7 +207,6 @@ ctol_pls<-
 rownames(ctol_pls) <- NULL
 
 @
-
 % Now do the graph
 \begin{figure}[htbp]
 \caption{Graphical representations of corruption tolerance across key explanatory variables}
