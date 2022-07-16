@@ -9,7 +9,7 @@ set_parent('main.Rnw') # Set the parent document preamble
 As pointed out previously, the corruption tolerance increase happened at the same time as other key events. First, AB indicators denote a political crisis, as support for President Rafael Correa's regime took a sharp hit. Second, a recession hit Ecuador due to a commodity price collapse, an earthquake and other circumstances. Below, Figure \ref{fig:ecua_pol} shows several public opinion indicators and Figure \ref{fig:ecua_ec} displays economic conditions, both observed and perceived from 2014 to 2019. 
 
 % Create the data to be used for the political opinion variables:
-<<political-graph-data, cache = T>>=
+<<political-graph-data>>=
 
 # Wrangle the time series of confidence in the president
 

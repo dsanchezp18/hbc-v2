@@ -76,6 +76,34 @@ The political identification of respondents is taken into account in Model 5. Th
 All of these results hold with the logit and linear probability models, which can be seen in Appendix \label{app:second}. Table \ref{tab:apebase} presents average partial effects for the model estimations in Table \ref{tab:simplemodel}. Table \ref{tab:apesimp} presents average partial effects for the five models of Table \ref{tab:simplemodel}. These figures show that an unemployed person is 5.9\% more likely to justify corruption. Additionally, a respondent who answered one number higher for an increased degree of confidence in the President was 2.4\% less likely to justify corruption. Finally, a person who rated the President's job performance one unit higher was 4.4\% less likely to justify corruption. All other partial effects are not significant. Similar magnitudes are obtained for the probit model average partial effects, as seen in Table \ref{tab:probitsimpape}. 
 
 % Do the APE table
+\begin{table}[htbp]
+\caption{Average partial effects for logit models in Table \ref{tab:simplemodel}}
+\label{tab:probitsimpape}
+<<baseline-aoes-table, include = T, results = 'asis'>>=
+# Coefficient mappings
+
+coefficient_names_apes<-c('gndrWoman' = 'Woman',
+                          'year2016' = '2016 Dummy',
+                          'corrper' = 'Perceptions of corruption',
+                          'corr_exp' = 'Exposure to corruption',
+                          'unem2_4a' = 'Unemployment',
+                          'pres_aprov' = 'Approval of Pres. Performance',
+                          'polscore' = 'Political Wing')
+
+# Goodness of fit mappings
+
+gof_simpapes<-
+  list(list("raw" = "nobs", "clean" = "$N$", "fmt" = 0))
+
+modelsummary(base_models_log,
+             stars = c('*'= 0.1, '**' = 0.05, '***'= 0.01),
+             output = 'latex_tabular',
+             coef_map = coefficient_names_apes,
+             gof_map = gof_simpapes)
+ @
+\textbf{Note:} Average partial effects for the models estimated in Table \ref{tab:complexmod}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
 
 % I need to draw the graph which shows the visual differences between groups and their corruption tolerance
 

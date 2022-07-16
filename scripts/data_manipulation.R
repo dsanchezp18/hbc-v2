@@ -809,9 +809,12 @@ df$privpub<-relevel(df$privpub, 'Private')
 
 # Political Party and Ideals --------------------------------------------------------------------------------------------------------
 
-# Rename the political ideology discrete variable 
+# Rename the political ideology discrete variable, an make it numeric
 
-df<-rename(df, 'polscore'=l1)
+df<-
+  df %>% 
+  rename('polscore'=l1) %>% 
+  mutate(polscore = as.numeric(polscore))
 
 # The larger the value answered, the more to the right the person is
 
@@ -889,9 +892,12 @@ df$prot_log<-df$prot3 == 'YeS'
 
 # Confidence in President ------------------------------------------------------------------------------------------------
 
-# Rename the variable 
+# Rename the variable and make it a numeric variable so it works with the APE model calculation.
 
-df<-rename(df, 'pres_conf' = b21a)
+df<-
+  df %>% 
+  rename('pres_conf' = b21a) %>% 
+  mutate(pres_conf = as.numeric(pres_conf))
 
 # Dichotomize the variable as the LAPOP articles do
 

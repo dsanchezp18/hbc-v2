@@ -1,0 +1,9 @@
+[0] Config.pm:307> INFO - This is Biber 2.17
+[0] Config.pm:310> INFO - Logfile is 'results2.blg'
+[123] biber-MSWIN32:340> INFO - === 
+[177] Biber.pm:418> INFO - Reading 'results2.bcf'
+[337] Biber.pm:972> INFO - Found 0 citekeys in bib section 0
+[358] bbl.pm:654> INFO - Writing 'results2.bbl' with encoding 'UTF-8'
+[358] bbl.pm:757> INFO - Output to results2.bbl
+[358] Biber.pm:130> WARN - The file 'results2.bcf' does not contain any citations!
+[358] Biber.pm:132> INFO - WARNINGS: 1
