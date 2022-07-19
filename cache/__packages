@@ -11,6 +11,8 @@ forcats
 Matrix
 survival
 survey
+modelsummary
+patchwork
 haven
 openxlsx
 broom
@@ -20,9 +22,7 @@ zoo
 xts
 Quandl
 WDI
-patchwork
 ggpubr
 DataCombine
-modelsummary
-margins
 marginaleffects
+margins
