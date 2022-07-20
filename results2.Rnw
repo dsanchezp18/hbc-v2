@@ -21,7 +21,7 @@ where $x^*$ is the key regressor, which can either be:
   \item A discrete variable with numbers from 1-10 where 1 is the extreme left and 10 is the extreme right (Model 5)
 \end{itemize}
 % Now I'm going to run the first models, and I'll do so by sourcing a script.
-<<source-baseline-regs>>=
+<<source-baseline-regs, cache = T>>=
 source('scripts/baseline_regs.R')
 @
 
@@ -29,7 +29,7 @@ source('scripts/baseline_regs.R')
 \begin{table}[htbp]
 \caption{Logit coefficients for baseline models}
 \label{tab:simplemodel}
-<<baseline-regs-coefficient-table, include = T, results = 'asis'>>=
+<<baseline-regs-coefficient-table, include = T, results = 'asis', cache = T>>=
 # Deploy coefficient names
 
 coefficient_names<-c('(Intercept)' = 'Constant', 
@@ -79,7 +79,7 @@ All of these results hold with the logit and linear probability models, which ca
 \begin{table}[htbp]
 \caption{Average partial effects for logit models in Table \ref{tab:simplemodel}}
 \label{tab:probitsimpape}
-<<baseline-aoes-table, include = T, results = 'asis'>>=
+<<baseline-aoes-table, include = T, results = 'asis', cache = T>>=
 # Coefficient mappings
 
 coefficient_names_apes<-c('gndrWoman' = 'Woman',
@@ -109,7 +109,7 @@ modelsummary(base_models_log,
 
 % I draw my data by sourcing the tabulations script.
 
-<<source-data-tabs, cache = F>>=
+<<source-data-tabs, cache = T>>=
 source('scripts/tabulations.R')
 @
 
@@ -241,7 +241,7 @@ rownames(ctol_pls) <- NULL
 \label{fig:difgraph}
 \fbox{
 \begin{minipage}{\textwidth}
-<<difgraph, cache = T, include = T, fig.align='center', fig.width= 10, fig.height= 10>>=
+<<difgraph, cache = T, include = T, fig.align='center', fig.width= 10, fig.height= 10, cache = T>>=
 # First graph: Unemployment
 
 ctol_unem_g<-ggplot(ctol_unem,

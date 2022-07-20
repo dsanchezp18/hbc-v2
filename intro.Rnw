@@ -48,7 +48,7 @@ Corruption, if framed as any kind of inappropriate use of common power to benefi
 \begin{minipage}{\textwidth}
 \caption{Percent of Ecuadorians who justify corruption, by year}
 \label{fig:ctoly}
-<<ctol_graph, include = T, echo = F, fig.width = 10, fig.alt= 4, fig.align='center'>>=
+<<ctol_graph, include = T, echo = F, fig.width = 10, fig.alt= 4, fig.align='center', cache = T>>=
 # Corruption Tolerance Time Series for Ecuador
 ctol_time_graph<-ggplot(ctol_time,
                         aes(x = year, y = ctol, group = 1))+
