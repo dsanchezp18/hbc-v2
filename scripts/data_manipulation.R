@@ -575,6 +575,14 @@ df<-rename(df, 'age'=q2)
 
 df$age<-as.integer(df$age) # Transform to a number
 
+# Years of Schooling -----------------------------------------------------------------------------------------------------
+
+# We change the format of years of schooling
+
+df<-
+  df %>% 
+  mutate(ed = as.numeric(ed))
+
 # ================================================= Sociodemographic ==============================================================
 
 # Urban/Rural ------------------------------------------------------------------------------------------------------------
@@ -865,6 +873,13 @@ df$pol_dis<-as.factor(df$pol_dis)
 # Make a dichotomized version of the internal political efficiency variable
 
 df$knowspol<-ifelse(df$eff2> 4, 1, 0)
+
+# Change the format of the variables eff1 and eff2 so that I can use them in the models and then compute APEs
+
+df<-
+  df %>% 
+  mutate(eff1 = as.numeric(eff1),
+         eff2 = as.numeric(eff2))
 
 # Interest in Politics -----------------------------------------------------------------------------------------------------
 

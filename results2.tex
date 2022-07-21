@@ -216,12 +216,28 @@ All of these results hold with the logit and linear probability models, which ca
 % Do the APE table
 \begin{table}[htbp]
 \caption{Average partial effects for logit models in Table \ref{tab:simplemodel}}
-\label{tab:probitsimpape}
-\begin{kframe}
+\label{tab:apesimp}
+
+\begin{tabular}[t]{lccccc}
+\toprule
+  & Model 1 & Model 2 & Model 3 & Model 4 & Model 5\\
+\midrule
+2016 Dummy & \num{0.848}*** & \num{1.001}*** & \num{-0.188} & \num{-1.251}*** & \num{0.278}\\
+ & (\num{0.158}) & (\num{0.132}) & (\num{0.238}) & (\num{0.415}) & (\num{0.234})\\
+Unemployment &  & \num{1.015}*** &  &  & \\
+ &  & (\num{0.205}) &  &  & \\
+Approval of Pres. Performance &  &  &  & \num{-0.648}*** & \\
+ &  &  &  & (\num{0.096}) & \\
+Political Wing &  &  &  &  & \num{-0.047}\\
+ &  &  &  &  & (\num{0.038})\\
+\midrule
+$N$ & \num{2948} & \num{2950} & \num{2944} & \num{2941} & \num{2535}\\
+\bottomrule
+\end{tabular}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: <text>:20:22: unexpected '='\\\#\# 19: \ \ \ \ \ \ \ \ \ \ \ \ \ coef\_map = \\\#\# 20: \ \ \ \ \ \ \ \ \ \ \ \ \ gof\_map =\\\#\# \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textasciicircum{}}}\end{kframe}
-\textbf{Note:} Average partial effects for the models estimated in Table \ref{tab:complexmod}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+\vspace{0.25cm}
+\textbf{Note:} Average partial effects for the models estimated in Table \ref{tab:simplemodel}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
 *$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
 \end{table}
 
@@ -255,7 +271,5 @@ All of these results hold with the logit and linear probability models, which ca
 \end{figure}
 
 The findings of these models can be further explained by Figure \ref{fig:difgraph}. According to panel (a), in 2014, only 12.03\% of people who were not unemployed justified corruption, while in 2016 this figure increased to 27.03\%, very close to the percentage of unemployed people who justified it in 2016. The difference between time periods of these percentages is not statistically significant, which means that in 2016 the effect of unemployment in corruption tolerance approached zero. Thus, Figure \ref{fig:difgraph} along with Model 2 of Table \ref{tab:simplemodel} show that it was not the unemployed who started to justify corruption less, it was that the people who were not unemployed started to justify it more. Panels (b) and (c) of Figure \ref{fig:difgraph} show that the percentage of people who either confided in or approved the President and justified corruption increased significantly  between 2014 and 2016. This means that the negative effect of supporting the executive in 2016 was smaller than in 2014, as confirmed by the interaction term in Models 3 and 4 of Table \ref{tab:simplemodel}. In panel (d) of Figure \ref{fig:difgraph}, where four different political groups are considered: the left, right, center and those who did not answer the question. All four groups saw increases in the percent of group members who justify corruption. All increases in corruption tolerance are significant, except for those who identify with the left wing. This is consistent with the coefficient sign seen in Model 5 for the political score variable. 
-
-
 
 \end{document}

@@ -507,7 +507,7 @@ All of these results hold with the logit and linear probability models, which ca
 % Do the APE table
 \begin{table}[htbp]
 \caption{Average partial effects for logit models in Table \ref{tab:simplemodel}}
-\label{tab:probitsimpape}
+\label{tab:apesimp}
 
 \begin{tabular}[t]{lccccc}
 \toprule
@@ -527,7 +527,8 @@ $N$ & \num{2948} & \num{2950} & \num{2944} & \num{2941} & \num{2535}\\
 \end{tabular}
 
 
-\textbf{Note:} Average partial effects for the models estimated in Table \ref{tab:complexmod}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+\vspace{0.25cm}
+\textbf{Note:} Average partial effects for the models estimated in Table \ref{tab:simplemodel}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
 *$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
 \end{table}
 
@@ -563,8 +564,6 @@ $N$ & \num{2948} & \num{2950} & \num{2944} & \num{2941} & \num{2535}\\
 The findings of these models can be further explained by Figure \ref{fig:difgraph}. According to panel (a), in 2014, only 12.03\% of people who were not unemployed justified corruption, while in 2016 this figure increased to 27.03\%, very close to the percentage of unemployed people who justified it in 2016. The difference between time periods of these percentages is not statistically significant, which means that in 2016 the effect of unemployment in corruption tolerance approached zero. Thus, Figure \ref{fig:difgraph} along with Model 2 of Table \ref{tab:simplemodel} show that it was not the unemployed who started to justify corruption less, it was that the people who were not unemployed started to justify it more. Panels (b) and (c) of Figure \ref{fig:difgraph} show that the percentage of people who either confided in or approved the President and justified corruption increased significantly  between 2014 and 2016. This means that the negative effect of supporting the executive in 2016 was smaller than in 2014, as confirmed by the interaction term in Models 3 and 4 of Table \ref{tab:simplemodel}. In panel (d) of Figure \ref{fig:difgraph}, where four different political groups are considered: the left, right, center and those who did not answer the question. All four groups saw increases in the percent of group members who justify corruption. All increases in corruption tolerance are significant, except for those who identify with the left wing. This is consistent with the coefficient sign seen in Model 5 for the political score variable. 
 
 
-
-
 % Results 3 Child Document
 
 
@@ -583,7 +582,7 @@ Now the general model as described by Equation \ref{eqn:genmod} is estimated, wh
 \begin{table}[htbp]
 \begin{center}
 \caption{Logit coefficients for modified models}
-\label{tab:complexmodc}
+\label{tab:complexmod}
 
 \begin{tabular}[t]{lccc}
 \toprule
@@ -638,7 +637,46 @@ BIC & \num{2301.92} & \num{2290.64} & \num{2307.42}\\
 *$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
 \end{table}
 
-% APE table (pending)
+% APE table
+\begin{table}[htbp]
+\begin{center}
+\caption{Average partial effects for models in Table \ref{tab:complexmod}}
+\label{tab:apescomp}
+
+\begin{tabular}[t]{lccc}
+\toprule
+  & Model 1 & Model 2 & Model 3\\
+\midrule
+Age & \num{-0.004}*** & \num{-0.004}*** & \num{-0.004}***\\
+ & (\num{0.001}) & (\num{0.001}) & (\num{0.001})\\
+Years of education & \num{-0.006}*** & \num{-0.006}** & \num{-0.006}***\\
+ & (\num{0.002}) & (\num{0.002}) & (\num{0.002})\\
+External political efficacy & \num{-0.007} & \num{-0.006} & \num{-0.007}\\
+ & (\num{0.005}) & (\num{0.005}) & (\num{0.005})\\
+Internal political efficacy & \num{0.015}** & \num{0.014}** & \num{0.014}**\\
+ & (\num{0.006}) & (\num{0.006}) & (\num{0.006})\\
+Interest in politics & \num{-0.038}** & \num{-0.033}* & \num{-0.037}**\\
+ & (\num{0.018}) & (\num{0.018}) & (\num{0.018})\\
+Perceptions of corruption & \num{0.000} & \num{0.000} & \num{-0.005}\\
+ & (\num{0.020}) & (\num{0.021}) & (\num{0.021})\\
+Exposure to corruption & \num{0.150}*** & \num{0.152}*** & \num{0.154}***\\
+ & (\num{0.017}) & (\num{0.017}) & (\num{0.018})\\
+Unemployment & \num{0.055}*** & \num{0.045}** & \num{0.044}*\\
+ & (\num{0.020}) & (\num{0.022}) & (\num{0.022})\\
+Approval of Pres. performance & \num{-0.020}** & \num{-0.023}** & \num{-0.019}**\\
+ & (\num{0.010}) & (\num{0.009}) & (\num{0.010})\\
+Political wing & \num{0.004} & \num{0.004} & \num{0.004}\\
+ & (\num{0.003}) & (\num{0.003}) & (\num{0.003})\\
+\midrule
+$N$ & \num{2308} & \num{2308} & \num{2308}\\
+\bottomrule
+\end{tabular}
+
+
+\end{center}
+\textbf{Note:} Average partial effects for the models estimated in Table \ref{tab:complexmod}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
 
 These models include multiple control variables suggested by \textcite{Moscoso.2020} and \textcite{Lupu.2017}. Of these, only age is significant and has a negative effect on corruption tolerance, which is a consistent finding across these two studies as well as that by \textcite{Montalvo.2019}. A person older by one year is 4 percentage points less likely to justify corruption, as seen in Table \ref{tab:apescomp}. It is possible that a generational explanation can be used for this, where it is older generations that reject corruption more. However, it is also possible that as people age they feel closer to the political and social systems inside a country, which leads them to reject dishonest acts more than their younger counterparts. Using the theory by \textcite{Ashforth.2003}, it might be that younger people rationalize corrupt acts more since they feel more unattached to \enquote{adult} culture, which leads them to a denial of responsibility explanation. 
 

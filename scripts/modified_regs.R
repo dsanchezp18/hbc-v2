@@ -40,3 +40,16 @@ log_pols_m<-svyglm(ctol~ year*(polscore) + age + gndr + ed + ur + eff1 + eff2 + 
                      unem2_4a + pres_aprov,
                    design = lapop_des46,
                    family = quasibinomial(link = 'logit'))
+
+# List all models in a table
+
+modified_models_log<- list(log_unem_m,
+                           log_aprov_m,
+                           log_pols_m)
+
+# ================================================= Baseline APEs =====================================================
+
+# Logit ------------------------------------------------------------------------------------------------------------------
+
+modified_logit_mfx<-lapply(modified_models_log, marginaleffects)
+

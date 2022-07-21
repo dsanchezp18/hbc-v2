@@ -9,7 +9,7 @@ Now the general model as described by Equation \ref{eqn:genmod} is estimated, wh
 
 % Estimate the modified models, by sourcing that .R file
 
-<<modified-regs, cache = T>>=
+<<modified-regs>>=
 source('scripts/modified_regs.R')
 @
 
@@ -17,14 +17,8 @@ source('scripts/modified_regs.R')
 \begin{table}[htbp]
 \begin{center}
 \caption{Logit coefficients for modified models}
-\label{tab:complexmodc}
-<<modified-regs-coefs, include = T, warning = F, message = F, results = 'asis', cache = T>>=
-# List all models in a table
-
-modified_models<- list(log_unem_m,
-                       log_aprov_m,
-                       log_pols_m)
-
+\label{tab:complexmod}
+<<modified-regs-coefs, include = T, warning = F, message = F, results = 'asis'>>=
 # Coefficient names
 
 coefficient_names_m<-c('(Intercept)' = 'Constant',
@@ -55,7 +49,7 @@ mod_models_stats<-
 
 # Make the table
 
-modelsummary(modified_models,
+modelsummary(modified_models_log,
              stars = c('*'= 0.1, '**' = 0.05, '***'= 0.01),
              gof_map = mod_models_stats,
              output = 'latex_tabular',
@@ -66,7 +60,42 @@ modelsummary(modified_models,
 *$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
 \end{table}
 
-% APE table (pending)
+% APE table
+\begin{table}[htbp]
+\begin{center}
+\caption{Average partial effects for models in Table \ref{tab:complexmod}}
+\label{tab:apescomp}
+<<modified_apes,include = T, warning = F, results = 'asis', message = F>>=
+# Coefficient Mapping
+
+coefficient_names_apes_c<-c('gndrWoman' = 'Woman',
+                            'age' = 'Age',
+                            'ed' = 'Years of education',
+                            'urUrban' = 'Lives in urban setting',
+                            'eff1' = 'External political efficacy',
+                            'eff2' = 'Internal political efficacy',
+                            'prot3Yes' = 'Participation in a protest',
+                            'pint_dic' = 'Interest in politics', 
+                            'corrper' = 'Perceptions of corruption',
+                            'corr_exp' = 'Exposure to corruption',
+                            'unem2_4a' = 'Unemployment',
+                            'pres_aprov' = 'Approval of Pres. performance',
+                            'polscore' = 'Political wing')
+# Goodness of fit mappings
+
+gof_modapes<-
+  list(list("raw" = "nobs", "clean" = "$N$", "fmt" = 0))
+
+modelsummary(modified_logit_mfx,
+             output = 'latex_tabular',
+             stars = c('*'= 0.1, '**' = 0.05, '***'= 0.01),
+             coef_map = coefficient_names_apes_c,
+             gof_map = gof_modapes)
+@
+\end{center}
+\textbf{Note:} Average partial effects for the models estimated in Table \ref{tab:complexmod}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
 
 These models include multiple control variables suggested by \textcite{Moscoso.2020} and \textcite{Lupu.2017}. Of these, only age is significant and has a negative effect on corruption tolerance, which is a consistent finding across these two studies as well as that by \textcite{Montalvo.2019}. A person older by one year is 4 percentage points less likely to justify corruption, as seen in Table \ref{tab:apescomp}. It is possible that a generational explanation can be used for this, where it is older generations that reject corruption more. However, it is also possible that as people age they feel closer to the political and social systems inside a country, which leads them to reject dishonest acts more than their younger counterparts. Using the theory by \textcite{Ashforth.2003}, it might be that younger people rationalize corrupt acts more since they feel more unattached to \enquote{adult} culture, which leads them to a denial of responsibility explanation. 
 
@@ -118,7 +147,7 @@ rownames(pol_int_graph_df)<-NULL
 \begin{minipage}{\textwidth}
 \caption{Political interest and internal efficiency in Ecuador}
 \label{fig:intpol}
-<<pol-int-graph, cache = T, include = T, fig.width= 10, fig.align = 'center'>>=
+<<pol-int-graph, include = T, fig.width= 10, fig.align = 'center'>>=
 pol_int_graph<-
   ggplot(pol_int_graph_df, aes (x = year , y = perc, color = legend, group = legend))+
     geom_line(size = 0.8)+
