@@ -220,3 +220,36 @@ corrper_g
 \end{minipage}
 }
 \end{figure}
+
+% Now the regressions which were not shown explicitly in text
+
+<<reg-age-correxp, include = F, message = F, warning = F, cache = T>>=
+
+# Add the age-correxp variable
+
+# Unemployment
+
+log_unem_alt<-svyglm(ctol~ year*(unem2_4a) + age*corr_exp + gndr + ed + ur + eff1 + eff2 + prot3 + pint_dic + corrper  +
+                   polscore + pres_aprov,
+                   design = lapop_des46,
+                   family = quasibinomial(link = 'logit'))
+
+# Presidential Confidence
+
+log_aprov_alt<-svyglm(ctol~ year*(pres_aprov) + age*corr_exp + gndr + ed + ur + eff1 + eff2 + prot3 + pint_dic + corrper +
+                    unem2_4a + polscore,
+                    design = lapop_des46,
+                    family = quasibinomial(link = 'logit'))
+
+# Political Score
+
+log_pols_alt<-svyglm(ctol~ year*(polscore) + age*corr_exp + gndr + ed + ur + eff1 + eff2 + prot3 + pint_dic + corrper + 
+                   unem2_4a + pres_aprov,
+                   design = lapop_des46,
+                   family = quasibinomial(link = 'logit'))
+
+modelsummary(list(log_unem_alt,
+                  log_aprov_alt,
+                  log_pols_alt))
+@
+
