@@ -48,6 +48,14 @@ ctol_time<-svyby(~ ctol,
                  svymean, 
                  na.rm = T)
 
+# Corruption Perceptions
+
+corrper_time<-svyby(~ corrper,
+                    ~ year,
+                    design = lapop_des,
+                    svymean,
+                    na.rm = T)
+
 # Economic indicators ----------------------------------------------------------------------------------------------------
 
 # Economic situation
