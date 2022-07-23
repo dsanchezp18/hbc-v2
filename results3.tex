@@ -308,4 +308,98 @@ A dummy variable equal to unity for respondents who have recently attended a pro
 
 Table \ref{tab:complexmod} also shows that after considering several variables suggested by the literature the interaction terms, as estimated in Table \ref{tab:simplemodel}, keep their sign and significance. Even after controlling for several important predictors of corruption tolerance, it is still true that unemployed people justified corruption more in 2014 but reduced their tolerance in 2016. People who approved the job performance of President Correa were less likely to justify corruption in both years, but their rejection of bribes was smaller in 2016. Finally, while the political identification was not important to predict corruption tolerance in 2014, it was significant in 2016; where people who identified as closer to the political right were more likely to justify corruption. To further explore the effects of these three key variables on corruption tolerance, cross-sectional models are estimated for 2014 and 2016 separately and shown below.
 
+
+
+% Table of cross-sectional models
+\begin{table}[htbp]
+\begin{center}
+\caption{Logit coefficients for cross-sectional models as seen in Equation \ref{eqn:crosssecmodel}}
+\label{tab:crossmod}
+
+\begin{tabular}[t]{lcc}
+\toprule
+  & Model 1 & Model 2\\
+\midrule
+Constant & \num{-0.006} & \num{-0.110}\\
+ & (\num{0.663}) & (\num{0.479})\\
+Woman & \num{0.059} & \num{0.141}\\
+ & (\num{0.204}) & (\num{0.133})\\
+Age & \num{-0.019}*** & \num{-0.029}***\\
+ & (\num{0.007}) & (\num{0.004})\\
+Years of education & \num{-0.030} & \num{-0.047}***\\
+ & (\num{0.030}) & (\num{0.018})\\
+Lives in urban setting & \num{0.151} & \num{-0.075}\\
+ & (\num{0.238}) & (\num{0.152})\\
+External political efficacy & \num{-0.032} & \num{-0.056}\\
+ & (\num{0.054}) & (\num{0.039})\\
+Internal political efficacy & \num{0.164}* & \num{0.077}*\\
+ & (\num{0.097}) & (\num{0.045})\\
+Participation in a protest & \num{0.436} & \num{0.205}\\
+ & (\num{0.301}) & (\num{0.275})\\
+Interest in politics & \num{-0.265} & \num{-0.253}*\\
+ & (\num{0.227}) & (\num{0.136})\\
+Perceptions of corruption & \num{-0.005} & \num{0.112}\\
+ & (\num{0.207}) & (\num{0.175})\\
+Exposure to corruption & \num{1.520}*** & \num{0.663}***\\
+ & (\num{0.178}) & (\num{0.145})\\
+Unemployment & \num{0.942}*** & \num{0.042}\\
+ & (\num{0.236}) & (\num{0.164})\\
+Approval of Pres. performance & \num{-0.533}*** & \num{0.025}\\
+ & (\num{0.108}) & (\num{0.072})\\
+Political wing & \num{-0.025} & \num{0.053}**\\
+ & (\num{0.040}) & (\num{0.022})\\
+\midrule
+$N$ & \num{1039} & \num{1269}\\
+AIC & \num{755.79} & \num{1434.40}\\
+BIC & \num{832.75} & \num{1516.11}\\
+\bottomrule
+\end{tabular}
+
+
+\end{center}
+\textbf{Note:} Logit models for the cross-sectional models for 2014 and 2016 as seen in Equation \ref{eqn:crosssecmodel}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
+% Table of Cross-Sectional APEs
+\begin{table}[htbp]
+\begin{center}
+\caption{Average partial effects for cross-sectional models in Table \ref{tab:crossmod}}
+\label{tab:apecross}
+
+\begin{tabular}[t]{lcc}
+\toprule
+  & Model 1 & Model 2\\
+\midrule
+Age & \num{-0.002}*** & \num{-0.005}***\\
+ & (\num{0.001}) & (\num{0.001})\\
+Years of education & \num{-0.003} & \num{-0.009}***\\
+ & (\num{0.003}) & (\num{0.003})\\
+External political efficacy & \num{-0.003} & \num{-0.010}\\
+ & (\num{0.006}) & (\num{0.007})\\
+Internal political efficacy & \num{0.017}* & \num{0.014}*\\
+ & (\num{0.010}) & (\num{0.008})\\
+Interest in politics & \num{-0.028} & \num{-0.047}*\\
+ & (\num{0.024}) & (\num{0.025})\\
+Perceptions of corruption & \num{-0.001} & \num{0.021}\\
+ & (\num{0.022}) & (\num{0.033})\\
+Exposure to corruption & \num{0.161}*** & \num{0.124}***\\
+ & (\num{0.019}) & (\num{0.027})\\
+Unemployment & \num{0.100}*** & \num{0.008}\\
+ & (\num{0.026}) & (\num{0.031})\\
+Approval of Pres. performance & \num{-0.056}*** & \num{0.005}\\
+ & (\num{0.012}) & (\num{0.013})\\
+Political wing & \num{-0.003} & \num{0.010}**\\
+ & (\num{0.004}) & (\num{0.004})\\
+\midrule
+$N$ & \num{1039} & \num{1269}\\
+\bottomrule
+\end{tabular}
+
+
+\end{center}
+\textbf{Note:} Average partial effects for logit cross-sectional empirical models in Table \ref{tab:crossmod}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
 \end{document}

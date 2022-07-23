@@ -1,9 +1,9 @@
-# ==================================== LAPOP ECUADOR DATA MANIPULATION ========================================================
+# ==================================== LAPOP ECUADOR DATA ANALYSIS ========================================================
 
 # Daniel Sánchez
 # USFQ Economics Undergraduate Thesis
 # June 2022
-# Script for the running of baseline regressions for the analysis. 
+# Script for the running of modified regressions for the analysis. 
 
 # ================================================= Preliminaries =============================================================
 

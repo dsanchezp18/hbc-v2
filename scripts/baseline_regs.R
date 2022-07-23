@@ -1,4 +1,4 @@
-# ==================================== LAPOP ECUADOR DATA MANIPULATION ========================================================
+# ==================================== LAPOP ECUADOR DATA ANALYSIS ========================================================
 
 # Daniel Sánchez
 # USFQ Economics Undergraduate Thesis

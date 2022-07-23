@@ -257,3 +257,86 @@ A dummy variable equal to unity for respondents who have recently attended a pro
 
 Table \ref{tab:complexmod} also shows that after considering several variables suggested by the literature the interaction terms, as estimated in Table \ref{tab:simplemodel}, keep their sign and significance. Even after controlling for several important predictors of corruption tolerance, it is still true that unemployed people justified corruption more in 2014 but reduced their tolerance in 2016. People who approved the job performance of President Correa were less likely to justify corruption in both years, but their rejection of bribes was smaller in 2016. Finally, while the political identification was not important to predict corruption tolerance in 2014, it was significant in 2016; where people who identified as closer to the political right were more likely to justify corruption. To further explore the effects of these three key variables on corruption tolerance, cross-sectional models are estimated for 2014 and 2016 separately and shown below.
 
+<<cross-sec, >>=
+# Source the cross sectional models script
+source('scripts/cross-sec.R')
+@
+
+% Table of cross-sectional models
+\begin{table}[htbp]
+\begin{center}
+\caption{Logit coefficients for cross-sectional models as seen in Equation \ref{eqn:crosssecmodel}}
+\label{tab:crossmod}
+<<include = T, warning = F, results = 'asis', message = F>>=
+# Coefficient mappings
+coefficient_names_cross<-c('(Intercept)' = 'Constant',
+                     'gndrWoman' = 'Woman',
+                     'age' = 'Age',
+                     'ed' = 'Years of education',
+                     'urUrban' = 'Lives in urban setting',
+                     'eff1' = 'External political efficacy',
+                     'eff2' = 'Internal political efficacy',
+                     'prot3Yes' = 'Participation in a protest',
+                     'pint_dic' = 'Interest in politics', 
+                     'corrper' = 'Perceptions of corruption',
+                     'corr_exp' = 'Exposure to corruption',
+                     'unem2_4a' = 'Unemployment',
+                     'pres_aprov' = 'Approval of Pres. performance',
+                     'polscore' = 'Political wing')
+# GOF map
+cross_models_stats<-
+  list(list("raw" = "nobs", "clean" = "$N$", "fmt" = 0),
+       list("raw" = "aic", "clean" = "AIC", "fmt" = 2),
+       list("raw" = "bic", "clean" = "BIC", "fmt" = 2))
+
+
+modelsummary(cross_sec_log,
+             stars = c('*'= 0.1, '**' = 0.05, '***'= 0.01),
+             output = 'latex_tabular',
+             coef_map = coefficient_names_cross,
+             gof_map = cross_models_stats)
+
+@
+\end{center}
+\textbf{Note:} Logit models for the cross-sectional models for 2014 and 2016 as seen in Equation \ref{eqn:crosssecmodel}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
+% Table of Cross-Sectional APEs
+\begin{table}[htbp]
+\begin{center}
+\caption{Average partial effects for cross-sectional models in Table \ref{tab:crossmod}}
+\label{tab:apecross}
+<<include = T, warning = F, results = 'asis', message = F>>=
+# Coefficient mappings
+coefficient_names_cross_ape<-c('gndrWoman' = 'Woman',
+                         'age' = 'Age',
+                       'ed' = 'Years of education',
+                       'urUrban' = 'Lives in urban setting',
+                       'eff1' = 'External political efficacy',
+                       'eff2' = 'Internal political efficacy',
+                       'prot3Yes' = 'Participation in a protest',
+                       'pint_dic' = 'Interest in politics', 
+                       'corrper' = 'Perceptions of corruption',
+                       'corr_exp' = 'Exposure to corruption',
+                       'unem2_4a' = 'Unemployment',
+                       'pres_aprov' = 'Approval of Pres. performance',
+                       'polscore' = 'Political wing')
+
+# GOF map
+cross_models_stats_ape<-
+gof_modapes<-
+  list(list("raw" = "nobs", "clean" = "$N$", "fmt" = 0))
+
+modelsummary(cross_sec_logit_mfx,
+             stars = c('*'= 0.1, '**' = 0.05, '***'= 0.01),
+             output = 'latex_tabular',
+             coef_map = coefficient_names_cross_ape,
+             gof_map = cross_models_stats_ape)
+
+@
+\end{center}
+\textbf{Note:} Average partial effects for logit cross-sectional empirical models in Table \ref{tab:crossmod}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
