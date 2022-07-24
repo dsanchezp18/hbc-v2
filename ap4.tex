@@ -1,0 +1,289 @@
+\documentclass[12pt,a4]{article}
+\usepackage[]{graphicx}\usepackage[]{xcolor}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\newcommand{\SweaveOpts}[1]{}  % do not interfere with LaTeX
+\newcommand{\SweaveInput}[1]{} % because they are not real TeX commands
+\newcommand{\Sexpr}[1]{}       % will only be parsed by R
+
+
+
+% ---- Metadata ---- %
+
+\title{Honesty by Convenience: Corruption Tolerance in Ecuador}
+\author{Daniel Hernán Sánchez Pazmiño}
+\date{June 2022}
+
+% ---- Load Packages ---- %
+
+% Math
+
+\usepackage{savesym} % Need to "save" the command that is already defined \varTheta
+
+\usepackage{amsmath}
+  \savesymbol{varTheta} 
+
+% Fonts
+
+% To set the TNR font for both text and equations:
+
+\usepackage{mathspec}
+  \setallmainfonts(Digits,Greek,Latin){Times New Roman}
+\restoresymbol{MTP}{varTheta}
+
+% Formatting
+
+\usepackage{setspace}
+  \doublespacing
+
+\usepackage[margin = 1in]{geometry}
+
+\usepackage{lscape}
+
+% Citation & Bibliographies
+
+\usepackage[backend = biber, style = apa, citestyle = apa]{biblatex}
+  \addbibresource{refs.bib}
+  
+% For tables:
+
+ % For the modelsummary tables:
+\usepackage{siunitx}
+\usepackage{booktabs} 
+  \newcolumntype{d}{S[input-symbols = ()]}
+
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage[flushleft]{threeparttable}
+  
+% Other packages
+
+\usepackage{csquotes} % For quotation marks
+
+\usepackage{epigraph} % For epigraph
+  \setlength\epigraphwidth{9cm}
+  \setlength\epigraphrule{1pt}
+
+\usepackage{float} % For the H float option- only used in emergencies (lol)
+
+\usepackage{textcomp} % For the registered trademark symbol.
+
+% Always load these packages at the end of the preamble:
+
+\usepackage{hyperref}
+
+% ---- R Stuff to be used in the whole document ----
+
+% Here I will execute or source R code through chunks that I need to use throughout the whole document.
+
+% General settings
+
+
+
+% Load the data by sourcing the data manipulation script. Note that survey design objects are indeed created in this script.
+
+
+
+
+\begin{document}
+% Appendix 4 .Rnw File
+
+
+\section{APPENDIX D: OTHER EMPIRICAL MODELS FOR TABLE \ref{tab:complexmodc}}
+
+Table \ref{tab:complexmodcprob} shows probit estimations of the cross sectional models as seen in Equation \ref{eqn:crosssecmodel}. Additionally, Table \ref{tab:complexmodlpmcross} shows the LPM estimates for the same models. The coefficients of the probit estimation are similar in sign and significance to the ones of the logit estimation. Average partial effects for these models are shown in Table \ref{tab:apecrossprobit}, also similar in magnitude to those in Table \ref{tab:apescomp}.
+
+% Table of cross-sectional models
+\begin{table}[htbp]
+\begin{center}
+\caption{Probit coefficients for cross-sectional models as seen in Equation \ref{eqn:crosssecmodel}}
+\label{tab:complexmodcprob}
+
+\begin{tabular}[t]{lcc}
+\toprule
+  & Model 1 & Model 2\\
+\midrule
+Constant & \num{-0.004} & \num{-0.037}\\
+ & (\num{0.371}) & (\num{0.284})\\
+Woman & \num{0.025} & \num{0.076}\\
+ & (\num{0.111}) & (\num{0.079})\\
+Age & \num{-0.010}** & \num{-0.017}***\\
+ & (\num{0.004}) & (\num{0.003})\\
+Years of education & \num{-0.017} & \num{-0.029}***\\
+ & (\num{0.016}) & (\num{0.010})\\
+Lives in urban setting & \num{0.088} & \num{-0.046}\\
+ & (\num{0.127}) & (\num{0.090})\\
+External political efficacy & \num{-0.014} & \num{-0.034}\\
+ & (\num{0.030}) & (\num{0.023})\\
+Internal political efficacy & \num{0.081} & \num{0.046}*\\
+ & (\num{0.053}) & (\num{0.026})\\
+Participation in a protest & \num{0.244} & \num{0.122}\\
+ & (\num{0.173}) & (\num{0.165})\\
+Interest in politics & \num{-0.143} & \num{-0.149}*\\
+ & (\num{0.126}) & (\num{0.080})\\
+Perceptions of corruption & \num{-0.011} & \num{0.061}\\
+ & (\num{0.109}) & (\num{0.103})\\
+Exposure to corruption & \num{0.833}*** & \num{0.396}***\\
+ & (\num{0.096}) & (\num{0.088})\\
+Unemployment & \num{0.517}*** & \num{0.018}\\
+ & (\num{0.133}) & (\num{0.097})\\
+Approval of Pres. performance & \num{-0.303}*** & \num{0.009}\\
+ & (\num{0.061}) & (\num{0.042})\\
+Political wing & \num{-0.015} & \num{0.030}**\\
+ & (\num{0.021}) & (\num{0.013})\\
+\midrule
+$N$ & \num{1039} & \num{1269}\\
+AIC & \num{756.30} & \num{1434.29}\\
+BIC & \num{833.58} & \num{1516.10}\\
+Year & 2014 & 2016\\
+\bottomrule
+\end{tabular}
+
+
+\end{center}
+\textbf{Note:} Probit models for the cross-sectional models for 2014 and 2016 as seen in Equation \ref{eqn:crosssecmodel}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
+% Table of Cross-Sectional APEs Probit
+\begin{table}[htbp]
+\begin{center}
+\caption{Average partial effects for cross-sectional models in Table \ref{tab:complexmodcprob}}
+\label{tab:apecrossprobit}
+
+\begin{tabular}[t]{lcc}
+\toprule
+  & Model 1 & Model 2\\
+\midrule
+Age & \num{-0.002}** & \num{-0.005}***\\
+ & (\num{0.001}) & (\num{0.001})\\
+Years of education & \num{-0.003} & \num{-0.009}***\\
+ & (\num{0.003}) & (\num{0.003})\\
+External political efficacy & \num{-0.003} & \num{-0.011}\\
+ & (\num{0.006}) & (\num{0.007})\\
+Internal political efficacy & \num{0.016} & \num{0.015}*\\
+ & (\num{0.010}) & (\num{0.008})\\
+Interest in politics & \num{-0.028} & \num{-0.047}*\\
+ & (\num{0.024}) & (\num{0.025})\\
+Perceptions of corruption & \num{-0.002} & \num{0.019}\\
+ & (\num{0.021}) & (\num{0.032})\\
+Exposure to corruption & \num{0.161}*** & \num{0.124}***\\
+ & (\num{0.019}) & (\num{0.027})\\
+Unemployment & \num{0.100}*** & \num{0.006}\\
+ & (\num{0.027}) & (\num{0.031})\\
+Approval of Pres. performance & \num{-0.059}*** & \num{0.003}\\
+ & (\num{0.013}) & (\num{0.013})\\
+Political wing & \num{-0.003} & \num{0.009}**\\
+ & (\num{0.004}) & (\num{0.004})\\
+\midrule
+$N$ & \num{1039} & \num{1269}\\
+Year & 2014 & 2016\\
+\bottomrule
+\end{tabular}
+
+
+\end{center}
+\textbf{Note:} Average partial effects for probit cross-sectional empirical models in Table \ref{tab:complexmodcprob}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
+% Table of cross-sectional models
+\begin{table}[htbp]
+\begin{center}
+\caption{LPM coefficients for cross-sectional models as seen in Equation \ref{eqn:crosssecmodel}}
+\label{tab:complexmodlpmcross}
+
+\begin{tabular}[t]{lcc}
+\toprule
+  & Model 1 & Model 2\\
+\midrule
+Constant & \num{0.349}*** & \num{0.432}***\\
+ & (\num{0.077}) & (\num{0.088})\\
+Woman & \num{0.008} & \num{0.026}\\
+ & (\num{0.023}) & (\num{0.025})\\
+Age & \num{-0.002}** & \num{-0.005}***\\
+ & (\num{0.001}) & (\num{0.001})\\
+Years of education & \num{-0.003} & \num{-0.009}***\\
+ & (\num{0.003}) & (\num{0.003})\\
+Lives in urban setting & \num{0.015} & \num{-0.015}\\
+ & (\num{0.024}) & (\num{0.029})\\
+External political efficacy & \num{-0.003} & \num{-0.010}\\
+ & (\num{0.006}) & (\num{0.007})\\
+Internal political efficacy & \num{0.017}* & \num{0.015}*\\
+ & (\num{0.010}) & (\num{0.008})\\
+Participation in a protest & \num{0.073} & \num{0.041}\\
+ & (\num{0.053}) & (\num{0.054})\\
+Interest in politics & \num{-0.025} & \num{-0.045}*\\
+ & (\num{0.024}) & (\num{0.025})\\
+Perceptions of corruption & \num{-0.007} & \num{0.019}\\
+ & (\num{0.021}) & (\num{0.032})\\
+Exposure to corruption & \num{0.200}*** & \num{0.130}***\\
+ & (\num{0.027}) & (\num{0.030})\\
+Unemployment & \num{0.142}*** & \num{0.008}\\
+ & (\num{0.042}) & (\num{0.031})\\
+Approval of Pres. performance & \num{-0.062}*** & \num{0.005}\\
+ & (\num{0.015}) & (\num{0.013})\\
+Political wing & \num{-0.002} & \num{0.010}**\\
+ & (\num{0.004}) & (\num{0.004})\\
+\midrule
+$N$ & \num{1039} & \num{1269}\\
+AIC & \num{5949.61} & \num{7913.33}\\
+BIC & \num{8885.52} & \num{13478.89}\\
+Year & 2014 & 2016\\
+\bottomrule
+\end{tabular}
+
+
+\end{center}
+\textbf{Note:} LPM models for the cross-sectional models for 2014 and 2016 as seen in Equation \ref{eqn:crosssecmodel}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+\end{document}

@@ -222,7 +222,6 @@ corrper_g
 \end{figure}
 
 % Now the regressions which were not shown explicitly in text
-
 <<reg-age-correxp, include = F, message = F, warning = F, cache = T>>=
 
 # Add the age-correxp variable

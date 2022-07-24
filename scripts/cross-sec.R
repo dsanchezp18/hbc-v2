@@ -66,14 +66,15 @@ lpm_16<-svyglm(ctol~ unem2_4a + age + gndr + ed + ur + eff1 + eff2 + prot3 + pin
 
 # List of logit cross-sectional models
 
-cross_sec_prob<-list(prob_14)
+cross_sec_lpm<-list(lpm_14,
+                    lpm_16)
 
 # ================================================= Cross-Sectional APEs =============================================================
 
 # Logit ------------------------------------------------------------------------------------------------------------------
 
 cross_sec_logit_mfx<-lapply(cross_sec_log, marginaleffects)
-cross_sec_probit_mfx<-lapply(cross_sec_probit, marginaleffects)
+cross_sec_probit_mfx<-lapply(cross_sec_prob, marginaleffects)
 
 
 

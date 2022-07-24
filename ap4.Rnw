@@ -1,0 +1,133 @@
+% Appendix 4 .Rnw File
+<<parent_ap3, include = F>>=
+set_parent('main.Rnw') # Set the parent document preamble
+@
+
+\section{APPENDIX D: OTHER EMPIRICAL MODELS FOR TABLE \ref{tab:complexmodc}}
+
+Table \ref{tab:complexmodcprob} shows probit estimations of the cross sectional models as seen in Equation \ref{eqn:crosssecmodel}. Additionally, Table \ref{tab:complexmodlpmcross} shows the LPM estimates for the same models. The coefficients of the probit estimation are similar in sign and significance to the ones of the logit estimation. Average partial effects for these models are shown in Table \ref{tab:apecrossprobit}, also similar in magnitude to those in Table \ref{tab:apescomp}.
+
+% Table of cross-sectional models
+\begin{table}[htbp]
+\begin{center}
+\caption{Probit coefficients for cross-sectional models as seen in Equation \ref{eqn:crosssecmodel}}
+\label{tab:complexmodcprob}
+<<include = T, warning = F, results = 'asis', message = F>>=
+# Source the regressions
+source('scripts/cross-sec.R')
+
+# Coefficient mappings
+coefficient_names_cross<-c('(Intercept)' = 'Constant',
+                     'gndrWoman' = 'Woman',
+                     'age' = 'Age',
+                     'ed' = 'Years of education',
+                     'urUrban' = 'Lives in urban setting',
+                     'eff1' = 'External political efficacy',
+                     'eff2' = 'Internal political efficacy',
+                     'prot3Yes' = 'Participation in a protest',
+                     'pint_dic' = 'Interest in politics', 
+                     'corrper' = 'Perceptions of corruption',
+                     'corr_exp' = 'Exposure to corruption',
+                     'unem2_4a' = 'Unemployment',
+                     'pres_aprov' = 'Approval of Pres. performance',
+                     'polscore' = 'Political wing')
+# GOF map
+cross_models_stats<-
+  list(list("raw" = "nobs", "clean" = "$N$", "fmt" = 0),
+       list("raw" = "aic", "clean" = "AIC", "fmt" = 2),
+       list("raw" = "bic", "clean" = "BIC", "fmt" = 2))
+
+
+modelsummary(cross_sec_prob,
+             stars = c('*'= 0.1, '**' = 0.05, '***'= 0.01),
+             output = 'latex_tabular',
+             coef_map = coefficient_names_cross,
+             gof_map = cross_models_stats,
+             add_rows = data.frame('Year', '2014', '2016'))
+@
+\end{center}
+\textbf{Note:} Probit models for the cross-sectional models for 2014 and 2016 as seen in Equation \ref{eqn:crosssecmodel}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
+% Table of Cross-Sectional APEs Probit
+\begin{table}[htbp]
+\begin{center}
+\caption{Average partial effects for cross-sectional models in Table \ref{tab:complexmodcprob}}
+\label{tab:apecrossprobit}
+<<include = T, warning = F, results = 'asis', message = F>>=
+# Coefficient mappings
+coefficient_names_cross_ape<-c('gndrWoman' = 'Woman',
+                         'age' = 'Age',
+                       'ed' = 'Years of education',
+                       'urUrban' = 'Lives in urban setting',
+                       'eff1' = 'External political efficacy',
+                       'eff2' = 'Internal political efficacy',
+                       'prot3Yes' = 'Participation in a protest',
+                       'pint_dic' = 'Interest in politics', 
+                       'corrper' = 'Perceptions of corruption',
+                       'corr_exp' = 'Exposure to corruption',
+                       'unem2_4a' = 'Unemployment',
+                       'pres_aprov' = 'Approval of Pres. performance',
+                       'polscore' = 'Political wing')
+
+# GOF map
+cross_models_stats_ape<-
+gof_modapes<-
+  list(list("raw" = "nobs", "clean" = "$N$", "fmt" = 0))
+
+modelsummary(cross_sec_probit_mfx,
+             stars = c('*'= 0.1, '**' = 0.05, '***'= 0.01),
+             output = 'latex_tabular',
+             coef_map = coefficient_names_cross_ape,
+             gof_map = cross_models_stats_ape,
+             add_rows = data.frame('Year', '2014', '2016'))
+
+@
+\end{center}
+\textbf{Note:} Average partial effects for probit cross-sectional empirical models in Table \ref{tab:complexmodcprob}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
+% Table of cross-sectional models
+\begin{table}[htbp]
+\begin{center}
+\caption{LPM coefficients for cross-sectional models as seen in Equation \ref{eqn:crosssecmodel}}
+\label{tab:complexmodlpmcross}
+<<include = T, warning = F, results = 'asis', message = F>>=
+# Source the regressions
+source('scripts/cross-sec.R')
+
+# Coefficient mappings
+coefficient_names_cross<-c('(Intercept)' = 'Constant',
+                     'gndrWoman' = 'Woman',
+                     'age' = 'Age',
+                     'ed' = 'Years of education',
+                     'urUrban' = 'Lives in urban setting',
+                     'eff1' = 'External political efficacy',
+                     'eff2' = 'Internal political efficacy',
+                     'prot3Yes' = 'Participation in a protest',
+                     'pint_dic' = 'Interest in politics', 
+                     'corrper' = 'Perceptions of corruption',
+                     'corr_exp' = 'Exposure to corruption',
+                     'unem2_4a' = 'Unemployment',
+                     'pres_aprov' = 'Approval of Pres. performance',
+                     'polscore' = 'Political wing')
+# GOF map
+cross_models_stats<-
+  list(list("raw" = "nobs", "clean" = "$N$", "fmt" = 0),
+       list("raw" = "aic", "clean" = "AIC", "fmt" = 2),
+       list("raw" = "bic", "clean" = "BIC", "fmt" = 2))
+
+
+modelsummary(cross_sec_lpm,
+             stars = c('*'= 0.1, '**' = 0.05, '***'= 0.01),
+             output = 'latex_tabular',
+             coef_map = coefficient_names_cross,
+             gof_map = cross_models_stats,
+             add_rows = data.frame('Year', '2014', '2016'))
+@
+\end{center}
+\textbf{Note:} LPM models for the cross-sectional models for 2014 and 2016 as seen in Equation \ref{eqn:crosssecmodel}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
