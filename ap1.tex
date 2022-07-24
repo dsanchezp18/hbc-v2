@@ -1,0 +1,227 @@
+\documentclass[12pt,a4]{article}
+\usepackage[]{graphicx}\usepackage[]{xcolor}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\newcommand{\SweaveOpts}[1]{}  % do not interfere with LaTeX
+\newcommand{\SweaveInput}[1]{} % because they are not real TeX commands
+\newcommand{\Sexpr}[1]{}       % will only be parsed by R
+
+
+
+% ---- Metadata ---- %
+
+\title{Honesty by Convenience: Corruption Tolerance in Ecuador}
+\author{Daniel Hernán Sánchez Pazmiño}
+\date{June 2022}
+
+% ---- Load Packages ---- %
+
+% Math
+
+\usepackage{savesym} % Need to "save" the command that is already defined \varTheta
+
+\usepackage{amsmath}
+  \savesymbol{varTheta} 
+
+% Fonts
+
+% To set the TNR font for both text and equations:
+
+\usepackage{mathspec}
+  \setallmainfonts(Digits,Greek,Latin){Times New Roman}
+\restoresymbol{MTP}{varTheta}
+
+% Formatting
+
+\usepackage{setspace}
+  \doublespacing
+
+\usepackage[margin = 1in]{geometry}
+
+\usepackage{lscape}
+
+% Citation & Bibliographies
+
+\usepackage[backend = biber, style = apa, citestyle = apa]{biblatex}
+  \addbibresource{refs.bib}
+  
+% For tables:
+
+ % For the modelsummary tables:
+\usepackage{siunitx}
+\usepackage{booktabs} 
+  \newcolumntype{d}{S[input-symbols = ()]}
+
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage[flushleft]{threeparttable}
+  
+% Other packages
+
+\usepackage{csquotes} % For quotation marks
+
+\usepackage{epigraph} % For epigraph
+  \setlength\epigraphwidth{9cm}
+  \setlength\epigraphrule{1pt}
+
+\usepackage{float} % For the H float option- only used in emergencies (lol)
+
+\usepackage{textcomp} % For the registered trademark symbol.
+
+% Always load these packages at the end of the preamble:
+
+\usepackage{hyperref}
+
+% ---- R Stuff to be used in the whole document ----
+
+% Here I will execute or source R code through chunks that I need to use throughout the whole document.
+
+% General settings
+
+
+
+% Load the data by sourcing the data manipulation script. Note that survey design objects are indeed created in this script.
+
+
+
+
+\begin{document}
+% Appendix 1 .Rnw File
+
+
+\section{APPENDIX A: DETAILS ABOUT THE QUESTIONS AND VARIABLE ENCODINGS}
+\label{app:first}
+
+The variables used in this paper are taken from the AmericasBarometer survey for Ecuador in the 2014 and 2016 rounds. Below some of these variables, with their survey question equivalents, are described. The models dropped all NA responses from the analysis. The English translations of the questions are included here, which can be found in the LAPOP AB variable codebook for the 2018/19 round \parencite{LAPOP.2019}. Further information about the codings of the variables will be made available in the \href{https://github.com/dsanchezp18/ctol-ds2021}{GitHub} repository. 
+
+\begin{itemize}
+\item Corruption tolerance/$ctol$: Dummy variable equal to unity if the respondent answers \enquote{Yes} to the EXC18 question.
+  \begin{itemize}
+    \item EXC18: \enquote{Do you think given the way things are, sometimes paying a bribe is justified?} (p.22)
+  \end{itemize}
+\item Unemployment: Dummy variable equal to unity if the respondent answers that they either are looking for a job or do not have one and not looking for one further, as a response to the OCUP4A question. Thus, this definition of unemployment would include both open and hidden unemployment, as described by \textcite{INEC.2018}. The variable is set to 0 for everyone that does not report being unemployed, which includes people who are working or those who are not in the labor force, which includes students, unpaid home workers and retirees. Thus, the percent who report unemployment as shown in Table \ref{tab:descrip} and panel (c) of Figure \ref{fig:ecua_ec} are not directly comparable to national statistics of unemployment, as the one shown in panel (a) of Figure \ref{fig:ecua_ec}. 
+  \begin{itemize}
+    \item OCUP4A: \enquote{How do you mainly spend your time? Are you currently...} (p.38)
+  \end{itemize}
+
+\item Confidence in the President: this variable uses the LAPOP method for dichotomizing variables as explained in \textcite{Moscoso.2020}. Several questions in the AB allow respondents to choose a number from 1 to 7. The variables for the responses to these questions are often dichotomized so that the dummies equal unity for responses greater than 4 and zero otherwise. Thus, when used in a dichotomous form, like in \ref{fig:ecua_pol}, the confidence in the President variable equals one for respondents who answered numbers higher than 4 in this question (B21A). However, in the empirical models this variable is not used in the dichotomous form. 
+  \begin{itemize}
+    \item B21A: \enquote{To what extent do you trust the President?} (p.12)
+  \end{itemize}
+\item Approval of the President's job performance: a discrete variable ranging from 1-5, where higher numbers mean a better approval rating of the President's job performance. When dichotomous, this variable equals unity for all responses greater than 3.
+  \begin{itemize}
+    \item M1: \enquote{Speaking in general of the current administration, how would you
+rate the job performance of President Rafael Correa?} (p.14)
+  \end{itemize}
+
+\item Economic situation: a dummy variable equal to unity when the respondent answers having a worse economic situation relative to that 12 months ago. 
+  \begin{itemize}
+    \item IDIO2: \enquote{Do you think that your economic situation is better than, the same
+as, or worse than it was 12 months ago?} (p. 4)
+  \end{itemize}  
+
+  \item Political identification score: a discrete variable ranging from 1-10, where higher numbers mean that the respondent identifies more with the political right. For Figure \ref{fig:ecua_pol} and Table \ref{tab:descrip} political identifications are grouped in four different classifications. Those who did not answer the question are grouped as \enquote{No political identification} (as suggested by \textcite{Moncagatta.2020}). Those answering between 4 and 8, inclusive are categorized in the \enquote{Center}. Those answering numbers greater than 8 are categorized in the \enquote{Right} and those who answer numbers less than 4 are grouped in the \enquote{Left}. 
+  \begin{itemize}
+    \item L1: \enquote{Now, to change the subject... On this card there is a 1-10 scale
+that goes from left to right. The number one means left and 10
+means right. Nowadays, when we speak of political leanings, we
+talk of those on the left and those on the right. In other words,
+some people sympathize more with the left and others with the
+right. According to the meaning that the terms "left" and "right"
+have for you, and thinking of your own political leanings, where
+would you place yourself on this scale? Tell me the number.} (p.6)
+  \end{itemize}
+
+\item External political efficacy: in the AB, this question measures the degree in which respondents believe that politicians are interested in what people like them think. The variable enters the models in a discrete form from 1-7, and its dichotomous coding follows the LAPOP method. 
+  \begin{itemize}
+    \item EFF1: \enquote{Those who govern this country are interested in what people like
+you think. How much do you agree or disagree with this statement?} (p. 16)
+  \end{itemize}  
+  
+\item Internal political efficacy: in the AB, this question measures the degree in which respondents believe that they understand the local politics. The variable enters the models in a discrete form from 1-7, and its dichotomous coding follows the LAPOP method. 
+  \begin{itemize}
+    \item EFF2: \enquote{You feel that you understand the most important political issues
+of this country. How much do you agree or disagree with this statement?} (p. 16)
+  \end{itemize}  
+  
+\item Interest in politics: a dummy variable equal to unity when respondents answer responses greater than 2 in the POL1 question. This variable enters the empirical models and graphs in dichotomous form. Higher numbers imply a greater degree of interest in politics. 
+  \begin{itemize}
+    \item POL1: \enquote{How much interest do you have in politics?} (p. 30)
+  \end{itemize}  
+  
+  \item Perception of corruption: How much the individual perceives corruption in their country. The time series for this variable, as seen in Figure \ref{fig:corrper}, is built by pooling the responses of the EXC7 and the EXC7NEW questions of the AB. For 2016, the AB only asked the EXC7 NEW question, which has a slightly different wording relative to the EXC7 question asked in 2014. In order to make the results somewhat more comparable, the variables are transformed to dummies and then pooled. The variable equals one if the response to EXC7 is greater than 3 or if the response to the EXC7NEW question is greater than 3. All information concerning this variable should be taken skeptically as it is possible the responses to these two different question cause bias. 
+  \begin{itemize}
+    \item EXC7: \enquote{Taking into account your own experience or what you have heard,
+corruption among public officials is...} (p. 22-23)
+    \item EXC7NEW: \enquote{Thinking of politicians in Ecuador, how many do you believe are
+involved in corruption?} (p. 23)
+  \end{itemize} 
+  
+\item Exposure to corruption: a dummy variable equal to unity when at least one the response to the questions EXC2, EXC6, EXC11, EXC13, EXC14, EXC15, EXC16 is \enquote{Yes}. All of these questions ask about several instances where the individual has been asked to pay a bribe or has paid one. This is the equivalent to the corruption victimization variable in the LAPOP AB reports, however, the wording is changed to account for different possibilities of the corrupt activity. This question does not exactly measure incidence or willingness to pay bribes, because it is possible that in some questions the respondent was asked to pay but refused to pay a bribe, or offered to pay a bribe and ended up paying it without a counterpart actually asking for it. Additionally, responses to each of the individual questions below are taken like a \enquote{No} if the respondents do not actually respond \enquote{No} to the question but answer that they have not used the services mentioned in the question. 
+\begin{itemize}
+    \item EXC2: \enquote{Has a police officer asked you for a bribe in the last twelve months?} (p. 21)
+    \item EXC6: \enquote{In the last twelve months, did any government employee ask you for
+a bribe?} (p. 21)
+    \item EXC11: \enquote{In the last twelve months, to process any kind of document in your
+municipal government, like a permit for example, did you have to
+pay any money above that required by law?} (p. 21)
+    \item EXC13: \enquote{In your work, have you been asked to pay a bribe in the last
+twelve months?} (p. 21)
+    \item EXC14: \enquote{Did you have to pay a bribe to the courts in the last twelve months?} (p. 22)
+    \item EXC15: \enquote{In order to be seen in a hospital or a clinic in the last twelve
+months, did you have to pay a bribe?} (p. 22)
+    \item EXC16: \enquote{Have you had to pay a bribe at school in the last twelve months?} (p. 22)
+\end{itemize}  
+\end{itemize}
+
+
+
+\end{document}
