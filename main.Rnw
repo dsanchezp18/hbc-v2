@@ -143,4 +143,10 @@ source('scripts/data_manipulation.R')
 <<acknowledgments, child = 'acknowledgments.Rnw'>>=
 @
 
+% Appendix 1 Child Document
+
+<<ap1, child = 'ap1.Rnw'>>=
+@
+
+
 \end{document}

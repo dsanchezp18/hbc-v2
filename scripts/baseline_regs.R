@@ -136,3 +136,7 @@ base_models_lpm<-
 
 base_logit_mfx<-lapply(base_models_log, marginaleffects)
 
+# Probit -----------------------------------------------------------------------------------------------------------------
+
+base_probit_mfx<-lapply(base_models_prob, marginaleffects)
+

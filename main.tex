@@ -915,5 +915,99 @@ Gracias también a mi hermosa novia María Alejandra Marchán Cascante, Economis
 Finalmente, tengo que agradecer a mi Abuelo Jorge Enrique Pazmiño Rodríguez, quien ahora me acompaña desde pastos más verdes. Gracias a ti, Abuelo Jorge, por haber sido un hombre tan valiente, tan íntegro y tan amoroso. Gracias por haberme prestado 23 años de tu vida, por haberme inculcado el amor a la lectura, por haber fomentado la perseverancia, la bondad, el amor a la familia, la responsabilidad, entre otros que intento replicar lo mejor que puedo. Este trabajo está dedicado a ti y a tus esfuerzos, a tu amor por mí y por tu familia, es mi manera de agradecerte por todo lo que fuiste. Es mi manera de tratar de continuar tu legado y de cumplir tu deseo de que tus nietos contribuyan para un mundo más libre, más justo y más digno. Me he asegurado de que la mayoría de este trabajo sea fácilmente reproducible por aquellos que les interese, lo que quiere decir que cualquiera que quiera podra encontrar todo el trabajo que realicé para escribir esta tesis. He sido completamente transparente en como llegué a mis resultados y he comentado todo mi código y analizado mis resultados extensamente, además de haberlos producido en un software estadístico que es completamente libre de costos monetarios. No es mucho, pero creo que después de hacer esto público sí habrá una pizca más de dignidad, de libertad y de justicia. Porque quien sea que quiera investigar sobre la corrupción y como destruir una enfermedad tan repugnante como esa podrá enfocarse en la teoría, el razonamiento y quizás ya no tanto en los dilemas técnicos. Trataré de continuar tu legado haciendo investigación útil y significativa, que tenga un propósito para entender mejor y proponer mejores soluciones a los problemas que atormentan a nuestro país y planeta. Espero te guste lo que hago en tu nombre- que mi repositorio de este trabajo y el manuscrito en sí mismo sean monumentos virtuales a ti y a la transparencia, a la verdad y a la eterna lucha en contra de la corrupción; conversaremos sobre este trabajo y los siguientes próximamente. Gracias por todo Abuelito, descansa en paz. 
 
 
-Acknowledgments
+% Appendix 1 Child Document
+
+
+% Appendix 1 .Rnw File
+
+
+\section{APPENDIX A: DETAILS ABOUT THE QUESTIONS AND VARIABLE ENCODINGS}
+\label{app:first}
+
+The variables used in this paper are taken from the AmericasBarometer survey for Ecuador in the 2014 and 2016 rounds. Below some of these variables, with their survey question equivalents, are described. The models dropped all NA responses from the analysis. The English translations of the questions are included here, which can be found in the LAPOP AB variable codebook for the 2018/19 round \parencite{LAPOP.2019}. Further information about the codings of the variables will be made available in the \href{https://github.com/dsanchezp18/hbc-v2}{GitHub} repository. 
+
+\begin{itemize}
+\item Corruption tolerance/$ctol$: Dummy variable equal to unity if the respondent answers \enquote{Yes} to the EXC18 question.
+  \begin{itemize}
+    \item EXC18: \enquote{Do you think given the way things are, sometimes paying a bribe is justified?} (p.22)
+  \end{itemize}
+\item Unemployment: Dummy variable equal to unity if the respondent answers that they either are looking for a job or do not have one and not looking for one further, as a response to the OCUP4A question. Thus, this definition of unemployment would include both open and hidden unemployment, as described by \textcite{INEC.2018}. The variable is set to 0 for everyone that does not report being unemployed, which includes people who are working or those who are not in the labor force, which includes students, unpaid home workers and retirees. Thus, the percent who report unemployment as shown in Table \ref{tab:descrip} and panel (c) of Figure \ref{fig:ecua_ec} are not directly comparable to national statistics of unemployment, as the one shown in panel (a) of Figure \ref{fig:ecua_ec}. 
+  \begin{itemize}
+    \item OCUP4A: \enquote{How do you mainly spend your time? Are you currently...} (p.38)
+  \end{itemize}
+
+\item Confidence in the President: this variable uses the LAPOP method for dichotomizing variables as explained in \textcite{Moscoso.2020}. Several questions in the AB allow respondents to choose a number from 1 to 7. The variables for the responses to these questions are often dichotomized so that the dummies equal unity for responses greater than 4 and zero otherwise. Thus, when used in a dichotomous form, like in \ref{fig:ecua_pol}, the confidence in the President variable equals one for respondents who answered numbers higher than 4 in this question (B21A). However, in the empirical models this variable is not used in the dichotomous form. 
+  \begin{itemize}
+    \item B21A: \enquote{To what extent do you trust the President?} (p.12)
+  \end{itemize}
+\item Approval of the President's job performance: a discrete variable ranging from 1-5, where higher numbers mean a better approval rating of the President's job performance. When dichotomous, this variable equals unity for all responses greater than 3.
+  \begin{itemize}
+    \item M1: \enquote{Speaking in general of the current administration, how would you
+rate the job performance of President Rafael Correa?} (p.14)
+  \end{itemize}
+
+\item Economic situation: a dummy variable equal to unity when the respondent answers having a worse economic situation relative to that 12 months ago. 
+  \begin{itemize}
+    \item IDIO2: \enquote{Do you think that your economic situation is better than, the same
+as, or worse than it was 12 months ago?} (p. 4)
+  \end{itemize}  
+
+  \item Political identification score: a discrete variable ranging from 1-10, where higher numbers mean that the respondent identifies more with the political right. For Figure \ref{fig:ecua_pol} and Table \ref{tab:descrip} political identifications are grouped in four different classifications. Those who did not answer the question are grouped as \enquote{No political identification} (as suggested by \textcite{Moncagatta.2020}). Those answering between 4 and 8, inclusive are categorized in the \enquote{Center}. Those answering numbers greater than 8 are categorized in the \enquote{Right} and those who answer numbers less than 4 are grouped in the \enquote{Left}. 
+  \begin{itemize}
+    \item L1: \enquote{Now, to change the subject... On this card there is a 1-10 scale
+that goes from left to right. The number one means left and 10
+means right. Nowadays, when we speak of political leanings, we
+talk of those on the left and those on the right. In other words,
+some people sympathize more with the left and others with the
+right. According to the meaning that the terms "left" and "right"
+have for you, and thinking of your own political leanings, where
+would you place yourself on this scale? Tell me the number.} (p.6)
+  \end{itemize}
+
+\item External political efficacy: in the AB, this question measures the degree in which respondents believe that politicians are interested in what people like them think. The variable enters the models in a discrete form from 1-7, and its dichotomous coding follows the LAPOP method. 
+  \begin{itemize}
+    \item EFF1: \enquote{Those who govern this country are interested in what people like
+you think. How much do you agree or disagree with this statement?} (p. 16)
+  \end{itemize}  
+  
+\item Internal political efficacy: in the AB, this question measures the degree in which respondents believe that they understand the local politics. The variable enters the models in a discrete form from 1-7, and its dichotomous coding follows the LAPOP method. 
+  \begin{itemize}
+    \item EFF2: \enquote{You feel that you understand the most important political issues
+of this country. How much do you agree or disagree with this statement?} (p. 16)
+  \end{itemize}  
+  
+\item Interest in politics: a dummy variable equal to unity when respondents answer responses greater than 2 in the POL1 question. This variable enters the empirical models and graphs in dichotomous form. Higher numbers imply a greater degree of interest in politics. 
+  \begin{itemize}
+    \item POL1: \enquote{How much interest do you have in politics?} (p. 30)
+  \end{itemize}  
+  
+  \item Perception of corruption: How much the individual perceives corruption in their country. The time series for this variable, as seen in Figure \ref{fig:corrper}, is built by pooling the responses of the EXC7 and the EXC7NEW questions of the AB. For 2016, the AB only asked the EXC7 NEW question, which has a slightly different wording relative to the EXC7 question asked in 2014. In order to make the results somewhat more comparable, the variables are transformed to dummies and then pooled. The variable equals one if the response to EXC7 is greater than 3 or if the response to the EXC7NEW question is greater than 3. All information concerning this variable should be taken skeptically as it is possible the responses to these two different question cause bias. 
+  \begin{itemize}
+    \item EXC7: \enquote{Taking into account your own experience or what you have heard,
+corruption among public officials is...} (p. 22-23)
+    \item EXC7NEW: \enquote{Thinking of politicians in Ecuador, how many do you believe are
+involved in corruption?} (p. 23)
+  \end{itemize} 
+  
+\item Exposure to corruption: a dummy variable equal to unity when at least one the response to the questions EXC2, EXC6, EXC11, EXC13, EXC14, EXC15, EXC16 is \enquote{Yes}. All of these questions ask about several instances where the individual has been asked to pay a bribe or has paid one. This is the equivalent to the corruption victimization variable in the LAPOP AB reports, however, the wording is changed to account for different possibilities of the corrupt activity. This question does not exactly measure incidence or willingness to pay bribes, because it is possible that in some questions the respondent was asked to pay but refused to pay a bribe, or offered to pay a bribe and ended up paying it without a counterpart actually asking for it. Additionally, responses to each of the individual questions below are taken like a \enquote{No} if the respondents do not actually respond \enquote{No} to the question but answer that they have not used the services mentioned in the question. 
+\begin{itemize}
+    \item EXC2: \enquote{Has a police officer asked you for a bribe in the last twelve months?} (p. 21)
+    \item EXC6: \enquote{In the last twelve months, did any government employee ask you for
+a bribe?} (p. 21)
+    \item EXC11: \enquote{In the last twelve months, to process any kind of document in your
+municipal government, like a permit for example, did you have to
+pay any money above that required by law?} (p. 21)
+    \item EXC13: \enquote{In your work, have you been asked to pay a bribe in the last
+twelve months?} (p. 21)
+    \item EXC14: \enquote{Did you have to pay a bribe to the courts in the last twelve months?} (p. 22)
+    \item EXC15: \enquote{In order to be seen in a hospital or a clinic in the last twelve
+months, did you have to pay a bribe?} (p. 22)
+    \item EXC16: \enquote{Have you had to pay a bribe at school in the last twelve months?} (p. 22)
+\end{itemize}  
+\end{itemize}
+
+
+
+
+
 \end{document}
