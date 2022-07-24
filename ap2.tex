@@ -1,0 +1,187 @@
+\documentclass[12pt,a4]{article}
+\usepackage[]{graphicx}\usepackage[]{xcolor}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\newcommand{\SweaveOpts}[1]{}  % do not interfere with LaTeX
+\newcommand{\SweaveInput}[1]{} % because they are not real TeX commands
+\newcommand{\Sexpr}[1]{}       % will only be parsed by R
+
+
+
+% ---- Metadata ---- %
+
+\title{Honesty by Convenience: Corruption Tolerance in Ecuador}
+\author{Daniel Hernán Sánchez Pazmiño}
+\date{June 2022}
+
+% ---- Load Packages ---- %
+
+% Math
+
+\usepackage{savesym} % Need to "save" the command that is already defined \varTheta
+
+\usepackage{amsmath}
+  \savesymbol{varTheta} 
+
+% Fonts
+
+% To set the TNR font for both text and equations:
+
+\usepackage{mathspec}
+  \setallmainfonts(Digits,Greek,Latin){Times New Roman}
+\restoresymbol{MTP}{varTheta}
+
+% Formatting
+
+\usepackage{setspace}
+  \doublespacing
+
+\usepackage[margin = 1in]{geometry}
+
+\usepackage{lscape}
+
+% Citation & Bibliographies
+
+\usepackage[backend = biber, style = apa, citestyle = apa]{biblatex}
+  \addbibresource{refs.bib}
+  
+% For tables:
+
+ % For the modelsummary tables:
+\usepackage{siunitx}
+\usepackage{booktabs} 
+  \newcolumntype{d}{S[input-symbols = ()]}
+
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage[flushleft]{threeparttable}
+  
+% Other packages
+
+\usepackage{csquotes} % For quotation marks
+
+\usepackage{epigraph} % For epigraph
+  \setlength\epigraphwidth{9cm}
+  \setlength\epigraphrule{1pt}
+
+\usepackage{float} % For the H float option- only used in emergencies (lol)
+
+\usepackage{textcomp} % For the registered trademark symbol.
+
+% Always load these packages at the end of the preamble:
+
+\usepackage{hyperref}
+
+% ---- R Stuff to be used in the whole document ----
+
+% Here I will execute or source R code through chunks that I need to use throughout the whole document.
+
+% General settings
+
+
+
+% Load the data by sourcing the data manipulation script. Note that survey design objects are indeed created in this script.
+
+
+
+
+\begin{document}
+% Appendix 2: Other estimations for Models
+
+\section{Other estimations for models in Table \ref{tab:simplemodel}}
+\label{app:second}
+Table \ref{tab:probitsimp} shows a probit estimation of the model displayed in Equation \ref{eqn:simplemod}. The signs of the coefficients in this table confirm the findings of the logit model as explained in Table \ref{tab:simplemodel}. Table \ref{tab:probitsimpape} shows average partial effects for the probit models in Table \ref{tab:probitsimp}. The magnitudes of these effects are similar to those shown in Table \ref{tab:simplemodel}. Table \ref{tab:lpmsimp} shows the estimated effects of a linear probability model of Equation \ref{eqn:simplemod}, which also follow the coefficient signs in the logit and probit estimates. 
+\begin{table}[htbp]
+\caption{Probit coefficients for baseline models}
+\label{tab:probitsimp}
+
+\begin{tabular}[t]{lccccc}
+\toprule
+  & Model 1 & Model 2 & Model 3 & Model 4 & Model 5\\
+\midrule
+Constant & \num{-1.123} & \num{-1.173} & \num{-0.303} & \num{0.277} & \num{-0.921}\\
+ & (\num{0.068}) & (\num{0.058}) & (\num{0.123}) & (\num{0.208}) & (\num{0.108})\\
+2016 Dummy & \num{0.479} & \num{0.564} & \num{-0.097} & \num{-0.710} & \num{0.156}\\
+ & (\num{0.088}) & (\num{0.072}) & (\num{0.141}) & (\num{0.241}) & (\num{0.132})\\
+Worse Economic Situation & \num{0.071} &  &  &  & \\
+ & (\num{0.091}) &  &  &  & \\
+Unemployment &  & \num{0.572} &  &  & \\
+ &  & (\num{0.122}) &  &  & \\
+Confidence in President &  &  & \num{-0.163} &  & \\
+ &  &  & (\num{0.021}) &  & \\
+Approval of Pres. Performance &  &  &  & \num{-0.369} & \\
+ &  &  &  & (\num{0.053}) & \\
+Political Wing &  &  &  &  & \num{-0.026}\\
+ &  &  &  &  & (\num{0.021})\\
+Econ. Situation Interaction & \num{-0.008} &  &  &  & \\
+ & (\num{0.110}) &  &  &  & \\
+Unemployment Interaction &  & \num{-0.567} &  &  & \\
+ &  & (\num{0.153}) &  &  & \\
+Pres. Confidence Interaction &  &  & \num{0.113} &  & \\
+ &  &  & (\num{0.025}) &  & \\
+Pres. Approval Interaction &  &  &  & \num{0.320} & \\
+ &  &  &  & (\num{0.063}) & \\
+Pol. Wing Interaction &  &  &  &  & \num{0.055}\\
+ &  &  &  &  & (\num{0.024})\\
+\midrule
+$N$ & \num{2948} & \num{2950} & \num{2944} & \num{2941} & \num{2535}\\
+AIC & \num{2893.51} & \num{2888.97} & \num{2847.02} & \num{2842.46} & \num{2574.68}\\
+BIC & \num{2926.37} & \num{2920.98} & \num{2880.35} & \num{2874.40} & \num{2606.04}\\
+\bottomrule
+\end{tabular}
+
+
+\vspace{0.25cm}
+\textbf{Note:} Probit coefficients of the baseline models as described by Equation \ref{eqn:simplemod}. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
+\end{document}

@@ -1,0 +1,49 @@
+% Appendix 2: Other estimations for Models
+<<parent_to_ap2, include = F>>=
+set_parent('main.Rnw') # Set the parent document preamble
+@
+\section{Other estimations for models in Table \ref{tab:simplemodel}}
+\label{app:second}
+Table \ref{tab:probitsimp} shows a probit estimation of the model displayed in Equation \ref{eqn:simplemod}. The signs of the coefficients in this table confirm the findings of the logit model as explained in Table \ref{tab:simplemodel}. Table \ref{tab:probitsimpape} shows average partial effects for the probit models in Table \ref{tab:probitsimp}. The magnitudes of these effects are similar to those shown in Table \ref{tab:simplemodel}. Table \ref{tab:lpmsimp} shows the estimated effects of a linear probability model of Equation \ref{eqn:simplemod}, which also follow the coefficient signs in the logit and probit estimates. 
+\begin{table}[htbp]
+\caption{Probit coefficients for baseline models}
+\label{tab:probitsimp}
+<<table-probit-lpm, include = T, results = 'asis', warning = F, message = F>>=
+# Source the models
+
+source('scripts/baseline_regs.R')
+       
+# Coefficient name mappings
+
+coefficient_names<-c('(Intercept)' = 'Constant', 
+                     'year2016' = '2016 Dummy',
+                     'econ_sitWorse' = 'Worse Economic Situation',
+                     'unem2_4a' = 'Unemployment',
+                     'pres_conf' = 'Confidence in President',
+                     'pres_aprov' = 'Approval of Pres. Performance',
+                     'polscore' = 'Political Wing',
+                     'year2016:econ_sitWorse' = 'Econ. Situation Interaction',
+                     'year2016:unem2_4a' = 'Unemployment Interaction',
+                     'year2016:pres_conf' = 'Pres. Confidence Interaction',
+                     'year2016:pres_aprov' = 'Pres. Approval Interaction',
+                     'year2016:polscore' = 'Pol. Wing Interaction')
+
+# GOF mapping
+
+base_models_stats<-
+  list(list("raw" = "nobs", "clean" = "$N$", "fmt" = 0),
+       list("raw" = "aic", "clean" = "AIC", "fmt" = 2),
+       list("raw" = "bic", "clean" = "BIC", "fmt" = 2))
+
+# Do the table
+
+modelsummary(base_models_prob,
+             output = 'latex_tabular',
+             gof_map = base_models_stats,
+             coef_map = coefficient_names)
+@
+\vspace{0.25cm}
+\textbf{Note:} Probit coefficients of the baseline models as described by Equation \ref{eqn:simplemod}. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
