@@ -1,5 +1,5 @@
 % Conclusions .Rnw File
-<<parent_tores3, include = F>>=
+<<parent_to_conc, include = F>>=
 set_parent('main.Rnw') # Set the parent document preamble
 @
 

@@ -1,0 +1,4 @@
+% Appendix 1 .Rnw File
+<<parent_to_ap1, include = F>>=
+set_parent('main.Rnw') # Set the parent document preamble
+@

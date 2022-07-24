@@ -133,4 +133,14 @@ source('scripts/data_manipulation.R')
 <<res3_child, child = 'results3.Rnw'>>=
 @
 
+% Conclusions Child Document
+
+<<conclusions, child = 'conclusions.Rnw'>>=
+@
+
+% Acknowledgments Child Document
+
+<<acknowledgments, child = 'acknowledgments.Rnw'>>=
+@
+
 \end{document}
