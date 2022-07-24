@@ -294,7 +294,8 @@ modelsummary(cross_sec_log,
              stars = c('*'= 0.1, '**' = 0.05, '***'= 0.01),
              output = 'latex_tabular',
              coef_map = coefficient_names_cross,
-             gof_map = cross_models_stats)
+             gof_map = cross_models_stats,
+             add_rows = data.frame('Year', '2014', '2016'))
 
 @
 \end{center}
@@ -332,11 +333,33 @@ modelsummary(cross_sec_logit_mfx,
              stars = c('*'= 0.1, '**' = 0.05, '***'= 0.01),
              output = 'latex_tabular',
              coef_map = coefficient_names_cross_ape,
-             gof_map = cross_models_stats_ape)
+             gof_map = cross_models_stats_ape,
+             add_rows = data.frame('Year', '2014', '2016'))
 
 @
 \end{center}
 \textbf{Note:} Average partial effects for logit cross-sectional empirical models in Table \ref{tab:crossmod}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
 *$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
 \end{table}
+
+The coefficients shown in Table \ref{tab:crossmod} show that, while education is significant for the pooled regression, it is not for a 2014 cross-section: only in 2016 it is possible to detect a negative effect of education years in corruption tolerance. Table \ref{tab:apecross} shows that an additional year of education reduces the probability of justifying corruption by about 9 percentage points, all other things equal. A similar phenomenon is seen for the interest in politics variable: only in 2016 people who are interested in politics justify corruption more than those not interested. The exposure to corruption, internal political efficacy and age variables remain significant for both years. The effect of protest participation, while significant in the pooled regressions, is not significant in any of the individual years. 
+
+The last rows of Table \ref{tab:crossmod} show the effects of the key regressors for 2014 ($\beta_{x^*}$ as defined in Equation \ref{eqn:crosssecmodel}). Model 1 shows that those who were unemployed justified corruption to a greater extent. However, as the interaction term in Table \ref{tab:crossmod} shows, the effect on unemployment for 2016 is smaller. The effect of unemployment or of any of the key regressors in 2016 can be understood as the \enquote{net} effect of the regressor as defined in Equation \ref{eqn:genmod}: $\beta_{x^*} + \delta_1 y_{16}$. In fact, according to the models in 2016 unemployed respondents do not display a different likelihood of justifying corruption relative to those who are not unemployed. The data shows that following the recession and loss of popularity of the regime, the unemployed remained approximately equal in their corruption tolerance proclivities relative to those who were not unemployed.
+
+It is possible that initially unemployed people justified corruption more because it was their “steady state” of corruption tolerance: unemployed people are economically disadvantaged which gives them incentives to engage in corrupt actions which yield positive economic payoffs. Additionally, as they are unable to enter the job market for some time, they might feel more alienated from society, which might decrease social or moral incentives to remain honest by renouncing the economic payoffs that corruption may offer, as it has been explained previously. The change in corruption tolerance behavior for 2016 is more difficult to understand. It is possible that since the recession many lost their jobs and they have had relatively short unemployment spells. The recently unemployed may not feel too alienated from society and thus have not adopted an attitude of pragmatism toward the current circumstances. Savings or family income may support the recently unemployed which makes them feel less desperate and prone to take the “moral high ground”. This
+all contributes to them still feeling part of society, which reduces their rationalization of corruption. However, with larger unemployment spells, desperation may trigger more pragmatic points of view, which will lead to higher corruption tolerance in future years. All of this contributes to the effect of unemployment in 2016 not being statistically different from zero, as seen in Table \ref{tab:crossmod}.
+
+To better understand the implications of the political variables' coefficients and their change in time, consider a key actor on corruption normalization, leadership. Having initially branded himself as \enquote{the biblical underdog} \parencite[para. 4]{Hedgecoe.2009}, President Correa distanced himself from the country's political elite and constantly denounced  corruption and injustice in the system. The new government promised a radical change when it started its tenure in 2007 and did deliver as it gave Ecuador a politically stable though totalitarian environment, as well as other changes in political and economical mechanisms \parencite{Weisbrot.2017}. The President had explicitly stated that he would battle corruption and fiscal evasion \enquote{to the death} \parencite{Ortiz.2013}. Thus, supporters of this regime had higher social sanctions if they engaged in or justified corrupt behavior, as this may have implied that the economic and political model they supported was flawed.
+
+However, by 2016 the popularity of the regime faced a sharp decrease. Several narratives started to be constructed by President Correa and his officials to explain the flaws and weaknesses that opponents had denounced. These included reducing corruption accusations to \enquote{political persecution} or unfounded claims done because of upcoming elections \parencite{Melendez.2017}. A statement by the President represents a particularly relevant example: a regime-affiliated newspaper portrayed how Correa qualifies the Panama Papers as a \textit{selective fight against corruption} which is nothing but another kind of corruption, as well as a \textit{strategy by power groups} to destabilize democratically-elect governments \parencite[para. 5-7]{Telegrafo.2016}. 
+
+Even as corruption accusations had planted the seed of a deep investigation about a complex corruption scheme involving top government officials and large corporations \parencite{Villavicencio.2019}, authorities within the Correa administration reduced the importance of these events, which created a narrative for regime supporters. If the legitimacy of those who denounce and control corruption is questioned by an important authority of the organization, corrupt acts can be more easily normalized \parencite{Ashforth.2003}. Thus, if there was a greater incidence of corrupt acts as well as numerous attempts by the authorities to justify them, it can be understood how supporters of the regime started to justify corruption more.
+
+The data also show how people who identify with the political right became more corruption-tolerant in 2016. It is not clear if there is a causal relationship involving the political right and corruption tolerance. This is because it has been determined that in Ecuador the answer to the political identification question has little to do with the traditional principles of the political wings that are commonly understood. Rather, it is possible that the political self-identification of Ecuadorians follows a multidimensional perspective \parencite{Moncagatta.2020b}, not too accurately measured with an indicator like the one used here. 
+
+A potential explanation to the sign on this variable is that those who identify with the right do so partially because they consider themselves to be against the government in place. This is reasonable considering the increase in the percentage of "rightists" between 2014 and 2016, which moves together with regime's downfall. Additionally, it is possible that anti-regime attitudes formed under a common set of ideas rather than under a political party or figure, since during President Correa's tenure opposition forces did not materialize strongly behind a party or leader \parencite{Melendez.2017}. It is sensible to believe that no political wing has any particular preference for justifying or rejecting corruption, as important actors in both political wings have spoken against it, academics \parencite{Holcombe.2015} and politicians \parencite{Morris.2021} alike. However, anti-regime respondents rather than \enquote{rightists} might rationalize corruption as a form of revenge, as proposed by \textcite{Ashforth.2003} and noted by \textcite{Adoum.2000}.
+
+
+
+
 
