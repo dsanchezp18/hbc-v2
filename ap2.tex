@@ -138,7 +138,9 @@
 
 \section{Other estimations for models in Table \ref{tab:simplemodel}}
 \label{app:second}
-Table \ref{tab:probitsimp} shows a probit estimation of the model displayed in Equation \ref{eqn:simplemod}. The signs of the coefficients in this table confirm the findings of the logit model as explained in Table \ref{tab:simplemodel}. Table \ref{tab:probitsimpape} shows average partial effects for the probit models in Table \ref{tab:probitsimp}. The magnitudes of these effects are similar to those shown in Table \ref{tab:simplemodel}. Table \ref{tab:lpmsimp} shows the estimated effects of a linear probability model of Equation \ref{eqn:simplemod}, which also follow the coefficient signs in the logit and probit estimates. 
+Table \ref{tab:probitsimp} shows a probit estimation of the model displayed in Equation \ref{eqn:simplemod}. The signs of the coefficients in this table confirm the findings of the logit model as explained in Table \ref{tab:simplemodel}. Table \ref{tab:probitsimpape} shows average partial effects for the probit models in Table \ref{tab:probitsimp}. The magnitudes of these effects are similar to those shown in Table \ref{tab:simplemodel}. Table \ref{tab:lpmsimp} shows the estimated effects of a linear probability model of Equation \ref{eqn:simplemod}, which also follow the coefficient signs in the logit and probit estimates.
+
+% Probit coefficients
 \begin{table}[htbp]
 \caption{Probit coefficients for baseline models}
 \label{tab:probitsimp}
@@ -181,6 +183,38 @@ BIC & \num{2926.37} & \num{2920.98} & \num{2880.35} & \num{2874.40} & \num{2606.
 
 \vspace{0.25cm}
 \textbf{Note:} Probit coefficients of the baseline models as described by Equation \ref{eqn:simplemod}. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
+% Do the APE table
+\begin{table}[htbp]
+\caption{Average partial effects for probit models in Table \ref{tab:probitsimp}}
+\label{tab:probitsimpape}
+
+\begin{tabular}[t]{lccccc}
+\toprule
+  & Model 1 & Model 2 & Model 3 & Model 4 & Model 5\\
+\midrule
+2016 Dummy & \num{0.131}*** & \num{0.126}*** & \num{0.109}*** & \num{0.118}*** & \num{0.124}***\\
+ & (\num{0.020}) & (\num{0.019}) & (\num{0.019}) & (\num{0.019}) & (\num{0.020})\\
+Worse Economic Situation & \num{0.018} &  &  &  & \\
+ & (\num{0.014}) &  &  &  & \\
+Unemployment &  & \num{0.061}*** &  &  & \\
+ &  & (\num{0.021}) &  &  & \\
+Confidence in President &  &  & \num{-0.025}*** &  & \\
+ &  &  & (\num{0.003}) &  & \\
+Approval of Pres. Performance &  &  &  & \num{-0.046}*** & \\
+ &  &  &  & (\num{0.008}) & \\
+Political Wing &  &  &  &  & \num{0.002}\\
+ &  &  &  &  & (\num{0.003})\\
+\midrule
+$N$ & \num{2948} & \num{2950} & \num{2944} & \num{2941} & \num{2535}\\
+\bottomrule
+\end{tabular}
+
+
+\vspace{0.25cm}
+\textbf{Note:} Average partial effects for the models estimated in Table \ref{tab:probitsimp}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
 *$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
 \end{table}
 

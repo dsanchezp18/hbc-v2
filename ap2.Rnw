@@ -4,7 +4,9 @@ set_parent('main.Rnw') # Set the parent document preamble
 @
 \section{Other estimations for models in Table \ref{tab:simplemodel}}
 \label{app:second}
-Table \ref{tab:probitsimp} shows a probit estimation of the model displayed in Equation \ref{eqn:simplemod}. The signs of the coefficients in this table confirm the findings of the logit model as explained in Table \ref{tab:simplemodel}. Table \ref{tab:probitsimpape} shows average partial effects for the probit models in Table \ref{tab:probitsimp}. The magnitudes of these effects are similar to those shown in Table \ref{tab:simplemodel}. Table \ref{tab:lpmsimp} shows the estimated effects of a linear probability model of Equation \ref{eqn:simplemod}, which also follow the coefficient signs in the logit and probit estimates. 
+Table \ref{tab:probitsimp} shows a probit estimation of the model displayed in Equation \ref{eqn:simplemod}. The signs of the coefficients in this table confirm the findings of the logit model as explained in Table \ref{tab:simplemodel}. Table \ref{tab:probitsimpape} shows average partial effects for the probit models in Table \ref{tab:probitsimp}. The magnitudes of these effects are similar to those shown in Table \ref{tab:simplemodel}. Table \ref{tab:lpmsimp} shows the estimated effects of a linear probability model of Equation \ref{eqn:simplemod}, which also follow the coefficient signs in the logit and probit estimates.
+
+% Probit coefficients
 \begin{table}[htbp]
 \caption{Probit coefficients for baseline models}
 \label{tab:probitsimp}
@@ -44,6 +46,36 @@ modelsummary(base_models_prob,
 @
 \vspace{0.25cm}
 \textbf{Note:} Probit coefficients of the baseline models as described by Equation \ref{eqn:simplemod}. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
+% Do the APE table
+\begin{table}[htbp]
+\caption{Average partial effects for probit models in Table \ref{tab:probitsimp}}
+\label{tab:probitsimpape}
+<<baseline-aoes-table, include = T, results = 'asis', cache = T>>=
+# Coefficient mappings
+
+coefficient_names_ape<-c('year' = '2016 Dummy',
+                         'econ_sit' = 'Worse Economic Situation',
+                         'unem2_4a' = 'Unemployment',
+                         'pres_conf' = 'Confidence in President',
+                         'pres_aprov' = 'Approval of Pres. Performance',
+                         'polscore' = 'Political Wing')
+
+# Goodness of fit mappings
+
+gof_simpapes<-
+  list(list("raw" = "nobs", "clean" = "$N$", "fmt" = 0))
+
+modelsummary(base_probit_mfx,
+             stars = c('*'= 0.1, '**' = 0.05, '***'= 0.01),
+             output = 'latex_tabular',
+             coef_map = coefficient_names_ape,
+             gof_map = gof_simpapes)
+ @
+\vspace{0.25cm}
+\textbf{Note:} Average partial effects for the models estimated in Table \ref{tab:probitsimp}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
 *$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
 \end{table}
 
