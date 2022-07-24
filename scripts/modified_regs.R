@@ -47,9 +47,67 @@ modified_models_log<- list(log_unem_m,
                            log_aprov_m,
                            log_pols_m)
 
+# Probit -----------------------------------------------------------------------------------------------------------------
+
+# Unemployment
+
+prob_unem_m<-svyglm(ctol~ year*(unem2_4a) + age + gndr + ed + ur + eff1 + eff2 + prot3 + pint_dic + corrper + corr_exp +
+                    polscore + pres_aprov,
+                    design = lapop_des46,
+                    family = quasibinomial(link = 'probit'))
+
+# Job Approval Rating
+
+prob_aprov_m<-svyglm(ctol~ year*(pres_aprov) + age + gndr + ed + ur + eff1 + eff2 + prot3 + pint_dic + corrper + corr_exp +
+                     unem2_4a + polscore,
+                     design = lapop_des46,
+                     family = quasibinomial(link = 'probit'))
+
+# Political Score
+
+prob_pols_m<-svyglm(ctol~ year*(polscore) + age + gndr + ed + ur + eff1 + eff2 + prot3 + pint_dic + corrper + corr_exp + 
+                    unem2_4a + pres_aprov,
+                    design = lapop_des46,
+                    family = quasibinomial(link = 'probit'))
+
+# List all models in a table
+
+modified_models_prob<- list(prob_unem_m,
+                            prob_aprov_m,
+                            prob_pols_m)
+
+# LPM --------------------------------------------------------------------------------------------------------------------
+
+# Unemployment
+
+lpm_unem_m<-svyglm(ctol~ year*(unem2_4a) + age + gndr + ed + ur + eff1 + eff2 + prot3 + pint_dic + corrper + corr_exp +
+                   polscore + pres_aprov,
+                   design = lapop_des46)
+
+# Job Approval Rating
+
+lpm_aprov_m<-svyglm(ctol~ year*(pres_aprov) + age + gndr + ed + ur + eff1 + eff2 + prot3 + pint_dic + corrper + corr_exp +
+                    unem2_4a + polscore,
+                    design = lapop_des46)
+
+# Political Score
+
+lpm_pols_m<-svyglm(ctol~ year*(polscore) + age + gndr + ed + ur + eff1 + eff2 + prot3 + pint_dic + corrper + corr_exp + 
+                   unem2_4a + pres_aprov,
+                   design = lapop_des46)
+
+# List all models in a table
+
+modified_models_lpm<- list(lpm_unem_m,
+                           lpm_aprov_m,
+                           lpm_pols_m)
+
 # ================================================= Baseline APEs =====================================================
 
 # Logit ------------------------------------------------------------------------------------------------------------------
 
 modified_logit_mfx<-lapply(modified_models_log, marginaleffects)
+
+modified_probit_mfx<-lapply(modified_models_prob, marginaleffects)
+
 

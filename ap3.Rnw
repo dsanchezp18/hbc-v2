@@ -1,0 +1,143 @@
+% Appendix 3 Rnw File
+<<parent_ap3, include = F>>=
+set_parent('main.Rnw') # Set the parent document preamble
+@
+\section{APPENDIX C: OTHER EMPIRICAL MODELS FOR TABLE \ref{tab:complexmod}}
+\label{app:third}
+
+Table \ref{tab:complexmodprob} shows probit estimations of the complex model as seen in Equation \ref{eqn:genmod}. Additionally, LPM estimates are displayed for the same models. The coefficients of the probit estimation are similar in sign and significance to the ones of the logit estimation of Table \ref{tab:complexmod}. Average partial effects for these models are also shown below. These are also similar in magnitude to those in Table \ref{tab:apescomp}. 
+
+% Probit coefficients table
+\begin{table}[htbp]
+\begin{center}
+\caption{Probit coefficients for modified models}
+\label{tab:complexmodprob}
+<<table-probit-modified, include = T, results = 'asis', warning = F, message = F>>=
+# Source the models
+
+source('scripts/modified_regs.R')
+       
+# Coefficient name mappings
+
+coefficient_names_m<-c('(Intercept)' = 'Constant',
+                       'year2016' = '2016 Dummy',
+                       'gndrWoman' = 'Woman',
+                       'age' = 'Age',
+                       'ed' = 'Years of education',
+                       'urUrban' = 'Lives in urban setting',
+                       'eff1' = 'External political efficacy',
+                       'eff2' = 'Internal political efficacy',
+                       'prot3Yes' = 'Participation in a protest',
+                       'pint_dic' = 'Interest in politics', 
+                       'corrper' = 'Perceptions of corruption',
+                       'corr_exp' = 'Exposure to corruption',
+                       'unem2_4a' = 'Unemployment',
+                       'pres_aprov' = 'Approval of Pres. Performance',
+                       'polscore' = 'Political Wing',
+                       'year2016:unem2_4a' = 'Unemployment Interaction',
+                       'year2016:pres_aprov' = 'Pres. Approval Interaction',
+                       'year2016:polscore' = 'Pol. Wing Interaction')
+
+# GOF mapping
+
+modified_models_stats<-
+  list(list("raw" = "nobs", "clean" = "$N$", "fmt" = 0),
+       list("raw" = "aic", "clean" = "AIC", "fmt" = 2),
+       list("raw" = "bic", "clean" = "BIC", "fmt" = 2))
+
+# Do the table
+
+modelsummary(modified_models_prob,
+             output = 'latex_tabular',
+             gof_map = modified_models_stats,
+             coef_map = coefficient_names_m)
+@
+\end{center}
+\textbf{Note:} Probit coefficients of the modified models as described by Equation \ref{eqn:genmod}. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
+% APE Probit Table
+
+\begin{table}[htbp]
+\caption{Average partial effects for probit models in Table \ref{tab:probitsimp}}
+\begin{center}
+\label{tab:probitcompape}
+<<baseline-apes-table, include = T, results = 'asis', cache = T>>=
+# Coefficient Mapping
+
+coefficient_names_apes_c<-c('gndrWoman' = 'Woman',
+                            'age' = 'Age',
+                            'ed' = 'Years of education',
+                            'urUrban' = 'Lives in urban setting',
+                            'eff1' = 'External political efficacy',
+                            'eff2' = 'Internal political efficacy',
+                            'prot3Yes' = 'Participation in a protest',
+                            'pint_dic' = 'Interest in politics', 
+                            'corrper' = 'Perceptions of corruption',
+                            'corr_exp' = 'Exposure to corruption',
+                            'unem2_4a' = 'Unemployment',
+                            'pres_aprov' = 'Approval of Pres. performance',
+                            'polscore' = 'Political wing')
+# Goodness of fit mappings
+
+gof_modapes<-
+  list(list("raw" = "nobs", "clean" = "$N$", "fmt" = 0))
+
+modelsummary(modified_probit_mfx,
+             output = 'latex_tabular',
+             stars = c('*'= 0.1, '**' = 0.05, '***'= 0.01),
+             coef_map = coefficient_names_apes_c,
+             gof_map = gof_modapes)
+ @
+\vspace{0.25cm}
+\end{center}
+\textbf{Note:} Average partial effects for the models estimated in Table \ref{complexmodprob}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
+% LPM coefficients table
+\begin{table}[htbp]
+\begin{center}
+\caption{LPM coefficients for modified models}
+\label{tab:complexmodlpm}
+<<table-lpm-modified, include = T, results = 'asis', warning = F, message = F>>=
+# Coefficient name mappings
+
+coefficient_names_m<-c('(Intercept)' = 'Constant',
+                       'year2016' = '2016 Dummy',
+                       'gndrWoman' = 'Woman',
+                       'age' = 'Age',
+                       'ed' = 'Years of education',
+                       'urUrban' = 'Lives in urban setting',
+                       'eff1' = 'External political efficacy',
+                       'eff2' = 'Internal political efficacy',
+                       'prot3Yes' = 'Participation in a protest',
+                       'pint_dic' = 'Interest in politics', 
+                       'corrper' = 'Perceptions of corruption',
+                       'corr_exp' = 'Exposure to corruption',
+                       'unem2_4a' = 'Unemployment',
+                       'pres_aprov' = 'Approval of Pres. Performance',
+                       'polscore' = 'Political Wing',
+                       'year2016:unem2_4a' = 'Unemployment Interaction',
+                       'year2016:pres_aprov' = 'Pres. Approval Interaction',
+                       'year2016:polscore' = 'Pol. Wing Interaction')
+
+# GOF mapping
+
+modified_models_stats<-
+  list(list("raw" = "nobs", "clean" = "$N$", "fmt" = 0),
+       list("raw" = "aic", "clean" = "AIC", "fmt" = 2),
+       list("raw" = "bic", "clean" = "BIC", "fmt" = 2))
+
+# Do the table
+
+modelsummary(modified_models_lpm,
+             output = 'latex_tabular',
+             gof_map = modified_models_stats,
+             coef_map = coefficient_names_m)
+@
+\end{center}
+\textbf{Note:} LPM coefficients of the modified models as described by Equation \ref{eqn:genmod}. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
