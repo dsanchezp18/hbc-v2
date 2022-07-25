@@ -1,5 +1,5 @@
 % Acknowledgments .Rnw File
-<<parent_toack, include = F>>=
+<<parent_toack>>=
 set_parent('main.Rnw') # Set the parent document preamble
 @
 \section*{ACKNOWLEDGMENTS/AGRADECIMIENTOS}

@@ -1,6 +1,5 @@
 % Abstract .Rnw File
-
-<<parent_toabs, include = F>>=
+<<parent_toabs>>=
 set_parent('../../main.Rnw') # Set the parent document preamble
 @
 \section*{Abstract}

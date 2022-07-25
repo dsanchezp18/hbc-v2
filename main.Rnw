@@ -88,7 +88,7 @@ library(patchwork)
 @
 
 % Load the data by sourcing the data manipulation script. Note that survey design objects are indeed created in this script.
-<<source-data, include = F>>=
+<<source-data, cache = T>>=
 source('scripts/data_manipulation.R')
 @
 
