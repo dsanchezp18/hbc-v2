@@ -2,7 +2,7 @@
 <<parent_ap3, include = F>>=
 set_parent('main.Rnw') # Set the parent document preamble
 @
-\section{APPENDIX C: OTHER EMPIRICAL MODELS FOR TABLE \ref{tab:complexmod}}
+\section{Appendix C: Other empirical models for \ref{tab:complexmod}}
 \label{app:third}
 
 Table \ref{tab:complexmodprob} shows probit estimations of the complex model as seen in Equation \ref{eqn:genmod}. Additionally, LPM estimates are displayed for the same models. The coefficients of the probit estimation are similar in sign and significance to the ones of the logit estimation of Table \ref{tab:complexmod}. Average partial effects for these models are also shown below. These are also similar in magnitude to those in Table \ref{tab:apescomp}. 

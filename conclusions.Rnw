@@ -3,7 +3,7 @@
 set_parent('main.Rnw') # Set the parent document preamble
 @
 
-\section{CONCLUSIONS}
+\section{Conclusions}
 
 The degree to which citizens of a country justify corruption is a topic worth of careful study, given that the more that corruption is normalized in any environment, the more likely it is that actors in that environment commit dishonest acts. This is because corruption necessarily implies both social and economic payoffs, and when the social payoff of being honest is eliminated through a justification of dishonest acts, the economic payoffs now almost fully drive the decision of an individual to engage in these. In Ecuador, the data of the AmericasBarometer survey has shown that corruption tolerance has risen since 2014, the most important being between 2014 and 2016.
 

@@ -1,11 +1,10 @@
 % Appendix 4 .Rnw File
-<<parent_ap3, include = F>>=
+<<parent_ap4,include = F>>=
 set_parent('main.Rnw') # Set the parent document preamble
 @
+\section{Appendix D: Other empirical models for \ref{tab:crossmod}}
 
-\section{APPENDIX D: OTHER EMPIRICAL MODELS FOR TABLE \ref{tab:complexmodc}}
-
-Table \ref{tab:complexmodcprob} shows probit estimations of the cross sectional models as seen in Equation \ref{eqn:crosssecmodel}. Additionally, Table \ref{tab:complexmodlpmcross} shows the LPM estimates for the same models. The coefficients of the probit estimation are similar in sign and significance to the ones of the logit estimation. Average partial effects for these models are shown in Table \ref{tab:apecrossprobit}, also similar in magnitude to those in Table \ref{tab:apescomp}.
+Table \ref{tab:complexmodcprob} shows probit estimations of the cross sectional models as seen in Equation \ref{eqn:crosssecmodel}. Additionally, Table \ref{tab:complexmodlpmcross} shows the LPM estimates for the same models. The coefficients of the probit estimation are similar in sign and significance to the logit estimation. Average partial effects for these models are shown in Table \ref{tab:apecrossprobit}, also similar in magnitude to those in Table \ref{tab:apescomp}.
 
 % Table of cross-sectional models
 \begin{table}[htbp]

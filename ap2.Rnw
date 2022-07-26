@@ -2,7 +2,7 @@
 <<parent_to_ap2, include = F>>=
 set_parent('main.Rnw') # Set the parent document preamble
 @
-\section{Other estimations for models in Table \ref{tab:simplemodel}}
+\section{Appendix B: Other estimations for models in Table \ref{tab:simplemodel}}
 \label{app:second}
 Table \ref{tab:probitsimp} shows a probit estimation of the model displayed in Equation \ref{eqn:simplemod}. The signs of the coefficients in this table confirm the findings of the logit model as explained in Table \ref{tab:simplemodel}. Table \ref{tab:probitsimpape} shows average partial effects for the probit models in Table \ref{tab:probitsimp}. The magnitudes of these effects are similar to those shown in Table \ref{tab:simplemodel}. Table \ref{tab:lpmsimp} shows the estimated effects of a linear probability model of Equation \ref{eqn:simplemod}, which also follow the coefficient signs in the logit and probit estimates.
 % Probit coefficients

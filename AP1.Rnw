@@ -3,7 +3,7 @@
 set_parent('main.Rnw') # Set the parent document preamble
 @
 
-\section{APPENDIX A: DETAILS ABOUT THE QUESTIONS AND VARIABLE ENCODINGS}
+\section{Appendix A: Details about the survey questions and variable encodings}
 \label{app:first}
 
 The variables used in this paper are taken from the AmericasBarometer survey for Ecuador in the 2014 and 2016 rounds. Below some of these variables, with their survey question equivalents, are described. The models dropped all NA responses from the analysis. The English translations of the questions are included here, which can be found in the LAPOP AB variable codebook for the 2018/19 round \parencite{LAPOP.2019}. Further information about the codings of the variables will be made available in the \href{https://github.com/dsanchezp18/hbc-v2}{GitHub} repository. 

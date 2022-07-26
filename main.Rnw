@@ -158,4 +158,9 @@ source('scripts/data_manipulation.R')
 <<ap3, child = 'ap3.Rnw'>>=
 @
 
+% Appendix 3 Child Document
+
+<<ap4, child = 'ap4.Rnw'>>=
+@
+
 \end{document}

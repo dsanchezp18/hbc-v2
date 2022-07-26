@@ -1,5 +1,5 @@
 % Literature Review Rnw File
-<<parent_torev, include = F>>=
+<<parent_torev>>=
 set_parent('main.Rnw') # Set the parent document preamble
 @
 

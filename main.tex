@@ -137,7 +137,6 @@
 
 % Abstract .Rnw File
 
-
 \section*{Abstract}
 
 The causes and consequences of corruption have been well studied in the literature. However, the way that citizens behave toward corruption has mostly escaped attention by academics, even when considering that attitudes may be a strong determinant of the incidence of corruption. In this paper a large rise of corruption tolerance in Ecuador between 2014 and 2016 is studied. Using survey data from the AmericasBarometer, binary-outcome empirical models are estimated to discover the key determinants of the jump. The study finds that the corruption tolerance increase could have been driven by a change in attitudes by supporters of the President as well as by individuals identifying closer to the political right. People who approved of the President's job performance initially justified bribes less than those who did not approve. However, by 2016 supporters started to justify corruption to a greater extent. People that identified closer to the political right wing started to justify corruption more in 2016 relative to 2014. The jump is explained through these variables as the percentage of people who approved of the President decreased and the percentage of people identifying with the political right increased. It is also found that the people who were either employed or outside the labor force justified bribes more in 2016 when compared to those who were unemployed. Additionally, findings by the literature are confirmed with this across-time approach: people who are younger and who are exposed to corruption are more likely to justify corruption. It is hypothesized that the economic recession faced by the country combined with accusations of corruption to government officials may have led the jump through the mentioned political opinion variables. Mechanisms of normalization of corruption are discussed with basis on the theories proposed by \textcite{Ashforth.2003}, \textcite{Hurtado.2007} and \textcite{Adoum.2000}. 
@@ -868,7 +867,7 @@ A potential explanation to the sign on this variable is that those who identify 
 % Conclusions .Rnw File
 
 
-\section{CONCLUSIONS}
+\section{Conclusions}
 
 The degree to which citizens of a country justify corruption is a topic worth of careful study, given that the more that corruption is normalized in any environment, the more likely it is that actors in that environment commit dishonest acts. This is because corruption necessarily implies both social and economic payoffs, and when the social payoff of being honest is eliminated through a justification of dishonest acts, the economic payoffs now almost fully drive the decision of an individual to engage in these. In Ecuador, the data of the AmericasBarometer survey has shown that corruption tolerance has risen since 2014, the most important being between 2014 and 2016.
 
@@ -924,7 +923,7 @@ Finalmente, tengo que agradecer a mi Abuelo Jorge Enrique Pazmiño Rodríguez, q
 % Appendix 1 .Rnw File
 
 
-\section{APPENDIX A: DETAILS ABOUT THE QUESTIONS AND VARIABLE ENCODINGS}
+\section{Appendix A: Details about the survey questions and variable encodings}
 \label{app:first}
 
 The variables used in this paper are taken from the AmericasBarometer survey for Ecuador in the 2014 and 2016 rounds. Below some of these variables, with their survey question equivalents, are described. The models dropped all NA responses from the analysis. The English translations of the questions are included here, which can be found in the LAPOP AB variable codebook for the 2018/19 round \parencite{LAPOP.2019}. Further information about the codings of the variables will be made available in the \href{https://github.com/dsanchezp18/hbc-v2}{GitHub} repository. 
@@ -1017,7 +1016,7 @@ months, did you have to pay a bribe?} (p. 22)
 
 % Appendix 2: Other estimations for Models
 
-\section{Other estimations for models in Table \ref{tab:simplemodel}}
+\section{Appendix B: Other estimations for models in Table \ref{tab:simplemodel}}
 \label{app:second}
 Table \ref{tab:probitsimp} shows a probit estimation of the model displayed in Equation \ref{eqn:simplemod}. The signs of the coefficients in this table confirm the findings of the logit model as explained in Table \ref{tab:simplemodel}. Table \ref{tab:probitsimpape} shows average partial effects for the probit models in Table \ref{tab:probitsimp}. The magnitudes of these effects are similar to those shown in Table \ref{tab:simplemodel}. Table \ref{tab:lpmsimp} shows the estimated effects of a linear probability model of Equation \ref{eqn:simplemod}, which also follow the coefficient signs in the logit and probit estimates.
 % Probit coefficients
@@ -1151,7 +1150,7 @@ BIC & \num{31297.17} & \num{31336.89} & \num{31169.02} & \num{31101.45} & \num{2
 
 % Appendix 3 Rnw File
 
-\section{APPENDIX C: OTHER EMPIRICAL MODELS FOR TABLE \ref{tab:complexmod}}
+\section{Appendix C: Other empirical models for \ref{tab:complexmod}}
 \label{app:third}
 
 Table \ref{tab:complexmodprob} shows probit estimations of the complex model as seen in Equation \ref{eqn:genmod}. Additionally, LPM estimates are displayed for the same models. The coefficients of the probit estimation are similar in sign and significance to the ones of the logit estimation of Table \ref{tab:complexmod}. Average partial effects for these models are also shown below. These are also similar in magnitude to those in Table \ref{tab:apescomp}. 
@@ -1314,6 +1313,161 @@ BIC & \num{20116.42} & \num{20111.23} & \num{20120.75}\\
 
 \end{center}
 \textbf{Note:} LPM coefficients of the modified models as described by Equation \ref{eqn:genmod}. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
+% Appendix 3 Child Document
+
+
+% Appendix 4 .Rnw File
+
+\section{Appendix D: Other empirical models for \ref{tab:crossmod}}
+
+Table \ref{tab:complexmodcprob} shows probit estimations of the cross sectional models as seen in Equation \ref{eqn:crosssecmodel}. Additionally, Table \ref{tab:complexmodlpmcross} shows the LPM estimates for the same models. The coefficients of the probit estimation are similar in sign and significance to the logit estimation. Average partial effects for these models are shown in Table \ref{tab:apecrossprobit}, also similar in magnitude to those in Table \ref{tab:apescomp}.
+
+% Table of cross-sectional models
+\begin{table}[htbp]
+\begin{center}
+\caption{Probit coefficients for cross-sectional models as seen in Equation \ref{eqn:crosssecmodel}}
+\label{tab:complexmodcprob}
+
+\begin{tabular}[t]{lcc}
+\toprule
+  & Model 1 & Model 2\\
+\midrule
+Constant & \num{-0.004} & \num{-0.037}\\
+ & (\num{0.371}) & (\num{0.284})\\
+Woman & \num{0.025} & \num{0.076}\\
+ & (\num{0.111}) & (\num{0.079})\\
+Age & \num{-0.010}** & \num{-0.017}***\\
+ & (\num{0.004}) & (\num{0.003})\\
+Years of education & \num{-0.017} & \num{-0.029}***\\
+ & (\num{0.016}) & (\num{0.010})\\
+Lives in urban setting & \num{0.088} & \num{-0.046}\\
+ & (\num{0.127}) & (\num{0.090})\\
+External political efficacy & \num{-0.014} & \num{-0.034}\\
+ & (\num{0.030}) & (\num{0.023})\\
+Internal political efficacy & \num{0.081} & \num{0.046}*\\
+ & (\num{0.053}) & (\num{0.026})\\
+Participation in a protest & \num{0.244} & \num{0.122}\\
+ & (\num{0.173}) & (\num{0.165})\\
+Interest in politics & \num{-0.143} & \num{-0.149}*\\
+ & (\num{0.126}) & (\num{0.080})\\
+Perceptions of corruption & \num{-0.011} & \num{0.061}\\
+ & (\num{0.109}) & (\num{0.103})\\
+Exposure to corruption & \num{0.833}*** & \num{0.396}***\\
+ & (\num{0.096}) & (\num{0.088})\\
+Unemployment & \num{0.517}*** & \num{0.018}\\
+ & (\num{0.133}) & (\num{0.097})\\
+Approval of Pres. performance & \num{-0.303}*** & \num{0.009}\\
+ & (\num{0.061}) & (\num{0.042})\\
+Political wing & \num{-0.015} & \num{0.030}**\\
+ & (\num{0.021}) & (\num{0.013})\\
+\midrule
+$N$ & \num{1039} & \num{1269}\\
+AIC & \num{756.30} & \num{1434.29}\\
+BIC & \num{833.58} & \num{1516.10}\\
+Year & 2014 & 2016\\
+\bottomrule
+\end{tabular}
+
+
+\end{center}
+\textbf{Note:} Probit models for the cross-sectional models for 2014 and 2016 as seen in Equation \ref{eqn:crosssecmodel}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
+% Table of Cross-Sectional APEs Probit
+\begin{table}[htbp]
+\begin{center}
+\caption{Average partial effects for cross-sectional models in Table \ref{tab:complexmodcprob}}
+\label{tab:apecrossprobit}
+
+\begin{tabular}[t]{lcc}
+\toprule
+  & Model 1 & Model 2\\
+\midrule
+Age & \num{-0.002}** & \num{-0.005}***\\
+ & (\num{0.001}) & (\num{0.001})\\
+Years of education & \num{-0.003} & \num{-0.009}***\\
+ & (\num{0.003}) & (\num{0.003})\\
+External political efficacy & \num{-0.003} & \num{-0.011}\\
+ & (\num{0.006}) & (\num{0.007})\\
+Internal political efficacy & \num{0.016} & \num{0.015}*\\
+ & (\num{0.010}) & (\num{0.008})\\
+Interest in politics & \num{-0.028} & \num{-0.047}*\\
+ & (\num{0.024}) & (\num{0.025})\\
+Perceptions of corruption & \num{-0.002} & \num{0.019}\\
+ & (\num{0.021}) & (\num{0.032})\\
+Exposure to corruption & \num{0.161}*** & \num{0.124}***\\
+ & (\num{0.019}) & (\num{0.027})\\
+Unemployment & \num{0.100}*** & \num{0.006}\\
+ & (\num{0.027}) & (\num{0.031})\\
+Approval of Pres. performance & \num{-0.059}*** & \num{0.003}\\
+ & (\num{0.013}) & (\num{0.013})\\
+Political wing & \num{-0.003} & \num{0.009}**\\
+ & (\num{0.004}) & (\num{0.004})\\
+\midrule
+$N$ & \num{1039} & \num{1269}\\
+Year & 2014 & 2016\\
+\bottomrule
+\end{tabular}
+
+
+\end{center}
+\textbf{Note:} Average partial effects for probit cross-sectional empirical models in Table \ref{tab:complexmodcprob}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
+*$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
+\end{table}
+
+% Table of cross-sectional models
+\begin{table}[htbp]
+\begin{center}
+\caption{LPM coefficients for cross-sectional models as seen in Equation \ref{eqn:crosssecmodel}}
+\label{tab:complexmodlpmcross}
+
+\begin{tabular}[t]{lcc}
+\toprule
+  & Model 1 & Model 2\\
+\midrule
+Constant & \num{0.349}*** & \num{0.432}***\\
+ & (\num{0.077}) & (\num{0.088})\\
+Woman & \num{0.008} & \num{0.026}\\
+ & (\num{0.023}) & (\num{0.025})\\
+Age & \num{-0.002}** & \num{-0.005}***\\
+ & (\num{0.001}) & (\num{0.001})\\
+Years of education & \num{-0.003} & \num{-0.009}***\\
+ & (\num{0.003}) & (\num{0.003})\\
+Lives in urban setting & \num{0.015} & \num{-0.015}\\
+ & (\num{0.024}) & (\num{0.029})\\
+External political efficacy & \num{-0.003} & \num{-0.010}\\
+ & (\num{0.006}) & (\num{0.007})\\
+Internal political efficacy & \num{0.017}* & \num{0.015}*\\
+ & (\num{0.010}) & (\num{0.008})\\
+Participation in a protest & \num{0.073} & \num{0.041}\\
+ & (\num{0.053}) & (\num{0.054})\\
+Interest in politics & \num{-0.025} & \num{-0.045}*\\
+ & (\num{0.024}) & (\num{0.025})\\
+Perceptions of corruption & \num{-0.007} & \num{0.019}\\
+ & (\num{0.021}) & (\num{0.032})\\
+Exposure to corruption & \num{0.200}*** & \num{0.130}***\\
+ & (\num{0.027}) & (\num{0.030})\\
+Unemployment & \num{0.142}*** & \num{0.008}\\
+ & (\num{0.042}) & (\num{0.031})\\
+Approval of Pres. performance & \num{-0.062}*** & \num{0.005}\\
+ & (\num{0.015}) & (\num{0.013})\\
+Political wing & \num{-0.002} & \num{0.010}**\\
+ & (\num{0.004}) & (\num{0.004})\\
+\midrule
+$N$ & \num{1039} & \num{1269}\\
+AIC & \num{5949.61} & \num{7913.33}\\
+BIC & \num{8885.52} & \num{13478.89}\\
+Year & 2014 & 2016\\
+\bottomrule
+\end{tabular}
+
+
+\end{center}
+\textbf{Note:} LPM models for the cross-sectional models for 2014 and 2016 as seen in Equation \ref{eqn:crosssecmodel}. Data from the open-access AB databases. Standard errors consider design effects of the AB complex survey design.\\
 *$p$ < 0.1, **$p$< 0.05, ***$p$ < 0.01.
 \end{table}
 
