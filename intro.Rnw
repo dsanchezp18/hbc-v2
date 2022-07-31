@@ -22,7 +22,7 @@ Close to \Sexpr{round(corrpernew_time[8,2]*100)+2}\% of voting-age Ecuadorians b
 
 % Corruption Tolerance Choropleth Map based on 2019 values
 
-% Sorry, this map was done with the paid AmericasBarometer databases, so I cannot actually put my source code and have it executed by KNITR. USFQ students are free to access another version of the document, they must only email me. Third parties must wait until I do it with the free databases. The last appendix on this document shares the source code to compile the graph, but it won't work without the databse. Sorry!
+% Sorry, this map was done with the paid AmericasBarometer databases, so I cannot actually put my source code and have it executed by KNITR. USFQ students are free to access another version of the document, they must only email me. Third parties must wait until I do it with the free databases.
 
 \begin{figure}[htbp]
   \fbox{
@@ -37,6 +37,74 @@ Close to \Sexpr{round(corrpernew_time[8,2]*100)+2}\% of voting-age Ecuadorians b
     \end{minipage}
   }
 \end{figure}
+
+% This is the source code I used to make the graph. Of course, it doesn't work without the data, but, as you can see, making the graph is not too difficult.
+
+<<code_map_not_run, include = F, eval = F>>=
+# Tabulate the ctol data 2019 for the chloropleth graph
+ctol_country<-svyby(~ ctol, 
+                    ~ country, 
+                    design = lapop_des19,
+                    svymean, 
+                    na.rm = T)
+
+ctol_country$country<-c('Mexico',
+                        'Guatemala',
+                        'El Salvador',
+                        'Honduras',
+                        'Nicaragua',
+                        'Costa Rica',
+                        'Panama',
+                        'Colombia',
+                        'Ecuador',
+                        'Bolivia',
+                        'Peru',
+                        'Paraguay',
+                        'Chile',
+                        'Uruguay',
+                        'Brazil',
+                        'Argentina',
+                        'Dominican Republic',
+                        'Jamaica',
+                        'USA',
+                        'Canada')
+
+rownames(ctol_country)<-c()
+
+ctol_country<-ctol_country[1:18,] %>% rename('region' = country)
+
+ctol_country$ctol<-ctol_country$ctol*100
+
+# Call the map dataframe from the maps
+
+map<-map_data('world')
+
+# Join both dataframes
+
+map<-left_join(map, ctol_country, by = 'region')
+
+ctol_time_graph<-ggplot(ctol_time,
+                        aes(x = year, y = ctol, group = 1))+
+                 geom_col(fill = '#0B6623',
+                          color = 'black')+
+                 geom_errorbar(aes(ymin = ctol - 1.96*se,
+                                   ymax = ctol + 1.96*se),
+                               width = 0.5)+
+                 geom_text(aes(label= round(ctol, 4)*100),
+                           size = 3.5,
+                           vjust = 10)+
+                 theme_bw()+
+                 theme(panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(),
+                       axis.text.y = element_blank(),
+                       axis.ticks = element_blank(),
+                       text = element_text(size = 12))+
+                labs(x = '',
+                     y = '')
+ctol_time_graph
+
+@
+
 
 Corruption, if framed as any kind of inappropriate use of common power to benefit a select few at the expense of others \parencite{Warren.2004}, affects Ecuadorians extensively in their daily lives. According to \textcite{AlarconSalvador.2020}, up to 1.5 billion USD may be have been lost in 2019 due to corrupt practices in public contracting. During the decade-long Revolución Ciudadana regime, the local Anti-Corruption Comission estimates a 35 billion USD cost of corruption \parencite{RoaChejin.2020}. Ecuador has also seen increased COVID-19 vaccine inequality as top public officers inoculated non-priority subjects in their private circles \parencite{Taj.2021}, weakened public health services (\cite{Celi.2020}; \cite{Comercio.2021}; \cite{RoaChejin.2020}), policymakers charging fees for political positions (\cite{Espinosa.2021}; \cite{Gonzalez.2021}), lost Social Security funds \parencite{Pesantes.9152020}, among others. With the impairment of so many public services which Ecuadorians pay for and depend on, it would be expected that corrupt activities become publicly denounced and repudiated.
 
