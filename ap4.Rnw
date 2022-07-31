@@ -2,7 +2,7 @@
 <<parent_ap4,include = F>>=
 set_parent('main.Rnw') # Set the parent document preamble
 @
-\section{Appendix D: Other empirical models for \ref{tab:crossmod}}
+\section{Appendix D: Other empirical models for Table \ref{tab:crossmod}}
 
 Table \ref{tab:complexmodcprob} shows probit estimations of the cross sectional models as seen in Equation \ref{eqn:crosssecmodel}. Additionally, Table \ref{tab:complexmodlpmcross} shows the LPM estimates for the same models. The coefficients of the probit estimation are similar in sign and significance to the logit estimation. Average partial effects for these models are shown in Table \ref{tab:apecrossprobit}, also similar in magnitude to those in Table \ref{tab:apescomp}.
 
