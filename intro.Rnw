@@ -83,26 +83,29 @@ map<-map_data('world')
 
 map<-left_join(map, ctol_country, by = 'region')
 
-ctol_time_graph<-ggplot(ctol_time,
-                        aes(x = year, y = ctol, group = 1))+
-                 geom_col(fill = '#0B6623',
-                          color = 'black')+
-                 geom_errorbar(aes(ymin = ctol - 1.96*se,
-                                   ymax = ctol + 1.96*se),
-                               width = 0.5)+
-                 geom_text(aes(label= round(ctol, 4)*100),
-                           size = 3.5,
-                           vjust = 10)+
-                 theme_bw()+
-                 theme(panel.grid.major = element_blank(),
-                       panel.grid.minor = element_blank(),
-                       axis.text.y = element_blank(),
-                       axis.ticks = element_blank(),
-                       text = element_text(size = 12))+
-                labs(x = '',
-                     y = '')
-ctol_time_graph
+# Now do the actual choropleth map
 
+  ggplot(map,aes(x = long, y = lat, fill = ctol, group = group))+
+  geom_polygon(color = 'black')+
+  scale_fill_gradient2(low = 'white', 
+                       mid = '#0B6623', 
+                       high = '#003300',
+                       midpoint = mean(map$ctol, na.rm = T),
+                       na.value = '#bbbbbb')+
+  theme_minimal()+
+  theme(
+    axis.line = element_blank(),
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.background = element_rect(colour= "black", size= 1),
+    text = element_text(family = 'serif')) +
+  coord_fixed(xlim= c(-100,-35),
+              ylim= c(-53,20),
+              ratio = 1.2)+
+  labs(fill = 'Corruption\nTolerance (%)')
 @
 
 
