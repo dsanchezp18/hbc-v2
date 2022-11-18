@@ -53,7 +53,7 @@ modelsummary(base_models_prob,
 \caption{Average partial effects for probit models in Table \ref{tab:probitsimp}}
 \begin{center}
 \label{tab:probitsimpape}
-<<baseline-apes-table, include = T, results = 'asis', cache = T>>=
+<<baseline-apes-table, include = T, results = 'asis', cache = F>>=
 # Coefficient mappings
 
 coefficient_names_ape<-c('year' = '2016 Dummy',

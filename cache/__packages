@@ -18,11 +18,10 @@ openxlsx
 broom
 carData
 car
-marginaleffects
 zoo
 xts
 Quandl
 WDI
 ggpubr
 DataCombine
-margins
+marginaleffects

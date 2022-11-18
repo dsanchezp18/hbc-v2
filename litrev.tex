@@ -86,20 +86,39 @@
 
 \usepackage[margin = 1in]{geometry}
 
+\usepackage{lscape}
+
 % Citation & Bibliographies
 
 \usepackage[backend = biber, style = apa, citestyle = apa]{biblatex}
   \addbibresource{refs.bib}
   
+% For tables:
+
+ % For the modelsummary tables:
+\usepackage{siunitx}
+\usepackage{booktabs} 
+  \newcolumntype{d}{S[input-symbols = ()]}
+
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage[flushleft]{threeparttable}
+  
 % Other packages
 
 \usepackage{csquotes} % For quotation marks
+
 \usepackage{epigraph} % For epigraph
-% \epigraphsize{\small}% Default
-\setlength\epigraphwidth{9cm}
-\setlength\epigraphrule{1pt}
+  \setlength\epigraphwidth{9cm}
+  \setlength\epigraphrule{1pt}
 
 \usepackage{float} % For the H float option- only used in emergencies (lol)
+
+\usepackage{textcomp} % For the registered trademark symbol.
+
+% Always load these packages at the end of the preamble:
+
+\usepackage{hyperref}
 
 % ---- R Stuff to be used in the whole document ----
 
@@ -109,12 +128,7 @@
 
 
 
-% Load the data by sourcing the data manipulation script
-
-
-
-% Now create the survey design objects
-
+% Load the data by sourcing the data manipulation script. Note that survey design objects are indeed created in this script.
 
 
 
