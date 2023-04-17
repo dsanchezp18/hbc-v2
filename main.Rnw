@@ -13,7 +13,7 @@
 \usepackage{savesym} % Need to "save" the command that is already defined \varTheta
 
 \usepackage{amsmath}
-  \savesymbol{varTheta} 
+  \savesymbol{varTheta}
 
 % Fonts
 
