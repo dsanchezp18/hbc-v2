@@ -53,7 +53,6 @@ load('data/rdata/LAPOP 2004-2019 Merged.Rdata')
 
 # This one I loaded into a separate script and then saved as an .RData file, because it was very heavy and GitHub wouldn't have it.
 
-
 # ================================================= Starting with 2019 =============================================================
 
 # I will start with the 2019 base and go backwards
@@ -774,7 +773,7 @@ df$unem_4a<-ifelse(df$ocup4a == 3,1,0 ) %>% as.factor()
 
 # Create a variable that signals both kinds of unemployed, looking and not looking
 
-df$unem2_4a<-ifelse(df$ocup4a == 3 | df$ocup4a == 7, 1, 0)
+df$unem_total<-ifelse(df$ocup4a == 3 | df$ocup4a == 7, 1, 0)
 
 # Create a new labor market variable, with the following categories
 
@@ -899,11 +898,17 @@ df$pint_dic<-ifelse(df$pol_int == 'A lot' | df$pol_int == 'Some', 1, 0)
 
 # Relabel the variable
 
-df$prot3<- ifelse(df$prot3 == 1, 'Yes','No') %>% as.factor()
+df$prot3<- ifelse(df$prot3 == 1, 1, 0)
 
 # Logical
 
-df$prot_log<-df$prot3 == 'YeS'
+df$prot_log<-df$prot3 == 'Yes'
+
+# Create a new one
+
+df <-
+  df %>% 
+  mutate(protest = prot3)
 
 # Confidence in President ------------------------------------------------------------------------------------------------
 
@@ -963,9 +968,6 @@ save(df_2004,file = 'data/rdata/LAPOP 2008 Manipulated Dataframe.Rdata')
 save(df46, file = 'data/rdata/LAPOP 2014-2016 Manipulated Dataframe.Rdata')
 save(df, file = 'data/rdata/LAPOP 2004-2019 Manipulated Dataframe.Rdata')
 
-# Export data -------------------------------------------------------------
-
-write.csv(df, file = 'data/csv/lapop_full.csv')
 
 # Delete everything but what is needed ------------------------------------------------------------------------------------------------------
 
@@ -1011,10 +1013,5 @@ lapop_des14<-svydesign(ids = ~ upm,
                        nest = TRUE,
                        na.action = 'na.exclude',
                        data = df_2014)
-
-# Save the survey design object to use later
-
-
-save(lapop_des, file = 'data/rdata/lapop_des.Rdata')
 
 
